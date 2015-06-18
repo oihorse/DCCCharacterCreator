@@ -26,5 +26,13 @@
     "public/lib",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+		"angular": "latest",
+		"angular-route": "latest",	
+		"angular-resource": "latest",	
+		"angular-mocks": "latest",
+		"boostrap": "latest"
+	}
+
 }
