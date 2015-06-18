@@ -1,0 +1,28 @@
+{
+  "name": "DccCharacterCreator",
+  "version": "1.0.0",
+  "description": "A character creator for the DCC RPG made with MEAN",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oihorse/DCCCharacterCreator.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Angularjs",
+    "MongoDB",
+    "Express",
+    "Node",
+    "DCC",
+    "RPG"
+  ],
+  "author": "Chris Gohlinghorst",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oihorse/DCCCharacterCreator/issues"
+  },
+  "homepage": "https://github.com/oihorse/DCCCharacterCreator"
+}
