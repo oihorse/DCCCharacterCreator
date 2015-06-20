@@ -1,26 +1,33 @@
-<DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A character creator for the DCC RPG">
+	<meta name="author" content="Chris Gohlinghorst">
+
 	<!-- Use the 'title' property to render a page title  -->
 	<title><%= title %></title>
 	<link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/main.css" rel="stylesheet">
+
 </head>
 <body style="padding-top: 60px;" >
 	    <%- include partials/authnavbar.ejs %>	  
 
 	<!-- Render the signin form  -->
-	<div style="padding: 10px;">
-	<form action="/signin" method="post">
-		<div>
+	<div>
+	<form action="/signin" method="post" class="smallIndent">
+		<div class="serverForms">
 			<label>Email:</label>
 			<input type="text" name="username" />
-		</div>
-		<div>
+		<br>
 			<label>Password	:</label>
 			<input type="password" name="password" />
-		</div>
-		<div>
-			<input type="submit" value="Sign In" />
+		<br>
+            <br>
+			<button class="btn btn-success" type="submit" value="Sign In">Sign In</button>
 		</div>
 	</form>
 	</div>

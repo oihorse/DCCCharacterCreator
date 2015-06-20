@@ -44,7 +44,7 @@ exports.renderSignin = function(req, res, next) {
 			// Set the flash message variable
 			messages: req.flash('error') || req.flash('info')
 		});
-	} else 
+	} else {
 		return res.redirect('/');
 	}
 };
@@ -57,6 +57,7 @@ exports.renderSignup = function(req, res, next) {
 		res.render('register', {
 			// Set the page title variable
 			title: 'DCCCC Sign-up Form',
+			user: req.user,
 			// Set the flash message variable
 			messages: req.flash('error')
 		});
@@ -87,7 +88,7 @@ exports.register = function(req, res, next) {
 				req.flash('error', message);
 
 				// Redirect the user back to the signup page
-				return res.redirect('/signup');
+				return res.redirect('/register');
 			}
 
 			// If the user was created successfully use the Passport 'login' method to login
