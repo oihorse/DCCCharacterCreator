@@ -8,9 +8,9 @@ var users = require('../../app/controllers/users.server.controller'),
 // Define the routes module' method
 module.exports = function(app) {
 	// Set up the 'signup' routes 
-	app.route('/signup')
+	app.route('/register')
 	   .get(users.renderSignup)
-	   .post(users.signup);
+	   .post(users.register);
 
 	// Set up the 'signin' routes 
 	app.route('/signin')

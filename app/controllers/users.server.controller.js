@@ -39,12 +39,12 @@ exports.renderSignin = function(req, res, next) {
 	if (!req.user) {
 		// Use the 'response' object to render the signin page
 		res.render('signin', {
-			// Set the page title variable
-			title: 'Sign-in Form',
+			user: req.user,
+			title: 'DCCCC Sign-in',
 			// Set the flash message variable
 			messages: req.flash('error') || req.flash('info')
 		});
-	} else {
+	} else 
 		return res.redirect('/');
 	}
 };
@@ -54,9 +54,9 @@ exports.renderSignup = function(req, res, next) {
 	// If user is not connected render the signup page, otherwise redirect the user back to the main application page
 	if (!req.user) {
 		// Use the 'response' object to render the signup page
-		res.render('signup', {
+		res.render('register', {
 			// Set the page title variable
-			title: 'Sign-up Form',
+			title: 'DCCCC Sign-up Form',
 			// Set the flash message variable
 			messages: req.flash('error')
 		});
@@ -66,7 +66,7 @@ exports.renderSignup = function(req, res, next) {
 };
 
 // Create a new controller method that creates new 'regular' users
-exports.signup = function(req, res, next) {
+exports.register = function(req, res, next) {
 	// If user is not connected, create and login a new user, otherwise redirect the user back to the main application page
 	if (!req.user) {
 		// Create a new 'User' model instance
