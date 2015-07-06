@@ -1,0 +1,68 @@
+<section class="smallIndent" data-ng-controller="HeroPickerController">
+
+    <h1>Choose:</h1>
+
+    <form name="heroBuilder_form" data-ng-submit="buildHero()" novalidate>
+        <div class="serverForms">
+            <label for="characterName">Character Name:</label>
+            <input type="text" data-ng-model="characterName"
+                   id="characterName"
+                   placeholder="Character Name"
+                   required>
+            <br>
+            <label for="level">Level:</label>
+            <select id="level" data-ng-model="level" required>
+                <option value="">Select Level</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+
+            <div class="container">
+                <div class="row radioimg">
+                    <label>
+                        <input type="radio" name="class" value="cleric"/>
+                        <img src="../../img/cleric.jpg" class="img-responsive" alt="cleric" data-toggle="tooltip"
+                             title="Cleric">
+                    </label>
+                    <label>
+                        <input type="radio" name="class" value="dwarf"/>
+                        <img src="../../img/dwarf.jpg" class="img-responsive" alt="dwarf" data-toggle="tooltip"
+                             title="Dwarf">
+                    </label>
+                    <label data-toggle="tooltip" title="Elf">
+                        <input type="radio" name="class" value="elf"/>
+                        <img src="../../img/elf.jpg" class="img-responsive" alt="elf">
+                    </label>
+                    <label data-toggle="tooltip" title="Halfling">
+                        <input type="radio" name="class" value="halfling"/>
+                        <img src="../../img/halfling.jpg" class="img-responsive" alt="halfling">
+                    </label>
+                    <label data-toggle="tooltip" title="Thief">
+                        <input type="radio" name="class" value="thief"/>
+                        <img src="../../img/thief.jpg" class="img-responsive" alt="thief">
+                    </label>
+                    <label data-toggle="tooltip" title="Warrior">
+                        <input type="radio" name="class" value="warrior"/>
+                        <img src="../../img/warrior.jpg" class="img-responsive" alt="warrior">
+                    </label>
+                    <label data-toggle="tooltip" title="Wizard">
+                        <input type="radio" name="class" value="wizard"/>
+                        <img src="../../img/wizard.jpg" class="img-responsive" alt="wizard">
+                    </label>
+                </div>
+                <br>
+                <button class="btn btn-success " type="submit" value="buildHero">Build Hero</button>
+
+            </div>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,29 @@
+<section data-ng-controller="HeroController" data-ng-init="find()" class="smallIndent">
+    <h2>Characters</h2>
+
+    <div data-ng-hide="!hero || hero.length">
+        No heroes yet, why don't you <a href="/#!/heropicker/create">create one</a>?
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped" data-toggle="table" data-sort-name="name" data-sort-order="desc">
+            <thead>
+            <tr>
+                <th data-field="name" data-sortable="true">Name</th>
+                <th>Class</th>
+                <th>Level</th>
+                <th>Created</th>
+            </tr>
+            </thead>
+            <tr data-ng-repeat="x in hero">
+
+                <td>{{ x.characterName }}</td>
+                <td>{{ x.charClass }}</td>
+                <td>{{ x.level }}</td>
+                <td>{{ x.created | date : short}}</td>
+                <td><a class="btn btn-primary btn-sm" href="/#!/hero/{{x._id}}">View</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</section>
