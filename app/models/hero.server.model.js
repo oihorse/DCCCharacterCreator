@@ -48,6 +48,8 @@ var HeroSchema = new Schema({
         type: String,
     }, missileBonus: {
         type: String,
+    }, classSpecific: {
+        type: Schema.Types.Mixed,
     }, creator: {
         type: Schema.ObjectId,
         ref: 'User'

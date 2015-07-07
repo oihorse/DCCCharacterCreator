@@ -5,7 +5,8 @@ angular.module('hero').controller('HeroController', ['$scope',
     '$routeParams', '$location', 'Authentication', 'Hero',
     function ($scope, $routeParams, $location, Authentication, Hero) {
         $scope.authentication = Authentication;
-        var character = {};
+        $scope.character = {};
+
 
         //Generates random things
         var randomizer = function (minimum, maximum) {
@@ -70,13 +71,13 @@ angular.module('hero').controller('HeroController', ['$scope',
         ];
 
         var randomStats = function () {
-            character.strength = abilityModifiers[randomizer(0, 15)];
-            character.agility = abilityModifiers[randomizer(0, 15)];
-            character.stamina = abilityModifiers[randomizer(0, 15)];
-            character.personality = abilityModifiers[randomizer(0, 15)];
-            character.luck = abilityModifiers[randomizer(0, 15)];
-            character.intelligence = abilityModifiers[randomizer(0, 15)];
-            character.luckyRoll = luckyRoll[randomizer(0, 29)];
+            $scope.character.strength = abilityModifiers[randomizer(0, 15)];
+            $scope.character.agility = abilityModifiers[randomizer(0, 15)];
+            $scope.character.stamina = abilityModifiers[randomizer(0, 15)];
+            $scope.character.personality = abilityModifiers[randomizer(0, 15)];
+            $scope.character.luck = abilityModifiers[randomizer(0, 15)];
+            $scope.character.intelligence = abilityModifiers[randomizer(0, 15)];
+            $scope.character.luckyRoll = luckyRoll[randomizer(0, 29)];
 
         };
 
@@ -87,34 +88,41 @@ angular.module('hero').controller('HeroController', ['$scope',
 
 
         $scope.create = function () {
+            $scope.character.level = this.level;
+            $scope.character.charClass = this.charClass;
+            $scope.character.alignment = this.alignment;
+            $scope.character.characterName = this.characterName;
+
             createCharacter();
-            generateTitle(this.level, this.alignment, this.charClass);
-            generateSavingThrowModifiers(this.charClass, this.level, character.personality);
-            randomOccupation(this.charClass);
-            generateCharacterSpeed(this.charClass);
-            generateInitiativeRoll(this.charClass, this.level);
-            generateCritTable(this.charClass, this.level);
-            generateAttackBonus(this.charClass, this.level);
-            generateCritDie(this.charClass, this.level);
-            generateActionDie(this.charClass, this.level);
+            generateTitle();
+            generateSavingThrowModifiers();
+            randomOccupation();
+            generateCharacterSpeed();
+            generateInitiativeRoll();
+            generateCritTable();
+            generateAttackBonus();
+            generateCritDie();
+            generateActionDie();
             generateAttackModifiers();
+            generateClassSpecifics();
 
             var hero = new Hero({
-                characterName: this.characterName,
-                level: this.level,
-                charClass: this.charClass,
-                charAbilities: character,
-                alignment: this.alignment,
-                title: character.title,
-                occupation: character.occupation,
-                speed: character.speed,
-                initiative: character.initiative,
-                critTable: character.critTable,
-                critDie: character.critDie,
-                attackBonus: character.attackBonus,
-                actionDie: character.actionDie,
-                meleeBonus: character.meleeAttackBonus,
-                missileBonus: character.missileAttackBonus
+                characterName: $scope.characterName,
+                level: $scope.character.level,
+                charClass: $scope.character.charClass,
+                charAbilities: $scope.character,
+                alignment: $scope.character.alignment,
+                title: $scope.character.title,
+                occupation: $scope.character.occupation,
+                speed: $scope.character.speed,
+                initiative: $scope.character.initiative,
+                critTable: $scope.character.critTable,
+                critDie: $scope.character.critDie,
+                attackBonus: $scope.character.attackBonus,
+                actionDie: $scope.character.actionDie,
+                meleeBonus: $scope.character.meleeAttackBonus,
+                missileBonus: $scope.character.missileAttackBonus,
+                classSpecific: $scope.character.threatRange
 
             });
             hero.$save(function (response) {
@@ -145,133 +153,133 @@ angular.module('hero').controller('HeroController', ['$scope',
 
 
         //Generate title
-        var generateTitle = function (level, alignment, charClass) {
-            if (charClass) {
+        var generateTitle = function () {
+            if ($scope.character.charClass) {
 
-                if (charClass.indexOf('Warrior') != -1) {
+                if ($scope.character.charClass.indexOf('Warrior') != -1) {
 
-                    if (level && alignment) {
+                    if ($scope.character.level && $scope.character.alignment) {
 
-                        character.title = Warrior.getWarriorTitle(alignment, level);
+                        $scope.character.title = Warrior.getWarriorTitle($scope.character.alignment, $scope.character.level);
                     }
                 }
-                if (charClass.indexOf('Thief') != -1) {
+                if ($scope.character.charClass.indexOf('Thief') != -1) {
 
-                    if (level && alignment) {
+                    if ($scope.character.level && $scope.character.alignment) {
 
-                        character.title = Thief.getThiefTitle(alignment, level);
+                        $scope.character.title = Thief.getThiefTitle($scope.character.alignment, $scope.character.level);
                         //$scope.generateClassSpecifics();
 
                     }
                 }
-                if (charClass.indexOf('Cleric') != -1) {
+                if ($scope.character.charClass.indexOf('Cleric') != -1) {
 
-                    if (level && alignment) {
+                    if ($scope.character.level && $scope.character.alignment) {
 
-                        character.title = Cleric.getClericTitle(alignment, level);
+                        $scope.character.title = Cleric.getClericTitle($scope.character.alignment, $scope.character.level);
                     }
                 }
-                if (charClass.indexOf('Wizard') != -1) {
+                if ($scope.character.charClass.indexOf('Wizard') != -1) {
 
-                    if (level && alignment) {
+                    if ($scope.character.level && $scope.character.alignment) {
 
-                        character.title = Wizard.getWizardTitle(alignment, level);
+                        $scope.character.title = Wizard.getWizardTitle($scope.character.alignment, $scope.character.level);
                     }
                 }
-                if (charClass.indexOf('Dwarven') != -1) {
+                if ($scope.character.charClass.indexOf('Dwarven') != -1) {
 
-                    if (level && alignment) {
+                    if ($scope.character.level && $scope.character.alignment) {
 
-                        character.title = Dwarf.getDwarfTitle(alignment, level);
+                        $scope.character.title = Dwarf.getDwarfTitle($scope.character.alignment, $scope.character.level);
                     }
                 }
-                if (charClass.indexOf('Elven') != -1) {
+                if ($scope.character.charClass.indexOf('Elven') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.title = Elf.getElfTitle(level);
+                        $scope.character.title = Elf.getElfTitle($scope.character.level);
                     }
                 }
-                if (charClass.indexOf('Halfling') != -1) {
+                if ($scope.character.charClass.indexOf('Halfling') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.title = Halfling.getHalflingTitle(level);
+                        $scope.character.title = Halfling.getHalflingTitle($scope.character.level);
                     }
                 }
             }
         };
 
         //generate saving throw modifiers
-        var generateSavingThrowModifiers = function (charClass, level, personality) {
-            if (charClass) {
-                if (charClass.indexOf('Warrior') != -1) {
+        var generateSavingThrowModifiers = function () {
+            if ($scope.character.charClass) {
+                if ($scope.character.charClass.indexOf('Warrior') != -1) {
 
-                    if (level && personality) {
+                    if ($scope.character.level && $scope.character.personality) {
 
-                        character.willPowerSave = character.personality.modifier + Warrior.willPowerBonus[level - 1];
-                        character.fortitudeSave = character.stamina.modifier + Warrior.fortitudeBonus[level - 1];
-                        character.reflexSave = character.agility.modifier + Warrior.reflexBonus[level - 1];
-
-                    }
-                }
-                if (charClass.indexOf('Thief') != -1) {
-
-                    if (level && personality) {
-
-                        character.willPowerSave = character.personality.modifier + Thief.willPowerBonus[level - 1];
-                        character.fortitudeSave = character.stamina.modifier + Thief.fortitudeBonus[level - 1];
-                        character.reflexSave = character.agility.modifier + Thief.reflexBonus[level - 1];
+                        $scope.character.willPowerSave = $scope.character.personality.modifier + Warrior.willPowerBonus[$scope.character.level - 1];
+                        $scope.character.fortitudeSave = $scope.character.stamina.modifier + Warrior.fortitudeBonus[$scope.character.level - 1];
+                        $scope.character.reflexSave = $scope.character.agility.modifier + Warrior.reflexBonus[$scope.character.level - 1];
 
                     }
                 }
-                if (charClass.indexOf('Cleric') != -1) {
+                if ($scope.character.charClass.indexOf('Thief') != -1) {
 
-                    if (level && personality) {
+                    if ($scope.character.level && $scope.character.personality) {
 
-                        character.willPowerSave = character.personality.modifier + Cleric.willPowerBonus[level - 1];
-                        character.fortitudeSave = character.stamina.modifier + Cleric.fortitudeBonus[level - 1];
-                        character.reflexSave = character.agility.modifier + Cleric.reflexBonus[level - 1];
-
-                    }
-                }
-                if (charClass.indexOf('Wizard') != -1) {
-
-                    if (level && personality) {
-
-                        character.willPowerSave = character.personality.modifier + Wizard.willPowerBonus[level - 1];
-                        character.fortitudeSave = character.stamina.modifier + Wizard.fortitudeBonus[level - 1];
-                        character.reflexSave = character.agility.modifier + Wizard.reflexBonus[level - 1];
+                        $scope.character.willPowerSave = $scope.character.personality.modifier + Thief.willPowerBonus[$scope.character.level - 1];
+                        $scope.character.fortitudeSave = $scope.character.stamina.modifier + Thief.fortitudeBonus[$scope.character.level - 1];
+                        $scope.character.reflexSave = $scope.character.agility.modifier + Thief.reflexBonus[$scope.character.level - 1];
 
                     }
                 }
-                if (charClass.indexOf('Dwarf') != -1) {
+                if ($scope.character.charClass.indexOf('Cleric') != -1) {
 
-                    if (level && personality) {
+                    if ($scope.character.level && $scope.character.personality) {
 
-                        character.willPowerSave = character.personality.modifier + Dwarf.willPowerBonus[level - 1];
-                        character.fortitudeSave = character.stamina.modifier + Dwarf.fortitudeBonus[level - 1];
-                        character.reflexSave = character.agility.modifier + Dwarf.reflexBonus[level - 1];
-
-                    }
-                }
-                if (charClass.indexOf('Elf') != -1) {
-
-                    if (level && personality) {
-
-                        character.willPowerSave = character.personality.modifier + Elf.willPowerBonus[level - 1];
-                        character.fortitudeSave = character.stamina.modifier + Elf.fortitudeBonus[level - 1];
-                        character.reflexSave = character.agility.modifier + Elf.reflexBonus[level - 1];
+                        $scope.character.willPowerSave = $scope.character.personality.modifier + Cleric.willPowerBonus[$scope.character.level - 1];
+                        $scope.character.fortitudeSave = $scope.character.stamina.modifier + Cleric.fortitudeBonus[$scope.character.level - 1];
+                        $scope.character.reflexSave = $scope.character.agility.modifier + Cleric.reflexBonus[$scope.character.level - 1];
 
                     }
                 }
-                if (charClass.indexOf('Halfling') != -1) {
+                if ($scope.character.charClass.indexOf('Wizard') != -1) {
 
-                    if (level && personality) {
+                    if ($scope.character.level && $scope.character.personality) {
 
-                        character.willPowerSave = character.personality.modifier + Halfling.willPowerBonus[level - 1];
-                        character.fortitudeSave = character.stamina.modifier + Halfling.fortitudeBonus[level - 1];
-                        character.reflexSave = character.agility.modifier + Halfling.reflexBonus[level - 1];
+                        $scope.character.willPowerSave = $scope.character.personality.modifier + Wizard.willPowerBonus[$scope.character.level - 1];
+                        $scope.character.fortitudeSave = $scope.character.stamina.modifier + Wizard.fortitudeBonus[$scope.character.level - 1];
+                        $scope.character.reflexSave = $scope.character.agility.modifier + Wizard.reflexBonus[$scope.character.level - 1];
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Dwarf') != -1) {
+
+                    if ($scope.character.level && $scope.character.personality) {
+
+                        $scope.character.willPowerSave = $scope.character.personality.modifier + Dwarf.willPowerBonus[$scope.character.level - 1];
+                        $scope.character.fortitudeSave = $scope.character.stamina.modifier + Dwarf.fortitudeBonus[$scope.character.level - 1];
+                        $scope.character.reflexSave = $scope.character.agility.modifier + Dwarf.reflexBonus[$scope.character.level - 1];
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Elf') != -1) {
+
+                    if ($scope.character.level && $scope.character.personality) {
+
+                        $scope.character.willPowerSave = $scope.character.personality.modifier + Elf.willPowerBonus[$scope.character.level - 1];
+                        $scope.character.fortitudeSave = $scope.character.stamina.modifier + Elf.fortitudeBonus[$scope.character.level - 1];
+                        $scope.character.reflexSave = $scope.character.agility.modifier + Elf.reflexBonus[$scope.character.level - 1];
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Halfling') != -1) {
+
+                    if ($scope.character.level && $scope.character.personality) {
+
+                        $scope.character.willPowerSave = $scope.character.personality.modifier + Halfling.willPowerBonus[$scope.character.level - 1];
+                        $scope.character.fortitudeSave = $scope.character.stamina.modifier + Halfling.fortitudeBonus[$scope.character.level - 1];
+                        $scope.character.reflexSave = $scope.character.agility.modifier + Halfling.reflexBonus[$scope.character.level - 1];
 
                     }
                 }
@@ -280,19 +288,19 @@ angular.module('hero').controller('HeroController', ['$scope',
 
 
         //Generates random occupation
-        var randomOccupation = function (charClass) {
-            if (charClass.indexOf('Dwarf') != -1) {
+        var randomOccupation = function () {
+            if ($scope.character.charClass.indexOf('Dwarf') != -1) {
                 var randomOccResult = randomizer(0, 7);
-                character.occupation = dwarfOccupation[randomOccResult];
-            } else if (charClass.indexOf('Elf') != -1) {
+                $scope.character.occupation = dwarfOccupation[randomOccResult];
+            } else if ($scope.character.charClass.indexOf('Elf') != -1) {
                 var randomOccResult = randomizer(0, 7);
-                character.occupation = elfOccupation[randomOccResult];
-            } else if (charClass.indexOf('Halfling') != -1) {
+                $scope.character.occupation = elfOccupation[randomOccResult];
+            } else if ($scope.character.charClass.indexOf('Halfling') != -1) {
                 var randomOccResult = randomizer(0, 8);
-                character.occupation = halflingOccupation[randomOccResult];
+                $scope.character.occupation = halflingOccupation[randomOccResult];
             } else {
                 var randomOccResult = randomizer(0, 53);
-                character.occupation = humanOccupation[randomOccResult];
+                $scope.character.occupation = humanOccupation[randomOccResult];
             }
 
         };
@@ -395,34 +403,34 @@ angular.module('hero').controller('HeroController', ['$scope',
             {occupation: 'Woodcutter', equipment: 'Bundle of wood', startingWeapon: 'Handaxe'}
         ];
 
-        var generateCharacterSpeed = function (charClass) {
-            if (charClass.indexOf('Dwarf') != -1) {
-                character.speed = 20;
+        var generateCharacterSpeed = function () {
+            if ($scope.character.charClass.indexOf('Dwarf') != -1) {
+                $scope.character.speed = 20;
 
-            } else if (charClass.indexOf('Elf') != -1) {
-                character.speed = 30;
+            } else if ($scope.character.charClass.indexOf('Elf') != -1) {
+                $scope.character.speed = 30;
 
-            } else if (charClass.indexOf('Halfling') != -1) {
-                character.speed = 20;
+            } else if ($scope.character.charClass.indexOf('Halfling') != -1) {
+                $scope.character.speed = 20;
 
             } else {
-                character.speed = 30;
+                $scope.character.speed = 30;
             }
         };
 
         //Generate the initiative roll
-        var generateInitiativeRoll = function (charClass, level) {
+        var generateInitiativeRoll = function () {
             var initiative = 0;
 
-            if (charClass && level) {
-                if (charClass.indexOf('Warrior') != -1) {
+            if ($scope.character.charClass && $scope.character.level) {
+                if ($scope.character.charClass.indexOf('Warrior') != -1) {
 
-                    initiative += parseInt(level, 10);
+                    initiative += parseInt($scope.character.level, 10);
                 }
             }
 
-            if (character.agility) {
-                initiative += character.agility.modifier;
+            if ($scope.character.agility) {
+                initiative += $scope.character.agility.modifier;
             }
 
             //build text string
@@ -436,126 +444,126 @@ angular.module('hero').controller('HeroController', ['$scope',
             }
 
 
-            return character.initiative = initiativeText + initiative;
+            return $scope.character.initiative = initiativeText + initiative;
 
         };
 
         //Generate crit Table
-        var generateCritTable = function (charClass, level) {
-            if (charClass) {
-                if (charClass.indexOf('Warrior') != -1) {
+        var generateCritTable = function () {
+            if ($scope.character.charClass) {
+                if ($scope.character.charClass.indexOf('Warrior') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.critTable = Warrior.generateCritTable(level);
+                        $scope.character.critTable = Warrior.generateCritTable($scope.character.level);
                     }
                 }
-                if (charClass.indexOf('Thief') != -1) {
+                if ($scope.character.charClass.indexOf('Thief') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.critTable = Thief.generateCritTable();
+                        $scope.character.critTable = Thief.generateCritTable();
                     }
                 }
-                if (charClass.indexOf('Cleric') != -1) {
+                if ($scope.character.charClass.indexOf('Cleric') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.critTable = Cleric.generateCritTable();
+                        $scope.character.critTable = Cleric.generateCritTable();
                     }
                 }
-                if (charClass.indexOf('Wizard') != -1) {
+                if ($scope.character.charClass.indexOf('Wizard') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.critTable = Wizard.generateCritTable();
+                        $scope.character.critTable = Wizard.generateCritTable();
                     }
                 }
-                if (charClass.indexOf('Dwarven') != -1) {
+                if ($scope.character.charClass.indexOf('Dwarven') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.critTable = Dwarf.generateCritTable();
+                        $scope.character.critTable = Dwarf.generateCritTable();
                     }
                 }
             }
-            if (charClass.indexOf('Elven') != -1) {
+            if ($scope.character.charClass.indexOf('Elven') != -1) {
 
-                if (level) {
+                if ($scope.character.level) {
 
-                    character.critTable = Elf.generateCritTable();
+                    $scope.character.critTable = Elf.generateCritTable();
                 }
             }
-            if (charClass.indexOf('Halfling') != -1) {
+            if ($scope.character.charClass.indexOf('Halfling') != -1) {
 
-                if (level) {
+                if ($scope.character.level) {
 
-                    character.critTable = Halfling.generateCritTable();
+                    $scope.character.critTable = Halfling.generateCritTable();
                 }
             }
         };
 
         //Generate crit Die
-        var generateCritDie = function (charClass, level) {
-            if (charClass) {
-                if (charClass.indexOf('Warrior') != -1) {
+        var generateCritDie = function () {
+            if ($scope.character.charClass) {
+                if ($scope.character.charClass.indexOf('Warrior') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.critDie = Warrior.critDie[level - 1];
-
-
-                    }
-                }
-                if (charClass.indexOf('Thief') != -1) {
-
-                    if (level) {
-
-                        character.critDie = Thief.critDie[level - 1];
-
-                    }
-                }
-                if (charClass.indexOf('Cleric') != -1) {
-
-                    if (level) {
-
-                        charClass.critDie = Cleric.critDie[level - 1];
+                        $scope.character.critDie = Warrior.critDie[$scope.character.level - 1];
 
 
                     }
                 }
-                if (charClass.indexOf('Wizard') != -1) {
+                if ($scope.character.charClass.indexOf('Thief') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.critDie = Wizard.critDie[level - 1];
+                        $scope.character.critDie = Thief.critDie[$scope.character.level - 1];
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Cleric') != -1) {
+
+                    if ($scope.character.level) {
+
+                        $scope.character.charClass.critDie = Cleric.critDie[$scope.character.level - 1];
 
 
                     }
                 }
-                if (charClass.indexOf('Dwarven') != -1) {
+                if ($scope.character.charClass.indexOf('Wizard') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.critDie = Dwarf.critDie[level - 1];
-
-
-                    }
-                }
-                if (charClass.indexOf('Elven') != -1) {
-
-                    if (level) {
-
-                        character.critDie = Elf.critDie[level - 1];
+                        $scope.character.critDie = Wizard.critDie[$scope.character.level - 1];
 
 
                     }
                 }
-                if (charClass.indexOf('Halfling') != -1) {
+                if ($scope.character.charClass.indexOf('Dwarven') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.critDie = Halfling.critDie[level - 1];
+                        $scope.character.critDie = Dwarf.critDie[$scope.character.level - 1];
+
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Elven') != -1) {
+
+                    if ($scope.character.level) {
+
+                        $scope.character.critDie = Elf.critDie[$scope.character.level - 1];
+
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Halfling') != -1) {
+
+                    if ($scope.character.level) {
+
+                        $scope.character.critDie = Halfling.critDie[$scope.character.level - 1];
 
                     }
                 }
@@ -563,133 +571,133 @@ angular.module('hero').controller('HeroController', ['$scope',
         };
 
         //Generate attack bonus
-        var generateAttackBonus = function (charClass, level) {
-            if (charClass) {
-                if (charClass.indexOf('Warrior') != -1) {
+        var generateAttackBonus = function () {
+            if ($scope.character.charClass) {
+                if ($scope.character.charClass.indexOf('Warrior') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.attackBonus = Warrior.attackBonus[level - 1];
-
-
-                    }
-                }
-                if (charClass.indexOf('Thief') != -1) {
-
-                    if (level) {
-
-                        character.attackBonus = Thief.attackBonus[level - 1];
+                        $scope.character.attackBonus = Warrior.attackBonus[$scope.character.level - 1];
 
 
                     }
                 }
+                if ($scope.character.charClass.indexOf('Thief') != -1) {
 
-                if (charClass.indexOf('Cleric') != -1) {
+                    if ($scope.character.level) {
 
-                    if (level) {
-
-                        character.attackBonus = Cleric.attackBonus[level - 1];
+                        $scope.character.attackBonus = Thief.attackBonus[$scope.character.level - 1];
 
 
                     }
                 }
-                if (charClass.indexOf('Wizard') != -1) {
 
-                    if (level) {
+                if ($scope.character.charClass.indexOf('Cleric') != -1) {
 
-                        character.attackBonus = Wizard.attackBonus[level - 1];
+                    if ($scope.character.level) {
+
+                        $scope.character.attackBonus = Cleric.attackBonus[$scope.character.level - 1];
+
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Wizard') != -1) {
+
+                    if ($scope.character.level) {
+
+                        $scope.character.attackBonus = Wizard.attackBonus[$scope.character.level - 1];
 
 
                     }
                 }
             }
-            if (charClass.indexOf('Dwarven') != -1) {
+            if ($scope.character.charClass.indexOf('Dwarven') != -1) {
 
-                if (level) {
+                if ($scope.character.level) {
 
-                    character.attackBonus = Dwarf.attackBonus[level - 1];
-
-
-                }
-            }
-            if (charClass.indexOf('Elven') != -1) {
-
-                if (level) {
-
-                    character.attackBonus = Elf.attackBonus[level - 1];
+                    $scope.character.attackBonus = Dwarf.attackBonus[$scope.character.level - 1];
 
 
                 }
             }
-            if (charClass.indexOf('Halfling') != -1) {
+            if ($scope.character.charClass.indexOf('Elven') != -1) {
 
-                if (level) {
+                if ($scope.character.level) {
 
-                    character.attackBonus = Halfling.attackBonus[level - 1];
+                    $scope.character.attackBonus = Elf.attackBonus[$scope.character.level - 1];
+
+
+                }
+            }
+            if ($scope.character.charClass.indexOf('Halfling') != -1) {
+
+                if ($scope.character.level) {
+
+                    $scope.character.attackBonus = Halfling.attackBonus[$scope.character.level - 1];
 
                 }
             }
         };
 
         //Generate action die
-        var generateActionDie = function (charClass, level) {
-            if (charClass) {
-                if (charClass.indexOf('Warrior') != -1) {
+        var generateActionDie = function () {
+            if ($scope.character.charClass) {
+                if ($scope.character.charClass.indexOf('Warrior') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.actionDie = Warrior.actionDie[level - 1];
-
-                    }
-                }
-                if (charClass.indexOf('Thief') != -1) {
-
-                    if (level) {
-
-                        character.actionDie = Thief.actionDie[level - 1];
+                        $scope.character.actionDie = Warrior.actionDie[$scope.character.level - 1];
 
                     }
                 }
-                if (charClass.indexOf('Cleric') != -1) {
+                if ($scope.character.charClass.indexOf('Thief') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.actionDie = Cleric.actionDie[level - 1];
-
-                    }
-                }
-                if (charClass.indexOf('Wizard') != -1) {
-
-                    if (level) {
-
-                        character.actionDie = Wizard.actionDie[level - 1];
-
+                        $scope.character.actionDie = Thief.actionDie[$scope.character.level - 1];
 
                     }
                 }
-                if (charClass.indexOf('Dwarven') != -1) {
+                if ($scope.character.charClass.indexOf('Cleric') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.actionDie = Dwarf.actionDie[level - 1];
+                        $scope.character.actionDie = Cleric.actionDie[$scope.character.level - 1];
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Wizard') != -1) {
+
+                    if ($scope.character.level) {
+
+                        $scope.character.actionDie = Wizard.actionDie[$scope.character.level - 1];
 
 
                     }
                 }
-                if (charClass.indexOf('Elven') != -1) {
+                if ($scope.character.charClass.indexOf('Dwarven') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.actionDie = Elf.actionDie[level - 1];
+                        $scope.character.actionDie = Dwarf.actionDie[$scope.character.level - 1];
 
 
                     }
                 }
-                if (charClass.indexOf('Halfling') != -1) {
+                if ($scope.character.charClass.indexOf('Elven') != -1) {
 
-                    if (level) {
+                    if ($scope.character.level) {
 
-                        character.actionDie = Halfling.actionDie[level - 1];
+                        $scope.character.actionDie = Elf.actionDie[$scope.character.level - 1];
+
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Halfling') != -1) {
+
+                    if ($scope.character.level) {
+
+                        $scope.character.actionDie = Halfling.actionDie[$scope.character.level - 1];
 
                     }
                 }
@@ -699,14 +707,105 @@ angular.module('hero').controller('HeroController', ['$scope',
         //generate attack modifiers
         var generateAttackModifiers = function () {
 
-            if (character.agility && character.strength) {
+            if ($scope.character.agility && $scope.character.strength) {
 
-                character.missileAttackBonus = character.agility.modifier;
-                character.meleeAttackBonus = character.strength.modifier;
-                character.meleeDamageBonus = character.strength.modifier;
+                $scope.character.missileAttackBonus = $scope.character.agility.modifier;
+                $scope.character.meleeAttackBonus = $scope.character.strength.modifier;
+                $scope.character.meleeDamageBonus = $scope.character.strength.modifier;
 
             }
 
+        };
+
+        //generate class specific things
+        var generateClassSpecifics = function () {
+            if ($scope.character.charClass) {
+                if ($scope.character.charClass.indexOf('Warrior') != -1) {
+
+                    if ($scope.character.level) {
+
+                        $scope.character.threatRange = Warrior.threatRange[$scope.character.level - 1];
+
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Thief') != -1) {
+
+                    if ($scope.character.level) {
+
+                        $scope.character.luckyDie = Thief.luckyDie[$scope.character.level - 1];
+                        if ($scope.character.agility) {
+
+                            Thief.generateThiefSkills($scope.character.alignment.name, $scope.character.level, $scope.character.agility.modifier,
+                                $scope.character.intelligence.modifier,
+                                $scope.character.personality.modifier);
+                            $scope.character.backstab = Thief.backstab;
+                            $scope.character.sneakSilently = Thief.sneakSilently;
+                            $scope.character.hideInShadows = Thief.hideInShadows;
+                            $scope.character.pickPocket = Thief.pickPocket;
+                            $scope.character.climbSheerSurfaces = Thief.climbSheerSurfaces;
+                            $scope.character.pickLock = Thief.pickLock;
+                            $scope.character.findTrap = Thief.findTrap;
+                            $scope.character.disableTrap = Thief.disableTrap;
+                            $scope.character.forgeDocument = Thief.forgeDocument;
+                            $scope.character.disguiseSelf = Thief.disguiseSelf;
+                            $scope.character.readLanguages = Thief.readLanguages;
+                            $scope.character.handlePoison = Thief.handlePoison;
+                            $scope.character.castSpellFromScroll = Thief.castSpellFromScroll;
+
+                        }
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Cleric') != -1) {
+
+                    if ($scope.character.level) {
+
+                        if ($scope.character.personality) {
+                            $scope.character.spellCheck = Cleric.getSpellCheck($scope.character.level, $scope.character.personality.modifier);
+                            $scope.character.maximumSpellCastingLevel = Cleric.getMaximumSpellCastingLevel($scope.character.personality.score);
+                            $scope.character.spellsKnown = Cleric.getSpellsKnown($scope.character.level);
+                        }
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Wizard') != -1) {
+
+                    if ($scope.character.level) {
+
+                        if ($scope.character.intelligence) {
+                            $scope.character.spellCheck = Wizard.getSpellCheck($scope.character.level, $scope.character.intelligence.modifier);
+                            $scope.character.maximumSpellCastingLevel = Wizard.getMaximumSpellCastingLevel($scope.character.intelligence.score);
+                            $scope.character.spellsKnown = Wizard.getNumberOfSpellsKnown($scope.character.level, $scope.character.intelligence.score);
+                            $scope.character.currentSpellCastingLevel = Wizard.getCurrentCastingLevel($scope.character.level);
+
+                            if ($scope.character.maximumSpellCastingLevel < $scope.character.currentSpellCastingLevel) {
+                                $scope.character.currentSpellCastingLevel = $scope.character.maximumSpellCastingLevel;
+                            }
+                        }
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Elven') != -1) {
+
+                    if ($scope.character.level) {
+
+                        if ($scope.character.intelligence) {
+                            $scope.character.spellCheck = Elf.getSpellCheck($scope.character.level, $scope.character.intelligence.modifier);
+                            $scope.character.maximumSpellCastingLevel = Elf.getMaximumSpellCastingLevel($scope.character.intelligence.score);
+                            $scope.character.spellsKnown = Elf.getNumberOfSpellsKnown($scope.character.level);
+                            $scope.character.currentSpellCastingLevel = Elf.getCurrentCastingLevel($scope.character.level);
+
+                            if ($scope.character.maximumSpellCastingLevel < $scope.character.currentSpellCastingLevel) {
+                                $scope.character.currentSpellCastingLevel = $scope.character.maximumSpellCastingLevel;
+                            }
+                        }
+                    }
+                }
+                if ($scope.character.charClass.indexOf('Halfling') != -1) {
+
+                    if ($scope.character.level) {
+
+                        $scope.character.stealth = Halfling.getStealth($scope.character.level);
+                    }
+                }
+            }
         };
 
     }
