@@ -227,5 +227,14 @@
             </div>
         </div>
     </div>
-    <warrior-specific></warrior-specific>
+
+    <warrior-specific ng-if="hero.charClass == 'Warrior'"></warrior-specific>
+    <cleric-specific ng-if="hero.charClass == 'Cleric'"></cleric-specific>
+    <thief-specific ng-if="hero.charClass == 'Thief'"></thief-specific>
+    <dwarf-specific ng-if="hero.charClass == 'Dwarf'"></dwarf-specific>
+    <wizard-specific ng-if="hero.charClass == 'Wizard'"></wizard-specific>
+    <elf-specific ng-if="hero.charClass == 'Elf'"></elf-specific>
+    <halfling-specific ng-if="hero.charClass == 'Halfling'"></halfling-specific>
+
+
 </section>

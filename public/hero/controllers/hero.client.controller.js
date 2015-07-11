@@ -122,7 +122,7 @@ angular.module('hero').controller('HeroController', ['$scope',
                 actionDie: $scope.character.actionDie,
                 meleeBonus: $scope.character.meleeAttackBonus,
                 missileBonus: $scope.character.missileAttackBonus,
-                classSpecific: $scope.character.threatRange
+                classSpecific: $scope.character.classSpecific
 
             });
             hero.$save(function (response) {
@@ -168,7 +168,6 @@ angular.module('hero').controller('HeroController', ['$scope',
                     if ($scope.character.level && $scope.character.alignment) {
 
                         $scope.character.title = Thief.getThiefTitle($scope.character.alignment, $scope.character.level);
-                        //$scope.generateClassSpecifics();
 
                     }
                 }
@@ -479,7 +478,7 @@ angular.module('hero').controller('HeroController', ['$scope',
                         $scope.character.critTable = Wizard.generateCritTable();
                     }
                 }
-                if ($scope.character.charClass.indexOf('Dwarven') != -1) {
+                if ($scope.character.charClass.indexOf('Dwarf') != -1) {
 
                     if ($scope.character.level) {
 
@@ -487,7 +486,7 @@ angular.module('hero').controller('HeroController', ['$scope',
                     }
                 }
             }
-            if ($scope.character.charClass.indexOf('Elven') != -1) {
+            if ($scope.character.charClass.indexOf('Elf') != -1) {
 
                 if ($scope.character.level) {
 
@@ -527,7 +526,7 @@ angular.module('hero').controller('HeroController', ['$scope',
 
                     if ($scope.character.level) {
 
-                        $scope.character.charClass.critDie = Cleric.critDie[$scope.character.level - 1];
+                        $scope.character.critDie = Cleric.critDie[$scope.character.level - 1];
 
 
                     }
@@ -541,7 +540,7 @@ angular.module('hero').controller('HeroController', ['$scope',
 
                     }
                 }
-                if ($scope.character.charClass.indexOf('Dwarven') != -1) {
+                if ($scope.character.charClass.indexOf('Dwarf') != -1) {
 
                     if ($scope.character.level) {
 
@@ -550,7 +549,7 @@ angular.module('hero').controller('HeroController', ['$scope',
 
                     }
                 }
-                if ($scope.character.charClass.indexOf('Elven') != -1) {
+                if ($scope.character.charClass.indexOf('Elf') != -1) {
 
                     if ($scope.character.level) {
 
@@ -611,7 +610,7 @@ angular.module('hero').controller('HeroController', ['$scope',
                     }
                 }
             }
-            if ($scope.character.charClass.indexOf('Dwarven') != -1) {
+            if ($scope.character.charClass.indexOf('Dwarf') != -1) {
 
                 if ($scope.character.level) {
 
@@ -620,7 +619,7 @@ angular.module('hero').controller('HeroController', ['$scope',
 
                 }
             }
-            if ($scope.character.charClass.indexOf('Elven') != -1) {
+            if ($scope.character.charClass.indexOf('Elf') != -1) {
 
                 if ($scope.character.level) {
 
@@ -675,7 +674,7 @@ angular.module('hero').controller('HeroController', ['$scope',
 
                     }
                 }
-                if ($scope.character.charClass.indexOf('Dwarven') != -1) {
+                if ($scope.character.charClass.indexOf('Dwarf') != -1) {
 
                     if ($scope.character.level) {
 
@@ -684,7 +683,7 @@ angular.module('hero').controller('HeroController', ['$scope',
 
                     }
                 }
-                if ($scope.character.charClass.indexOf('Elven') != -1) {
+                if ($scope.character.charClass.indexOf('Elf') != -1) {
 
                     if ($scope.character.level) {
 
@@ -719,12 +718,13 @@ angular.module('hero').controller('HeroController', ['$scope',
 
         //generate class specific things
         var generateClassSpecifics = function () {
+            $scope.character.classSpecific = {};
             if ($scope.character.charClass) {
                 if ($scope.character.charClass.indexOf('Warrior') != -1) {
 
                     if ($scope.character.level) {
 
-                        $scope.character.threatRange = Warrior.threatRange[$scope.character.level - 1];
+                        $scope.character.classSpecific.threatRange = Warrior.threatRange[$scope.character.level - 1];
 
                     }
                 }
@@ -732,25 +732,26 @@ angular.module('hero').controller('HeroController', ['$scope',
 
                     if ($scope.character.level) {
 
-                        $scope.character.luckyDie = Thief.luckyDie[$scope.character.level - 1];
+                        $scope.character.classSpecific.luckyDie = Thief.luckyDie[$scope.character.level - 1];
                         if ($scope.character.agility) {
 
-                            Thief.generateThiefSkills($scope.character.alignment.name, $scope.character.level, $scope.character.agility.modifier,
+                            Thief.generateThiefSkills($scope.character.alignment, $scope.character.level, $scope.character.agility.modifier,
                                 $scope.character.intelligence.modifier,
                                 $scope.character.personality.modifier);
-                            $scope.character.backstab = Thief.backstab;
-                            $scope.character.sneakSilently = Thief.sneakSilently;
-                            $scope.character.hideInShadows = Thief.hideInShadows;
-                            $scope.character.pickPocket = Thief.pickPocket;
-                            $scope.character.climbSheerSurfaces = Thief.climbSheerSurfaces;
-                            $scope.character.pickLock = Thief.pickLock;
-                            $scope.character.findTrap = Thief.findTrap;
-                            $scope.character.disableTrap = Thief.disableTrap;
-                            $scope.character.forgeDocument = Thief.forgeDocument;
-                            $scope.character.disguiseSelf = Thief.disguiseSelf;
-                            $scope.character.readLanguages = Thief.readLanguages;
-                            $scope.character.handlePoison = Thief.handlePoison;
-                            $scope.character.castSpellFromScroll = Thief.castSpellFromScroll;
+
+                            $scope.character.classSpecific.backstab = Thief.backstab;
+                            $scope.character.classSpecific.sneakSilently = Thief.sneakSilently;
+                            $scope.character.classSpecific.hideInShadows = Thief.hideInShadows;
+                            $scope.character.classSpecific.pickPocket = Thief.pickPocket;
+                            $scope.character.classSpecific.climbSheerSurfaces = Thief.climbSheerSurfaces;
+                            $scope.character.classSpecific.pickLock = Thief.pickLock;
+                            $scope.character.classSpecific.findTrap = Thief.findTrap;
+                            $scope.character.classSpecific.disableTrap = Thief.disableTrap;
+                            $scope.character.classSpecific.forgeDocument = Thief.forgeDocument;
+                            $scope.character.classSpecific.disguiseSelf = Thief.disguiseSelf;
+                            $scope.character.classSpecific.readLanguages = Thief.readLanguages;
+                            $scope.character.classSpecific.handlePoison = Thief.handlePoison;
+                            $scope.character.classSpecific.castSpellFromScroll = Thief.castSpellFromScroll;
 
                         }
                     }
@@ -760,9 +761,9 @@ angular.module('hero').controller('HeroController', ['$scope',
                     if ($scope.character.level) {
 
                         if ($scope.character.personality) {
-                            $scope.character.spellCheck = Cleric.getSpellCheck($scope.character.level, $scope.character.personality.modifier);
-                            $scope.character.maximumSpellCastingLevel = Cleric.getMaximumSpellCastingLevel($scope.character.personality.score);
-                            $scope.character.spellsKnown = Cleric.getSpellsKnown($scope.character.level);
+                            $scope.character.classSpecific.spellCheck = Cleric.getSpellCheck($scope.character.level, $scope.character.personality.modifier);
+                            $scope.character.classSpecific.maximumSpellCastingLevel = Cleric.getMaximumSpellCastingLevel($scope.character.personality.score);
+                            $scope.character.classSpecific.spellsKnown = Cleric.getSpellsKnown($scope.character.level);
                         }
                     }
                 }
@@ -771,29 +772,29 @@ angular.module('hero').controller('HeroController', ['$scope',
                     if ($scope.character.level) {
 
                         if ($scope.character.intelligence) {
-                            $scope.character.spellCheck = Wizard.getSpellCheck($scope.character.level, $scope.character.intelligence.modifier);
-                            $scope.character.maximumSpellCastingLevel = Wizard.getMaximumSpellCastingLevel($scope.character.intelligence.score);
-                            $scope.character.spellsKnown = Wizard.getNumberOfSpellsKnown($scope.character.level, $scope.character.intelligence.score);
-                            $scope.character.currentSpellCastingLevel = Wizard.getCurrentCastingLevel($scope.character.level);
+                            $scope.character.classSpecific.spellCheck = Wizard.getSpellCheck($scope.character.level, $scope.character.intelligence.modifier);
+                            $scope.character.classSpecific.maximumSpellCastingLevel = Wizard.getMaximumSpellCastingLevel($scope.character.intelligence.score);
+                            $scope.character.classSpecific.spellsKnown = Wizard.getNumberOfSpellsKnown($scope.character.level, $scope.character.intelligence.score);
+                            $scope.character.classSpecific.currentSpellCastingLevel = Wizard.getCurrentCastingLevel($scope.character.level);
 
-                            if ($scope.character.maximumSpellCastingLevel < $scope.character.currentSpellCastingLevel) {
-                                $scope.character.currentSpellCastingLevel = $scope.character.maximumSpellCastingLevel;
+                            if ($scope.character.classSpecific.maximumSpellCastingLevel < $scope.character.classSpecific.currentSpellCastingLevel) {
+                                $scope.character.classSpecific.currentSpellCastingLevel = $scope.character.classSpecific.maximumSpellCastingLevel;
                             }
                         }
                     }
                 }
-                if ($scope.character.charClass.indexOf('Elven') != -1) {
+                if ($scope.character.charClass.indexOf('Elf') != -1) {
 
                     if ($scope.character.level) {
 
                         if ($scope.character.intelligence) {
-                            $scope.character.spellCheck = Elf.getSpellCheck($scope.character.level, $scope.character.intelligence.modifier);
-                            $scope.character.maximumSpellCastingLevel = Elf.getMaximumSpellCastingLevel($scope.character.intelligence.score);
-                            $scope.character.spellsKnown = Elf.getNumberOfSpellsKnown($scope.character.level);
-                            $scope.character.currentSpellCastingLevel = Elf.getCurrentCastingLevel($scope.character.level);
+                            $scope.character.classSpecific.spellCheck = Elf.getSpellCheck($scope.character.level, $scope.character.intelligence.modifier);
+                            $scope.character.classSpecific.maximumSpellCastingLevel = Elf.getMaximumSpellCastingLevel($scope.character.intelligence.score);
+                            $scope.character.classSpecific.spellsKnown = Elf.getNumberOfSpellsKnown($scope.character.level);
+                            $scope.character.classSpecific.currentSpellCastingLevel = Elf.getCurrentCastingLevel($scope.character.level);
 
-                            if ($scope.character.maximumSpellCastingLevel < $scope.character.currentSpellCastingLevel) {
-                                $scope.character.currentSpellCastingLevel = $scope.character.maximumSpellCastingLevel;
+                            if ($scope.character.classSpecific.maximumSpellCastingLevel < $scope.character.classSpecific.currentSpellCastingLevel) {
+                                $scope.character.classSpecific.currentSpellCastingLevel = $scope.character.classSpecific.maximumSpellCastingLevel;
                             }
                         }
                     }
@@ -802,7 +803,7 @@ angular.module('hero').controller('HeroController', ['$scope',
 
                     if ($scope.character.level) {
 
-                        $scope.character.stealth = Halfling.getStealth($scope.character.level);
+                        $scope.character.classSpecific.stealth = Halfling.getStealth($scope.character.level);
                     }
                 }
             }
