@@ -151,6 +151,27 @@ angular.module('hero').controller('HeroController', ['$scope',
             });
         };
 
+        // Create a new controller method for deleting a single article
+        $scope.delete = function (hero) {
+            // If an article was sent to the method, delete it
+            if (hero) {
+                // Use the article '$remove' method to delete the article
+                hero.$remove(function () {
+                    // Remove the article from the articles list
+                    for (var i in $scope.Hero) {
+                        if ($scope.Hero[i] === hero) {
+                            $scope.Hero.splice(i, 1);
+                        }
+                    }
+                });
+            } else {
+                // Otherwise, use the article '$remove' method to delete the article
+                $scope.hero.$remove(function () {
+                    $location.path('heroes');
+                });
+            }
+        };
+
 
         //Generate title
         var generateTitle = function () {

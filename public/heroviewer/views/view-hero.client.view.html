@@ -1,6 +1,11 @@
 <section data-ng-controller="HeroController" data-ng-init="findOne()" class="smallIndent">
     <!-- Character Name-->
-    <h2>{{ hero.characterName}} the {{ hero.title }}</h2>
+    <p>
+
+    <h2 style="display:inline; padding-right:10px; ">{{ hero.characterName}} the {{ hero.title }}</h2>
+    <a class="btn btn-primary btn-xs">edit</a>
+    <a class="btn btn-primary btn-xs" href="#" data-ng-click="delete()" ;>delete</a>
+    </p>
 
     <!-- Character Class, level, speed, initiative,  etc -->
     <div class="container heropicker">
