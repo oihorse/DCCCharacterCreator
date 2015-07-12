@@ -42,6 +42,8 @@
     "passport-google-oauth": "latest",
     "grunt": "latest",
     "grunt-env": "latest",
-    "grunt-nodemon": "latest"
+    "grunt-nodemon": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-csslint": "latest"
   }
 }
