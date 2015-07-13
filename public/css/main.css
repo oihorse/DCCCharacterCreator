@@ -1,0 +1,92 @@
+.serverForms input {
+    width: 200px;
+    vertical-align: middle;
+    margin-right: 30px;
+    text-align: left;
+}
+
+.serverForms label {
+    width: 80px;
+    vertical-align: middle;
+}
+
+.smallIndent {
+    padding: 15px;
+}
+
+.max {
+    max-width: 100%;
+}
+
+label > input {
+    /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+
+label > input + img {
+    /* IMAGE STYLES */
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+label > input:checked + img {
+    /* (RADIO CHECKED) IMAGE STYLES */
+    border: 2px solid #f00;
+}
+
+.stats input {
+    width: 30px;
+    vertical-align: middle;
+    margin-right: 30px;
+    text-align: end;
+}
+
+.stats label {
+    width: 80px;
+    vertical-align: middle;
+}
+
+.stats .modifierLabel {
+    width: 80px;
+    vertical-align: middle;
+    padding-left: 20px;
+}
+
+.stats .saveLabel {
+    width: 110px;
+    vertical-align: middle;
+}
+
+.heropicker input {
+    width: 120px;
+    vertical-align: middle;
+    margin-right: 30px;
+}
+
+.heropicker label {
+    width: 100px;
+    vertical-align: middle;
+}
+
+.starting input {
+    width: 150px;
+    vertical-align: middle;
+    margin-right: 30px;
+}
+
+.starting label {
+    width: 150px;
+    vertical-align: middle;
+}
+
+.bonuses input {
+    width: 100px;
+    vertical-align: middle;
+    margin-right: 30px;
+}
+
+.bonuses label {
+    width: 100px;
+    vertical-align: middle;
+}

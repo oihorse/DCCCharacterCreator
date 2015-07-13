@@ -39,6 +39,11 @@
     "passport-local": "latest",
     "passport-facebook": "latest",
     "passport-twitter": "latest",
-    "passport-google-oauth": "latest"
+    "passport-google-oauth": "latest",
+    "grunt": "latest",
+    "grunt-env": "latest",
+    "grunt-nodemon": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-csslint": "latest"
   }
 }

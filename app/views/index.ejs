@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org">
+<html>
 <head>
 	<!-- Use the 'title' property to render a page title  -->
 	<title><%= title %></title>
@@ -12,13 +12,16 @@
 	<!-- Bootstrap -->
 	<link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/main.css" rel="stylesheet">
+	<!-- Bootstrap sortable table css -->
+	<link href="lib/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+
 </head>
 <body style="padding-top: 60px;">
 	    <%- include partials/authnavbar.ejs %>
 	<!-- Render based on authentication -->
 	<% if (user) { %>
-	  <h2>Hello, user authenticated</h2>
-	<% } else { %>
+		<section ng-view></section>
+		<% } else { %>
     	<!-- Jumbotron -->
 	<div class="jumbotron">
       <div class="container">
@@ -36,8 +39,6 @@
     </div>		
 	<% } %>
 
-	<!-- Render AngularJS views  -->
-	<section ng-view></section>
 
 	<!-- Render the user object -->
 	<script type="text/javascript">
@@ -50,18 +51,57 @@
 	<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
 		<script type="text/javascript" src='/lib/jquery/dist/jquery.min.js'></script>
 		<script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- libs for Bootstrap tables -->
+		<script type="text/javascript" src="/lib/bootstrap-table/dist/bootstrap-table.js"></script>
 
-	
-	<!-- Load the example module -->
-	<!--<script type="text/javascript" src="/example/example.client.module.js"></script>-->
-	<!--<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>-->
-	<!--<script type="text/javascript" src="/example/config/example.client.routes.js"></script>-->
 
-	<!-- Load the users module -->
-	<!--<script type="text/javascript" src="/users/users.client.module.js"></script>-->
-	<!--<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>-->
+		<!-- user authentication -->
+		<script type="text/javascript" src="/users/users.client.module.js"></script>
+		<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
 
-	<!-- Bootstrap AngularJS application -->
+		<!--Load the heropicker module -->
+		<script type="text/javascript" src="/heropicker/heropicker.client.module.js"></script>
+		<script type="text/javascript" src="/heropicker/config/heropicker.client.routes.js"></script>
+		<script type="text/javascript" src="/heropicker/controllers/heropicker.client.controller.js"></script>
+		<script type="text/javascript" src="/heropicker/services/heropicker.client.service.js"></script>
+
+		<!-- Load the heroviewer module -->
+		<script type="text/javascript" src="/heroviewer/heroviewer.client.module.js"></script>
+		<script type="text/javascript" src="/heroviewer/config/heroviewer.client.routes.js"></script>
+		<script type="text/javascript" src="/heroviewer/directives/hero-warrior.client.directive.js"></script>
+		<script type="text/javascript" src="/heroviewer/directives/hero-cleric.client.directive.js"></script>
+		<script type="text/javascript" src="/heroviewer/directives/hero-thief.client.directive.js"></script>
+		<script type="text/javascript" src="/heroviewer/directives/hero-wizard.client.directive.js"></script>
+		<script type="text/javascript" src="/heroviewer/directives/hero-elf.client.directive.js"></script>
+		<script type="text/javascript" src="/heroviewer/directives/hero-halfling.client.directive.js"></script>
+		<script type="text/javascript" src="/heroviewer/directives/hero-dwarf.client.directive.js"></script>
+
+
+		<!-- Load the motd module -->
+		<script type="text/javascript" src="/motd/motd.client.module.js"></script>
+		<script type="text/javascript" src="/motd/config/motd.client.routes.js"></script>
+
+		<!--load the hero module -->
+		<script type="text/javascript" src="/hero/hero.client.module.js"></script>
+		<script type="text/javascript" src="/hero/controllers/hero.client.controller.js"></script>
+		<script type="text/javascript" src="/hero/services/hero.client.service.js"></script>
+		<script type="text/javascript" src="/hero/config/hero.client.routes.js"></script>
+		<script type="text/javascript" src="/hero/cleric.js"></script>
+		<script type="text/javascript" src="/hero/dwarf.js"></script>
+		<script type="text/javascript" src="/hero/elf.js"></script>
+		<script type="text/javascript" src="/hero/halfling.js"></script>
+		<script type="text/javascript" src="/hero/thief.js"></script>
+		<script type="text/javascript" src="/hero/warrior.js"></script>
+		<script type="text/javascript" src="/hero/wizard.js"></script>
+
+
+		<script>
+			$(document).ready(function () {
+				$('[data-toggle="tooltip"]').tooltip();
+			});
+		</script>
+
+		<!-- Bootstrap AngularJS application -->
 	<script type="text/javascript" src="/application.js"></script>
 </body>
 </html>

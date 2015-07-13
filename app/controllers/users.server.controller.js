@@ -66,6 +66,7 @@ exports.renderSignup = function(req, res, next) {
 	}
 };
 
+
 // Create a new controller method that creates new 'regular' users
 exports.register = function(req, res, next) {
 	// If user is not connected, create and login a new user, otherwise redirect the user back to the main application page

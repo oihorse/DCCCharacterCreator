@@ -21,6 +21,7 @@ module.exports = function(app) {
 			failureFlash: true
 	   }));
 
+
 	// Set up the Facebook OAuth routes 
 	app.get('/oauth/facebook', passport.authenticate('facebook', {
 		failureRedirect: '/signin'

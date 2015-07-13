@@ -32,7 +32,7 @@
 		"angular-route": "latest",	
 		"angular-resource": "latest",	
 		"angular-mocks": "latest",
-		"boostrap": "latest"
+    "boostrap": "latest",
+    "bootstrap-table": "latest"
 	}
-
 }
