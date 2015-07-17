@@ -1,5 +1,7 @@
 <div class="smallIndent">
-    <label for="luckyWeapon">Lucky Weapon:</label> <input id="luckyWeapon" ng-model="character.luckyWeapon" type="text"
-                                                          placeholder="weapon"><br>
+    <label for="luckyWeapon">Lucky Weapon:</label>
+    <input id="luckyWeapon" ng-model="hero.classSpecific.luckyWeapon"
+           type="text"
+           placeholder="weapon" ng-disabled="blockEdit"><br>
     <label>Threat Range:</label> {{ hero.classSpecific.threatRange }}
 </div>

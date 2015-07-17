@@ -61,9 +61,31 @@ exports.read = function (req, res) {
 
 exports.update = function (req, res) {
     var hero = req.hero;
-    hero.characterName = req.body.characterName;
     hero.level = req.body.level;
-    hero.charClass = req.body.charClass;
+    hero.title = req.body.title;
+    hero.critTbale = req.body.critTable;
+    hero.critDie = req.body.critDie;
+    hero.attackBonus = req.body.attackBonus;
+    hero.actionDie = req.body.actionDie;
+    hero.alignment = req.body.alignment;
+    hero.classSpecific = req.body.classSpecific;
+    hero.hitPoints = req.body.hitPoints;
+    hero.reflexSave = req.body.reflexSave;
+    hero.willPowerSave = req.body.willPowerSave;
+    hero.fortitudeSave = req.body.fortitudeSave;
+    hero.strength = req.body.strength;
+    hero.agility = req.body.agility;
+    hero.stamina = req.body.stamina;
+    hero.personality = req.body.personality;
+    hero.luck = req.body.luck;
+    hero.intelligence = req.body.intelligence;
+    hero.meleeBonus = req.body.meleeBonus;
+    hero.missileBonus = req.body.missileBonus;
+    hero.equipment = req.body.equipment;
+    hero.weapons = req.body.equipment;
+    hero.armor = req.body.armor;
+    hero.treasure = req.body.treasure;
+
     hero.save(function (err) {
         if (err) {
             return res.status(400).send({

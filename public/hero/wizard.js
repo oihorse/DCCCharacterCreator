@@ -18,7 +18,7 @@ Wizard = {
     reflexBonus: [1, 1, 1, 2, 2, 2, 3, 3, 4, 4],
     spellsKnown: [4, 5, 6, 7, 8, 9, 10, 12, 14, 16],
     maxLevel: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5],
-    maxSpellCastingLevel: [1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6],
+    maxSpellCastingLevel: [1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6],
     bonusSpellsKnown: [-16, -2, -2, -1, -1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2]
 };
 

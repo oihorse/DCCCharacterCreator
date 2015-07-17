@@ -24,9 +24,29 @@ var HeroSchema = new Schema({
         default: '',
         required: "Must choose a class",
         trim: true
-    }, charAbilities: {
+    },  occupation: {
         type: Schema.Types.Mixed,
-    }, occupation: {
+    }, strength: {
+        type: Schema.Types.Mixed,
+    }, agility: {
+        type: Schema.Types.Mixed,
+    }, stamina: {
+        type: Schema.Types.Mixed,
+    }, strength: {
+        type: Schema.Types.Mixed,
+    }, personality: {
+        type: Schema.Types.Mixed,
+    }, luck: {
+        type: Schema.Types.Mixed,
+    }, intelligence: {
+        type: Schema.Types.Mixed,
+    }, luckyRoll: {
+        type: Schema.Types.Mixed,
+    }, willPowerSave: {
+        type: Schema.Types.Mixed,
+    }, reflexSave: {
+        type: Schema.Types.Mixed,
+    }, fortitudeSave: {
         type: Schema.Types.Mixed,
     }, alignment: {
         type: String,
@@ -48,8 +68,18 @@ var HeroSchema = new Schema({
         type: String,
     }, missileBonus: {
         type: String,
+    },  hitPoints: {
+        type: String,
     }, classSpecific: {
         type: Schema.Types.Mixed,
+    },  weapons: {
+        type: String,
+    },  equipment: {
+        type: String,
+    },   armor: {
+        type: String,
+    },   treasure: {
+        type: String,
     }, creator: {
         type: Schema.ObjectId,
         ref: 'User'
