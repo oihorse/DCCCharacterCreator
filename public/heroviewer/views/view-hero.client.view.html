@@ -303,9 +303,8 @@
             </div>
             <textarea id="equipmentArea" ng-model="hero.equipment"></textarea>
         </div>
+        <br>
         <div>
-            <h5>Weapons</h5>
-
             <div class="container" ng-hide="blockEdit">
                 <div class="row">
                     <div class="col-md-2 col-sm-2">
@@ -332,9 +331,8 @@
                 </table>
             </div>
         </div>
+        <br>
         <div>
-            <h5>Armor</h5>
-
             <div class="container" ng-hide="blockEdit">
                 <div class="row">
                     <div class="col-md-2 col-sm-2">
@@ -349,10 +347,10 @@
                 </div>
             </div>
             <div>
-                <table class="table-striped table-condensed">
+                <table class="table-striped table-condensed table-responsive">
                     <th>Armor</th>
                     <th>AC Bonus</th>
-                    <th>Range</th>
+                    <th>Penalty</th>
                     <th>Speed</th>
                     <th>Fumble</th>
                     <tr ng-repeat="x in hero.ownedArmor track by $index">

@@ -77,7 +77,7 @@ var HeroSchema = new Schema({
     },  equipment: {
         type: String,
     },   ownedArmor: {
-        type: String,
+        type: Array,
     },   treasure: {
         type: String,
     }, creator: {

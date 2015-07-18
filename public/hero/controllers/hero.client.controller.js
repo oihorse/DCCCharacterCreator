@@ -208,7 +208,7 @@ angular.module('hero').controller('HeroController', ['$scope',
                 fortitudeSave: $scope.hero.fortitudeSave,
                 equipment: $scope.hero.equipment,
                 ownedWeapons: $scope.hero.ownedWeapons,
-                ownedArmor: $scope.hero.ownedArmor,
+                ownedArmor: $scope.ownedArmor,
                 treasure: $scope.hero.treasure
 
             });
