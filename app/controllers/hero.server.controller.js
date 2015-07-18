@@ -82,8 +82,8 @@ exports.update = function (req, res) {
     hero.meleeBonus = req.body.meleeBonus;
     hero.missileBonus = req.body.missileBonus;
     hero.equipment = req.body.equipment;
-    hero.weapons = req.body.equipment;
-    hero.armor = req.body.armor;
+    hero.ownedWeapons = req.body.ownedWeapons;
+    hero.ownedArmor = req.body.ownedArmor;
     hero.treasure = req.body.treasure;
 
     hero.save(function (err) {

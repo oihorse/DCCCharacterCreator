@@ -72,11 +72,11 @@ var HeroSchema = new Schema({
         type: String,
     }, classSpecific: {
         type: Schema.Types.Mixed,
-    },  weapons: {
-        type: String,
+    },  ownedWeapons: {
+        type: Array,
     },  equipment: {
         type: String,
-    },   armor: {
+    },   ownedArmor: {
         type: String,
     },   treasure: {
         type: String,

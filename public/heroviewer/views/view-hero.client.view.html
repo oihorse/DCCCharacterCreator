@@ -284,22 +284,91 @@
     <wizard-specific ng-if="hero.charClass == 'Wizard'"></wizard-specific>
     <elf-specific ng-if="hero.charClass == 'Elf'"></elf-specific>
     <halfling-specific ng-if="hero.charClass == 'Halfling'"></halfling-specific>
-<div class="smallIndent">
-    <div>
-        <h5>Equipment</h5>
-        <textarea ng-model="hero.equipment"></textarea>
+    <div class="smallIndent">
+        <div>
+            <h5>Equipment</h5>
+
+            <div class="container" ng-hide="blockEdit">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <select id="equipment" ng-model="equipmentList"
+                                ng-options="equipment as equipment.name for equipment in equipment">
+                            <option value="">Select Equipment</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                        <a class="btn btn-primary btn-xs" data-ng-click="addEquipment()">Add</a>
+                    </div>
+                </div>
+            </div>
+            <textarea id="equipmentArea" ng-model="hero.equipment"></textarea>
+        </div>
+        <div>
+            <h5>Weapons</h5>
+
+            <div class="container" ng-hide="blockEdit">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <select id="weapons" ng-model="weaponList"
+                                ng-options="weapons as weapons.name for weapons in weapons">
+                            <option value="">Select Weapon</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                        <a class="btn btn-primary btn-xs" data-ng-click="addWeapon()">Add</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <table class="table-striped table-condensed">
+                    <th>Weapon</th>
+                    <th>Damage</th>
+                    <th>Range</th>
+                    <tr ng-repeat="x in hero.ownedWeapons track by $index">
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.damage }}</td>
+                        <td>{{ x.range }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <h5>Armor</h5>
+
+            <div class="container" ng-hide="blockEdit">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <select id="armor" ng-model="armorList"
+                                ng-options="armor as armor.name for armor in armor">
+                            <option value="">Select Armor</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                        <a class="btn btn-primary btn-xs" data-ng-click="addArmor()">Add</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <table class="table-striped table-condensed">
+                    <th>Armor</th>
+                    <th>AC Bonus</th>
+                    <th>Range</th>
+                    <th>Speed</th>
+                    <th>Fumble</th>
+                    <tr ng-repeat="x in hero.ownedArmor track by $index">
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.acbonus }}</td>
+                        <td>{{ x.penalty }}</td>
+                        <td>{{ x.speed }}</td>
+                        <td>{{ x.fumble }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </div>
+        <div>
+            <h5>Treasure</h5>
+            <textarea ng-model="hero.treasure"></textarea>
+        </div>
     </div>
-    <div>
-        <h5>Weapons</h5>
-        <textarea ng-model="hero.weapons"></textarea>
-    </div>
-    <div>
-        <h5>Armor</h5>
-        <textarea ng-model="hero.armor"></textarea>
-    </div>
-    <div>
-        <h5>Treasure</h5>
-        <textarea ng-model="hero.treasure"></textarea>
-    </div>
-</div>
 </section>
