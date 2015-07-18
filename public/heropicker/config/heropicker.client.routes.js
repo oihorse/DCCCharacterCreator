@@ -6,7 +6,7 @@ angular.module('heroPicker').config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/heropicker/create', {
-                templateUrl: 'heroPicker/views/pick-hero.client.view.html'
+                templateUrl: 'heropicker/views/pick-hero.client.view.html'
             })
             .otherwise({
                 redirectTo: '/'

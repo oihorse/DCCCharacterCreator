@@ -3,6 +3,7 @@
 
 // Set the 'NODE_ENV' variable
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.NODE_PORT = process.env.NODE_PORT || 3000;
 
 // Load the module dependencies
 var mongoose = require('./config/mongoose'),
@@ -19,10 +20,10 @@ var app = express();
 var passport = passport();
 
 // Use the Express application instance to listen to the '3000' port
-app.listen(3000);
+app.listen(process.env.NODE_PORT);
 
 // Log the server status to the console
-console.log('Server running at http://localhost:3000/');
+console.log('Node Server running on port ' + process.env.NODE_PORT);
 
 // Use the module.exports property to expose our Express application instance for external usage
 module.exports = app;

@@ -5,7 +5,7 @@ angular.module('heroViewer').config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/heroviewer/viewall', {
-                templateUrl: 'heroViewer/views/viewall.client.view.html'
+                templateUrl: 'heroviewer/views/viewall.client.view.html'
             })
             .otherwise({
                 redirectTo: '/'
