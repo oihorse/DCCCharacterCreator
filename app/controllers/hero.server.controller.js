@@ -2,8 +2,9 @@
  * Created by chris on 6/26/15.
  */
 
-var mongoose = require('mongoose'),
-    Hero = mongoose.model('Hero');
+var mongoose = require('mongoose');
+
+Hero = mongoose.model('Hero');
 
 var getErrorMessage = function (err) {
     if (err.errors) {
@@ -63,7 +64,7 @@ exports.update = function (req, res) {
     var hero = req.hero;
     hero.level = req.body.level;
     hero.title = req.body.title;
-    hero.critTbale = req.body.critTable;
+    hero.critTable = req.body.critTable;
     hero.critDie = req.body.critDie;
     hero.attackBonus = req.body.attackBonus;
     hero.actionDie = req.body.actionDie;
@@ -85,6 +86,9 @@ exports.update = function (req, res) {
     hero.ownedWeapons = req.body.ownedWeapons;
     hero.ownedArmor = req.body.ownedArmor;
     hero.treasure = req.body.treasure;
+    hero.languages = req.body.languages;
+    hero.notes = req.body.notes;
+    hero.xp = req.body.xp;
 
     hero.save(function (err) {
         if (err) {
@@ -109,6 +113,8 @@ exports.delete = function (req, res) {
         }
     });
 };
+
+
 
 
 exports.hasAuthorization = function (req, res, next) {

@@ -178,3 +178,72 @@ Cleric.getSpellsKnown = function (charLevel) {
 
     return spellText;
 };
+
+Cleric.generateRandomLanguage = function (num) {
+    var language = "";
+
+    if (num > 0 && num <= 20) {
+        language = "Alignment tongue";
+        return language;
+    } else if (num > 20 && num <= 25) {
+        language = "Dwarf";
+        return language;
+    } else if (num > 25 && num <= 30) {
+        language = "Elf";
+        return language;
+    } else if (num > 30 && num <= 35) {
+        language = "Halfling";
+        return language;
+    } else if (num > 35 && num <= 40) {
+        language = "Gnome";
+        return language;
+    } else if (num > 40 && num <= 45) {
+        language = "Bugbear";
+        return language;
+    } else if (num > 45 && num <= 55) {
+        language = "Goblin";
+        return language;
+    } else if (num > 55 && num <= 60) {
+        language = "Gnoll";
+        return language;
+    }  else if (num > 60 && num <= 65) {
+        language = "Hobgoblin";
+        return language;
+    } else if (num > 65 && num <= 75) {
+        language = "Kobold";
+        return language;
+    } else if (num > 75 && num <= 78) {
+        language = "Lizard man";
+        return language;
+    } else if (num > 78 && num <= 80) {
+        language = "Ogre";
+        return language;
+    } else if (num > 80 && num <= 82) {
+        language = "Orc";
+        return language;
+    } else if (num > 82 && num <= 83) {
+        language = "Serpent-man";
+        return language;
+    } else if (num > 83 && num <= 88) {
+        language = "Troglodyte";
+        return language;
+    } else if (num > 88 && num <= 92) {
+        language = "Angelic";
+        return language;
+    } else if (num > 92 && num <= 93) {
+        language = "Centaur";
+        return language;
+    } else if (num > 93 && num <= 97) {
+        language = "Demonic";
+        return language;
+    } else if (num > 97 && num <= 98) {
+        language = "Dragon";
+        return language;
+    } else if (num > 98 && num <= 99) {
+        language = "Pixie";
+        return language;
+    } else if (num > 99 && num <= 100) {
+        language = "Giant";
+        return language;
+    }
+};

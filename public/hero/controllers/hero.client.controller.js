@@ -1,14 +1,16 @@
 /**
  * Created by chris on 6/26/15.
  */
-angular.module('hero').controller('HeroController', ['$scope',
+angular.module('hero').controller('HeroController', ['$scope', '$http',
     '$routeParams', '$location', 'Authentication', 'Hero',
-    function ($scope, $routeParams, $location, Authentication, Hero) {
+    function ($scope, $http, $routeParams, $location, Authentication, Hero) {
         $scope.authentication = Authentication;
         $scope.hero = {};
         $scope.blockEdit = true;
         $scope.hero.ownedWeapons = [{}];
         $scope.hero.ownedArmor = [{}];
+        $scope.hero.classSpecific = {};
+
 
 
         //Generates random things
@@ -53,72 +55,72 @@ angular.module('hero').controller('HeroController', ['$scope',
         ];
 
         //Equipment
-        $scope.equipment =[
-            {name:"Backpack", cost:200},
-            {name:"Candle", cost: 1},
-            {name:"Chain, 10'", cost: 3000},
-            {name:"Chalk, 1 piece", cost: 1},
-            {name:"Chest, empty", cost: 200},
-            {name:"Crowbar", cost: 200},
-            {name:"Flask,empty", cost: 3},
-            {name:"Flint & steel", cost: 15},
-            {name:"Grappling hook", cost: 100},
-            {name:"Hammer, small", cost: 50},
-            {name:"Holy symbol", cost: 2500},
-            {name:"Holy water, 1 vial", cost: 2500},
-            {name:"Iron spike", cost: 10},
-            {name:"Lantern", cost: 1000},
-            {name:"Mirror, hand-sized", cost: 1000},
-            {name:"Oil, 1 flask", cost: 20},
-            {name:"Pole, 10-foot", cost: 15},
-            {name:"Rations, per day", cost: 5},
-            {name:"Rope, 50'", cost: 25},
-            {name:"Sack, large", cost: 12},
-            {name:"Sack, small", cost: 8},
-            {name:"Thieves' tools", cost: 2500},
-            {name:"Torch", cost: 1},
-            {name:"Waterskin", cost: 50}
+        $scope.equipment = [
+            {name: "Backpack", cost: 200},
+            {name: "Candle", cost: 1},
+            {name: "Chain, 10'", cost: 3000},
+            {name: "Chalk, 1 piece", cost: 1},
+            {name: "Chest, empty", cost: 200},
+            {name: "Crowbar", cost: 200},
+            {name: "Flask,empty", cost: 3},
+            {name: "Flint & steel", cost: 15},
+            {name: "Grappling hook", cost: 100},
+            {name: "Hammer, small", cost: 50},
+            {name: "Holy symbol", cost: 2500},
+            {name: "Holy water, 1 vial", cost: 2500},
+            {name: "Iron spike", cost: 10},
+            {name: "Lantern", cost: 1000},
+            {name: "Mirror, hand-sized", cost: 1000},
+            {name: "Oil, 1 flask", cost: 20},
+            {name: "Pole, 10-foot", cost: 15},
+            {name: "Rations, per day", cost: 5},
+            {name: "Rope, 50'", cost: 25},
+            {name: "Sack, large", cost: 12},
+            {name: "Sack, small", cost: 8},
+            {name: "Thieves' tools", cost: 2500},
+            {name: "Torch", cost: 1},
+            {name: "Waterskin", cost: 50}
         ];
 
         //weapons
         $scope.weapons = [
-          {name:"Battleaxe", damage:"1d10", range:"-", cost:700},
-          {name:"BlackJack", damage:"1d3/2d6", range:"-", cost:300},
-          {name:"Blowgun", damage:"1d3/1d5", range:"20/40/60", cost:600},
-          {name:"Club", damage:"1d4", range:"-", cost:300},
-          {name:"Crossbow", damage:"1d6", range:"80/160/240", cost:3000},
-          {name:"Dagger", damage:"1d4/1d10", range:"10/20/30", cost:300},
-          {name:"Dart", damage:"1d4", range:"20/40/60", cost:50},
-          {name:"Flail", damage:"1d6", range:"-", cost:600},
-          {name:"Garrote", damage:"1/3d4", range:"-", cost:200},
-          {name:"Handaxe", damage:"1d6", range:"10/20/30", cost:400},
-          {name:"Javelin", damage:"1d6", range:"30/60/90", cost:100},
-          {name:"Lance", damage:"1d12", range:"-", cost:2500},
-          {name:"Longbow", damage:"1d6", range:"70/140/210", cost:4000},
-          {name:"Longsword", damage:"1d8", range:"-", cost:1000},
-          {name:"Mace", damage:"1d6", range:"-", cost:500},
-          {name:"Polearm", damage:"1d10", range:"-", cost:700},
-          {name:"Shortbow", damage:"1d6", range:"50/100/150", cost:2500},
-          {name:"Short sword", damage:"1d6", range:"-", cost:700},
-          {name:"Sling", damage:"1d4", range:"40/80/160", cost:200},
-          {name:"Spear", damage:"1d8", range:"-", cost:300},
-          {name:"Staff", damage:"1d4", range:"-", cost:50},
-          {name:"Two-handed sword", damage:"1d10", range:"-", cost:1500},
-          {name:"Warhammer", damage:"1d8", range:"-", cost:500}
+            {name: "Battleaxe", damage: "1d10", range: "-", cost: 700},
+            {name: "BlackJack", damage: "1d3/2d6", range: "-", cost: 300},
+            {name: "Blowgun", damage: "1d3/1d5", range: "20/40/60", cost: 600},
+            {name: "Club", damage: "1d4", range: "-", cost: 300},
+            {name: "Crossbow", damage: "1d6", range: "80/160/240", cost: 3000},
+            {name: "Dagger", damage: "1d4/1d10", range: "10/20/30", cost: 300},
+            {name: "Dart", damage: "1d4", range: "20/40/60", cost: 50},
+            {name: "Flail", damage: "1d6", range: "-", cost: 600},
+            {name: "Garrote", damage: "1/3d4", range: "-", cost: 200},
+            {name: "Handaxe", damage: "1d6", range: "10/20/30", cost: 400},
+            {name: "Javelin", damage: "1d6", range: "30/60/90", cost: 100},
+            {name: "Lance", damage: "1d12", range: "-", cost: 2500},
+            {name: "Longbow", damage: "1d6", range: "70/140/210", cost: 4000},
+            {name: "Longsword", damage: "1d8", range: "-", cost: 1000},
+            {name: "Mace", damage: "1d6", range: "-", cost: 500},
+            {name: "Polearm", damage: "1d10", range: "-", cost: 700},
+            {name: "Shortbow", damage: "1d6", range: "50/100/150", cost: 2500},
+            {name: "Short sword", damage: "1d6", range: "-", cost: 700},
+            {name: "Sling", damage: "1d4", range: "40/80/160", cost: 200},
+            {name: "Spear", damage: "1d8", range: "-", cost: 300},
+            {name: "Staff", damage: "1d4", range: "-", cost: 50},
+            {name: "Two-handed sword", damage: "1d10", range: "-", cost: 1500},
+            {name: "Warhammer", damage: "1d8", range: "-", cost: 500}
         ];
 
         //armor
-        $scope.armor = [{name:"Unarmored", acbonus:0, penalty:0, speeed:0, fumble:"d4", cost:0},
-            {name:"Padded", acbonus:1, penalty:0, speed:0, fumble:"d8", cost:500},
-            {name:"Leather", acbonus:2, penalty:-1, speed:0, fumble:"d8", cost:2000},
-            {name:"Studded Leather", acbonus:3, penalty:-2, speed:0, fumble:"d8", cost:4500},
-            {name:"Hide", acbonus:3, penalty:-3, speed:0, fumble:"d12", cost:3000},
-            {name:"Scale mail", acbonus:4, penalty:-4, speed:-5, fumble:"d12", cost:8000},
-            {name:"Chainmail", acbonus:5, penalty:-5, speed:-5, fumble:"d12", cost:15000},
-            {name:"Banded mail", acbonus:6, penalty:-6, speed:-5, fumble:"d16", cost:25000},
-            {name:"Half-plate", acbonus:7, penalty:-7, speed:-10, fumble:"d16", cost:55000},
-            {name:"Full Plate", acbonus:8, penalty:-8, speed:-10, fumble:"d16", cost:120000},
-            {name:"Shield", acbonus:1, penalty:-1, speed:0, fumble:"", cost:1000}
+        $scope.armor = [{name: "Unarmored", acbonus: 0, penalty: 0, speed: 0, fumble: "d4", cost: 0},
+            {name: "Padded", acbonus: 1, penalty: 0, speed: 0, fumble: "d8", cost: 500},
+            {name: "Leather", acbonus: 2, penalty: -1, speed: 0, fumble: "d8", cost: 2000},
+            {name: "Studded Leather", acbonus: 3, penalty: -2, speed: 0, fumble: "d8", cost: 4500},
+            {name: "Hide", acbonus: 3, penalty: -3, speed: 0, fumble: "d12", cost: 3000},
+            {name: "Scale mail", acbonus: 4, penalty: -4, speed: -5, fumble: "d12", cost: 8000},
+            {name: "Chainmail", acbonus: 5, penalty: -5, speed: -5, fumble: "d12", cost: 15000},
+            {name: "Banded mail", acbonus: 6, penalty: -6, speed: -5, fumble: "d16", cost: 25000},
+            {name: "Half-plate", acbonus: 7, penalty: -7, speed: -10, fumble: "d16", cost: 55000},
+            {name: "Full Plate", acbonus: 8, penalty: -8, speed: -10, fumble: "d16", cost: 120000},
+            {name: "Shield", acbonus: 1, penalty: -1, speed: 0, fumble: "", cost: 1000}
         ];
 
         //Modifier table
@@ -177,12 +179,13 @@ angular.module('hero').controller('HeroController', ['$scope',
             generateAttackModifiers();
             generateClassSpecifics();
             generateHitPoints();
+            generateLanguages();
 
             var hero = new Hero({
                 characterName: $scope.characterName,
                 level: $scope.hero.level,
                 charClass: $scope.hero.charClass,
-                charAbilities: $scope.hero,
+                charAbilities: $scope.hero.charAbilities,
                 alignment: $scope.hero.alignment,
                 title: $scope.hero.title,
                 occupation: $scope.hero.occupation,
@@ -207,9 +210,12 @@ angular.module('hero').controller('HeroController', ['$scope',
                 willPowerSave: $scope.hero.willPowerSave,
                 fortitudeSave: $scope.hero.fortitudeSave,
                 equipment: $scope.hero.equipment,
-                ownedWeapons: $scope.hero.ownedWeapons,
+                ownedWeapons: $scope.ownedWeapons,
                 ownedArmor: $scope.ownedArmor,
-                treasure: $scope.hero.treasure
+                treasure: $scope.hero.treasure,
+                languages: $scope.hero.languages,
+                notes: $scope.hero.notes,
+                xp: $scope.hero.xp
 
             });
             hero.$save(function (response) {
@@ -230,6 +236,13 @@ angular.module('hero').controller('HeroController', ['$scope',
             });
         };
 
+        $scope.pdf = function () {
+            $http.post('/pdf', $scope.hero).success(function (res) {
+                window.open(res);
+            });
+        };
+
+
         $scope.update = function () {
             $scope.hero.$update(function () {
                 $location.path('hero/' + $scope.hero._id);
@@ -239,13 +252,13 @@ angular.module('hero').controller('HeroController', ['$scope',
             $scope.blockEdit = true;
         };
 
-        // Create a new controller method for deleting a single article
+        // Create a new controller method for deleting a single character
         $scope.delete = function (hero) {
-            // If an article was sent to the method, delete it
+            // If a character was sent to the method, delete it
             if (hero) {
-                // Use the article '$remove' method to delete the article
+                // Use the character '$remove' method to delete the article
                 hero.$remove(function () {
-                    // Remove the article from the articles list
+                    // Remove the character from the characters list
                     for (var i in $scope.Hero) {
                         if ($scope.Hero[i] === hero) {
                             $scope.Hero.splice(i, 1);
@@ -253,7 +266,7 @@ angular.module('hero').controller('HeroController', ['$scope',
                     }
                 });
             } else {
-                // Otherwise, use the article '$remove' method to delete the article
+                // Otherwise, use the article '$remove' method to delete the character
                 $scope.hero.$remove(function () {
                     $location.path('heroes');
                 });
@@ -263,13 +276,13 @@ angular.module('hero').controller('HeroController', ['$scope',
         $scope.edit = function () {
             $scope.blockEdit = false;
 
-        }
+        };
 
         $scope.cancel = function () {
             $scope.blockEdit = true;
             $scope.findOne();
 
-        }
+        };
 
 
         //Generate title
@@ -836,7 +849,6 @@ angular.module('hero').controller('HeroController', ['$scope',
 
         //generate class specific things
         var generateClassSpecifics = function () {
-            $scope.hero.classSpecific = {};
             if ($scope.hero.charClass) {
                 if ($scope.hero.charClass.indexOf('Warrior') != -1) {
 
@@ -1028,7 +1040,7 @@ angular.module('hero').controller('HeroController', ['$scope',
                     }
 
                 }
-                if ($scope.hero.charClass.indexOf('Dwarven') != -1) {
+                if ($scope.hero.charClass.indexOf('Dwarf') != -1) {
 
                     if ($scope.hero.level && $scope.hero.stamina) {
                         initialHitPoints = randomizer(1, 4) + $scope.hero.stamina.modifier; //set initial level 0 hp rol
@@ -1050,7 +1062,7 @@ angular.module('hero').controller('HeroController', ['$scope',
 
                     }
                 }
-                if ($scope.hero.charClass.indexOf('Elven') != -1) {
+                if ($scope.hero.charClass.indexOf('Elf') != -1) {
 
                     if ($scope.hero.level && $scope.hero.stamina) {
                         initialHitPoints = randomizer(1, 4) + $scope.hero.stamina.modifier; //set initial level 0 hp rol
@@ -1168,19 +1180,20 @@ angular.module('hero').controller('HeroController', ['$scope',
             if (newScore >= 3) {
                 $scope.hero.intelligence = abilityModifiers[newScore - 3];
 
+                generateLanguages();
+
                 if ($scope.hero.charClass.indexOf('Wizard') != -1 || $scope.hero.charClass.indexOf('Thief') != -1 || $scope.hero.charClass.indexOf('Elf') != -1) {
                     generateClassSpecifics();
                 }
             }
         };
 
-        $scope.addEquipment = function()
-        {
+        $scope.addEquipment = function () {
             var equipmentPiece = $scope.equipmentList.name + "\n";
 
-            if(document.getElementById("equipmentArea").value == '') {
+            if (document.getElementById("equipmentArea").value == '') {
                 $scope.hero.equipment = equipmentPiece;
-            } else{
+            } else {
 
                 $scope.hero.equipment += equipmentPiece;
 
@@ -1189,18 +1202,172 @@ angular.module('hero').controller('HeroController', ['$scope',
         };
 
 
-
-        $scope.addWeapon = function()
-        {
+        $scope.addWeapon = function () {
             var selectedWeapon = $scope.weaponList;
             $scope.hero.ownedWeapons.push(selectedWeapon);
         };
 
-        $scope.addArmor = function()
-        {
+        $scope.addArmor = function () {
             var selectedArmor = $scope.armorList;
             $scope.hero.ownedArmor.push(selectedArmor);
         };
+
+
+        var generateLanguages = function () {
+            $scope.hero.languages = [];
+            $scope.hero.languages.known = 0;
+            $scope.hero.languages.push("Common");
+
+            if ($scope.hero.intelligence.score <= 5) {
+                $scope.hero.languages.push(", Cannot Read or Write");
+
+            }
+
+
+            if ($scope.hero.charClass) {
+                if ($scope.hero.charClass.indexOf('Warrior') != -1) {
+
+                    if ($scope.hero.level && $scope.hero.intelligence) {
+                        if ($scope.hero.intelligence.modifier > 0) {
+                            $scope.hero.languages.known += $scope.hero.intelligence.modifier;
+                        }
+
+                        if ($scope.hero.languages.known > 1) {
+                            var i = 0;
+                            while (i < $scope.hero.languages.known) {
+                                var randomNum = randomizer(1, 100);
+                                $scope.hero.languages.push(" " + Warrior.generateRandomLanguage(randomNum));
+                                i++;
+                            }
+                        }
+                    }
+
+                }
+                if ($scope.hero.charClass.indexOf('Thief') != -1) {
+
+                    if ($scope.hero.level && $scope.hero.intelligence) {
+
+                        $scope.hero.languages.push(' Thieves Cant');
+
+                        if ($scope.hero.intelligence.modifier > 0) {
+                            $scope.hero.languages.known += $scope.hero.intelligence.modifier;
+                        }
+
+                        if ($scope.hero.languages.known > 1) {
+                            var i = 0;
+                            while (i < $scope.hero.languages.known) {
+                                var randomNum = randomizer(1, 100);
+                                $scope.hero.languages.push(" " + Thief.generateRandomLanguage(randomNum));
+                                i++;
+                            }
+                        }
+                    }
+
+                }
+
+                if ($scope.hero.charClass.indexOf('Cleric') != -1) {
+
+                    if ($scope.hero.level && $scope.hero.intelligence) {
+                        if ($scope.hero.intelligence.modifier > 0) {
+                            $scope.hero.languages.known += $scope.hero.intelligence.modifier;
+                        }
+
+                        if ($scope.hero.languages.known > 1) {
+                            var i = 0;
+                            while (i < $scope.hero.languages.known) {
+                                var randomNum = randomizer(1, 100);
+                                $scope.hero.languages.push(" " + Cleric.generateRandomLanguage(randomNum));
+                                i++;
+                            }
+                        }
+                    }
+
+                }
+                if ($scope.hero.charClass.indexOf('Wizard') != -1) {
+
+                    if ($scope.hero.level && $scope.hero.intelligence) {
+                        if ($scope.hero.intelligence.modifier > 0) {
+                            $scope.hero.languages.known += $scope.hero.intelligence.modifier * 2;
+                        }
+
+                        if ($scope.hero.languages.known > 1) {
+                            var i = 0;
+                            while (i < $scope.hero.languages.known) {
+                                var randomNum = randomizer(1, 100);
+                                $scope.hero.languages.push(" " + Wizard.generateRandomLanguage(randomNum));
+                                i++;
+                            }
+                        }
+                    }
+
+                }
+                if ($scope.hero.charClass.indexOf('Dwarf') != -1) {
+
+                    if ($scope.hero.level && $scope.hero.intelligence) {
+
+                        $scope.hero.languages.push(' Dwarf');
+
+                        if ($scope.hero.intelligence.modifier > 0) {
+                            $scope.hero.languages.known += $scope.hero.intelligence.modifier + 1;
+                        }
+
+                        if ($scope.hero.languages.known > 1) {
+                            var i = 0;
+                            while (i < $scope.hero.languages.known) {
+                                var randomNum = randomizer(1, 100);
+                                $scope.hero.languages.push(" " + Dwarf.generateRandomLanguage(randomNum));
+                                i++;
+                            }
+                        }
+                    }
+
+                }
+                if ($scope.hero.charClass.indexOf('Elf') != -1) {
+
+                    if ($scope.hero.level && $scope.hero.intelligence) {
+
+                        $scope.hero.languages.push(' Elf');
+
+                        if ($scope.hero.intelligence.modifier > 0) {
+                            $scope.hero.languages.known += $scope.hero.intelligence.modifier + 1;
+                        }
+
+                        if ($scope.hero.languages.known > 1) {
+                            var i = 0;
+                            while (i < $scope.hero.languages.known) {
+                                var randomNum = randomizer(1, 100);
+                                $scope.hero.languages.push(" " + Elf.generateRandomLanguage(randomNum));
+                                i++;
+                            }
+                        }
+                    }
+
+                }
+                if ($scope.hero.charClass.indexOf('Halfling') != -1) {
+
+                    if ($scope.hero.level && $scope.hero.intelligence) {
+
+                        $scope.hero.languages.push(' Halfling');
+
+                        if ($scope.hero.intelligence.modifier > 0) {
+                            $scope.hero.languages.known += $scope.hero.intelligence.modifier + 1;
+                        }
+
+                        if ($scope.hero.languages.known > 1) {
+                            var i = 0;
+                            while (i < $scope.hero.languages.known) {
+                                var randomNum = randomizer(1, 100);
+                                $scope.hero.languages.push(" " + Halfling.generateRandomLanguage(randomNum));
+                                i++;
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
+        }
 
     }
 ]);

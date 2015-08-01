@@ -40,9 +40,9 @@ Thief = {
         "1d20 + 1d20", "1d20 + 1d20"
     ],
     luckyDie: [
-        "d3", "d4", "d5", "d6",
-        "d7", "d8", "d10", "d12",
-        "d14", "d16"],
+        "3", "4", "5", "6",
+        "7", "8", "10", "12",
+        "14", "16"],
 
     willPowerBonus: [
         0, 0, 1, 1, 1, 2, 2, 2, 3, 3],
@@ -621,6 +621,82 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
 
         }
 
+    }
+
+};
+
+Thief.generateRandomLanguage = function(num){
+    var language = "";
+
+    if (num > 0 && num <= 15) {
+        language = "Alignment tongue";
+        return language;
+    } else if (num > 15 && num <= 20){
+        language = "Chaos";
+        return language;
+    } else if (num > 20 && num <= 25){
+        language = "Law";
+        return language;
+    } else if (num > 25 && num <= 30){
+        language = "Neutrality";
+        return language;
+    } else if (num > 30 && num <= 32){
+        language = "Dwarf";
+        return language;
+    } else if (num > 32 && num <= 34){
+        language = "Elf";
+        return language;
+    } else if (num > 35 && num <= 44){
+        language = "Halfling";
+        return language;
+    } else if (num > 44 && num <= 49){
+        language = "Gnome";
+        return language;
+    } else if (num > 49 && num <= 54){
+        language = "Bugbear";
+        return language;
+    }else if (num > 54 && num <= 64){
+        language = "Goblin";
+        return language;
+    } else if (num > 64 && num <= 69){
+        language = "Gnoll";
+        return language;
+    } else if (num > 69 && num <= 71){
+        language = "Harpy";
+        return language;
+    } else if (num > 71 && num <= 74){
+        language = "Hobgoblin";
+        return language;
+    } else if (num > 74 && num <= 78){
+        language = "Kobold";
+        return language;
+    } else if (num > 78 && num <= 79){
+        language = "Lizard man";
+        return language;
+    } else if (num > 79 && num <= 81){
+        language = "Serpent-man";
+        return language;
+    } else if (num > 81 && num <= 83){
+        language = "Troglodyte";
+        return language;
+    } else if (num > 83 && num <= 84){
+        language = "Demonic";
+        return language;
+    } else if (num > 84 && num <= 85){
+        language = "Doppelganger";
+        return language;
+    } else if (num > 85 && num <= 87){
+        language = "Dragon";
+        return language;
+    } else if (num > 87 && num <= 89){
+        language = "Pixie";
+        return language;
+    } else if (num > 89 && num <= 91){
+        language = "Giant";
+        return language;
+    } else if (num > 91 && num <= 100){
+        language = "Undercommon";
+        return language;
     }
 
 };

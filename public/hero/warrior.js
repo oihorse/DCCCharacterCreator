@@ -39,7 +39,8 @@ Warrior = {
         1, 1, 2, 2, 3, 4, 4, 5, 5, 6
     ],
 
-    reflexBonus: [1, 1, 1, 2, 2, 2, 3, 3, 3, 4]
+    reflexBonus: [1, 1, 1, 2, 2, 2, 3, 3, 3, 4],
+
 };
 
 Warrior.getWarriorTitle = function (alignment, level) {
@@ -145,6 +146,63 @@ Warrior.generateCritTable = function (level) {
     }
 
     return crit;
+};
+
+Warrior.generateRandomLanguage = function(num){
+    var language = "";
+
+    if (num > 0 && num <= 20) {
+        language = "Alignment tongue";
+        return language;
+    } else if (num > 20 && num <= 30){
+        language = "Dwarf";
+        return language;
+    } else if (num > 30 && num <=35){
+        language = "Elf";
+        return language;
+    } else if (num > 35 && num <=38){
+        language = "Halfling";
+        return language;
+    } else if (num > 38 && num <=43){
+        language = "Bugbear";
+        return language;
+    } else if (num > 43 && num <=53){
+        language = "Goblin";
+        return language;
+    } else if (num > 53 && num <=58){
+        language = "Gnoll";
+        return language;
+    } else if (num > 58 && num <=63){
+        language = "Harpy";
+        return language;
+    } else if (num > 63 && num <=70){
+        language = "Hobgoblin";
+        return language;
+    } else if (num > 70 && num <=78){
+        language = "Kobold";
+        return language;
+    } else if (num > 78 && num <=81){
+        language = "Lizard man";
+        return language;
+    } else if (num > 81 && num <=83){
+        language = "Minotaur";
+        return language;
+    } else if (num > 83 && num <=88){
+        language = "Ogre";
+        return language;
+    } else if (num > 88 && num <=95){
+        language = "Orc";
+        return language;
+    } else if (num > 95 && num <=96){
+        language = "Serpent-man";
+        return language;
+    } else if (num > 96 && num <=98){
+        language = "Troglodyte";
+        return language;
+    } else if (num > 98 && num <=100){
+        language = "Giant";
+        return language;
+    }
 };
 
 

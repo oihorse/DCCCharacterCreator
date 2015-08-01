@@ -3,10 +3,11 @@
     <p>
 
     <h2 style="display:inline; padding-right:10px; ">{{ hero.characterName}} the {{ hero.title }}</h2>
+    <a class="btn btn-primary btn-xs" data-ng-click="pdf()" ng-hide="!blockEdit" id="pdfButton">PDF</a>
     <a class="btn btn-primary btn-xs" data-ng-click="edit()" ng-hide="!blockEdit">edit</a>
     <a class="btn btn-primary btn-xs" data-ng-click="cancel()" ng-hide="blockEdit" id="cancelButton">cancel</a>
     <a class="btn btn-primary btn-xs" data-ng-click="update()" ng-hide="blockEdit" id="saveButton">save</a>
-    <a class="btn btn-primary btn-xs" href="#" data-ng-click="delete()" ;>delete</a>
+    <a class="btn btn-primary btn-xs" data-ng-click="delete()" ;>delete</a>
     </p>
 
     <!-- Character Class, level, speed, initiative,  etc -->
@@ -52,6 +53,10 @@
             <div class="col-md-4 col-sm-4">
                 <label for="occupation">Occupation:</label>
                 <input id="occupation" ng-model="hero.occupation.occupation" type="text" ng-disabled="true">
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <label for="xp">XP:</label>
+                <input id="xp" ng-model="hero.xp" type="text" ng-disabled="blockEdit">
             </div>
         </div>
         <div class="row">
@@ -259,7 +264,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Starting Equipment-->
@@ -286,6 +290,10 @@
     <halfling-specific ng-if="hero.charClass == 'Halfling'"></halfling-specific>
     <div class="smallIndent">
         <div>
+            <div>
+                <h5>Languages</h5>
+                <textarea id="languages" ng-model="hero.languages"></textarea>
+            </div>
             <h5>Equipment</h5>
 
             <div class="container" ng-hide="blockEdit">
@@ -304,6 +312,7 @@
             <textarea id="equipmentArea" ng-model="hero.equipment"></textarea>
         </div>
         <br>
+
         <div>
             <div class="container" ng-hide="blockEdit">
                 <div class="row">
@@ -332,6 +341,7 @@
             </div>
         </div>
         <br>
+
         <div>
             <div class="container" ng-hide="blockEdit">
                 <div class="row">
@@ -363,10 +373,14 @@
                 </table>
             </div>
         </div>
-        </div>
-        <div>
-            <h5>Treasure</h5>
-            <textarea ng-model="hero.treasure"></textarea>
-        </div>
+    </div>
+    <div>
+        <h5>Treasure</h5>
+        <textarea ng-model="hero.treasure" ng-disabled="blockEdit"></textarea>
+    </div>
+    <div>
+        <h5>Notes</h5>
+        <textarea ng-model="hero.notes" ng-disabled="blockEdit"></textarea>
+    </div>
     </div>
 </section>

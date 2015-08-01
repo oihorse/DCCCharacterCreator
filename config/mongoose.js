@@ -5,10 +5,16 @@
 var	config = require('./config'),
 	mongoose = require('mongoose');
 
+var options = {
+	server: {
+		socketOptions: { keepAlive: 1 }
+	}
+};
+
 // Define the Mongoose configuration method
 module.exports = function() {
 	// Use Mongoose to connect to MongoDB
-	var db = mongoose.connect(config.db);
+	var db = mongoose.connect(config.db, options);
 
 	// Load the application models 
 	require('../app/models/user.server.model');

@@ -106,3 +106,87 @@ Elf.getCurrentCastingLevel = function (charLevel) {
 
     return ccl;
 };
+
+Elf.generateRandomLanguage = function(num){
+    var language = "";
+
+    if (num > 0 && num <= 20) {
+        language = "Alignment tongue";
+        return language;
+    } else if (num > 20 && num <= 25){
+        language = "Chaos";
+        return language;
+    } else if (num > 25 && num <= 30){
+        language = "Law";
+        return language;
+    } else if (num > 30 && num <= 35){
+        language = "Neutrality";
+        return language;
+    } else if (num > 35 && num <= 40){
+        language = "Dwarf";
+        return language;
+    } else if (num > 40 && num <= 45){
+        language = "Halfling";
+        return language;
+    } else if (num > 45 && num <= 48){
+        language = "Goblin";
+        return language;
+    } else if (num > 48 && num <= 50){
+        language = "Gnoll";
+        return language;
+    } else if (num > 50 && num <= 52){
+        language = "Harpy";
+        return language;
+    } else if (num > 52 && num <= 54){
+        language = "Hobgoblin";
+        return language;
+    } else if (num > 54 && num <= 57){
+        language = "Kobold";
+        return language;
+    } else if (num > 57 && num <= 58){
+        language = "Lizard man";
+        return language;
+    }  else if (num > 58 && num <= 59){
+        language = "Minotaur";
+        return language;
+    } else if (num > 59 && num <= 60){
+        language = "Ogre";
+        return language;
+    } else if (num > 60 && num <= 63){
+        language = "Orc";
+        return language;
+    }else if (num > 63 && num <= 64){
+        language = "Serpent-man";
+        return language;
+    } else if (num > 64 && num <= 65){
+        language = "Troglodyte";
+        return language;
+    } else if (num > 65 && num <= 70){
+        language = "Angelic";
+        return language;
+    }  else if (num > 70 && num <= 75){
+        language = "Centaur";
+        return language;
+    } else if (num > 75 && num <= 80){
+        language = "Demonic";
+        return language;
+    }  else if (num > 80 && num <= 85){
+        language = "Dragon";
+        return language;
+    } else if (num > 85 && num <= 90){
+        language = "Pixie";
+        return language;
+    }   else if (num > 90 && num <= 92){
+        language = "Naga";
+        return language;
+    }  else if (num > 92 && num <= 94){
+        language = "Eagle";
+        return language;
+    }  else if (num > 94 && num <= 96){
+        language = "Horse";
+        return language;
+    }   else if (num > 96 && num <= 100){
+        language = "Undercommon";
+        return language;
+    }
+};

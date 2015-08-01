@@ -122,3 +122,60 @@ Dwarf.generateCritTable = function (level) {
 
     return crit;
 };
+
+Dwarf.generateRandomLanguage = function (num) {
+    var language = "";
+
+    if (num > 0 && num <= 20) {
+        language = "Alignment tongue";
+        return language;
+    } else if (num > 20 && num <= 25) {
+        language = "Elf";
+        return language;
+    } else if (num > 25 && num <= 35) {
+        language = "Halfling";
+        return language;
+    } else if (num > 35 && num <= 40) {
+        language = "Gnome";
+        return language;
+    } else if (num > 40 && num <= 45) {
+        language = "Bugbear";
+        return language;
+    } else if (num > 45 && num <= 55) {
+        language = "Goblin";
+        return language;
+    } else if (num > 55 && num <= 60) {
+        language = "Gnoll";
+        return language;
+    }  else if (num > 60 && num <= 65) {
+        language = "Hobgoblin";
+        return language;
+    } else if (num > 65 && num <= 75) {
+        language = "Kobold";
+        return language;
+    } else if (num > 75 && num <= 76) {
+        language = "Minotaur";
+        return language;
+    } else if (num > 76 && num <= 81) {
+        language = "Ogre";
+        return language;
+    } else if (num > 81 && num <= 86) {
+        language = "Orc";
+        return language;
+    } else if (num > 86 && num <= 91) {
+        language = "Troglodyte";
+        return language;
+    } else if (num > 91 && num <= 93) {
+        language = "Dragon";
+        return language;
+    } else if (num > 93 && num <= 97) {
+        language = "Giant";
+        return language;
+    } else if (num > 97 && num <= 98) {
+        language = "Bear";
+        return language;
+    }else if (num > 98 && num <= 100) {
+        language = "Undercommon";
+        return language;
+    }
+};

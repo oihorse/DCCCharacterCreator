@@ -44,6 +44,8 @@
     "grunt-env": "latest",
     "grunt-nodemon": "latest",
     "grunt-contrib-jshint": "latest",
-    "grunt-contrib-csslint": "latest"
+    "grunt-contrib-csslint": "latest",
+    "pdffiller": "latest",
+    "forever": "latest"
   }
 }

@@ -49,7 +49,7 @@ Halfling.getHalflingTitle = function (level) {
         case 8:
         case 9:
         case 10:
-            title = "Wise one";
+            title = "WiseOne";
             break;
         default:
             title = "";
@@ -71,4 +71,43 @@ Halfling.getStealth = function (charLevel) {
 
     return hide;
 
+};
+
+Halfling.generateRandomLanguage = function(num){
+    var language = "";
+
+    if (num > 0 && num <= 25) {
+        language = "Alignment tongue";
+        return language;
+    } else if (num > 25 && num <= 35){
+        language = "Dwarf";
+        return language;
+    } else if (num > 35 && num <= 40){
+        language = "Elf";
+        return language;
+    }  else if (num > 40 && num <= 50){
+        language = "Gnome";
+        return language;
+    } else if (num > 50 && num <= 55){
+        language = "Bugbear";
+        return language;
+    }else if (num > 55 && num <= 70){
+        language = "Goblin";
+        return language;
+    }  else if (num > 70 && num <= 80){
+        language = "Hobgoblin";
+        return language;
+    } else if (num > 80 && num <= 90){
+        language = "Kobold";
+        return language;
+    } else if (num > 90 && num <= 93){
+        language = "Pixie";
+        return language;
+    } else if (num > 93 && num <= 98){
+        language = "Ferret";
+        return language;
+    } else if (num > 98 && num <= 100){
+        language = "Undercommon";
+        return language;
+    }
 };

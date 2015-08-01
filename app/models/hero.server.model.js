@@ -80,6 +80,12 @@ var HeroSchema = new Schema({
         type: Array,
     },   treasure: {
         type: String,
+    }, languages: {
+        type: Array,
+    }, notes: {
+        type: String,
+    }, xp: {
+        type: String,
     }, creator: {
         type: Schema.ObjectId,
         ref: 'User'

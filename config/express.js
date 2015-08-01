@@ -3,60 +3,206 @@
 
 // Load the module dependencies
 var config = require('./config'),
-	express = require('express'),
-	morgan = require('morgan'),
-	compress = require('compression'),
-	bodyParser = require('body-parser'),
-	methodOverride = require('method-override'),
-	session = require('express-session'),
-	flash = require('connect-flash'),
-	passport = require('passport');
+    express = require('express'),
+    morgan = require('morgan'),
+    compress = require('compression'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    session = require('express-session'),
+    flash = require('connect-flash'),
+    pdfFiller = require('pdffiller'),
+    path = require('path'),
+    passport = require('passport');
 
 // Define the Express configuration method
-module.exports = function() {
-	// Create a new Express application instance
-	var app = express();
+module.exports = function () {
+    // Create a new Express application instance
+    var app = express();
 
-	// Use the 'NDOE_ENV' variable to activate the 'morgan' logger or 'compress' middleware
-	if (process.env.NODE_ENV === 'development') {
-		app.use(morgan('dev'));
-	} else if (process.env.NODE_ENV === 'production') {
-		app.use(compress());
-	}
+    // Use the 'NDOE_ENV' variable to activate the 'morgan' logger or 'compress' middleware
+    if (process.env.NODE_ENV === 'development') {
+        app.use(morgan('dev'));
+    } else if (process.env.NODE_ENV === 'production') {
+        app.use(compress());
+    }
 
-	// Use the 'body-parser' and 'method-override' middleware functions
-	app.use(bodyParser.urlencoded({
-		extended: true
-	}));
-	app.use(bodyParser.json());
-	app.use(methodOverride());
+    // Use the 'body-parser' and 'method-override' middleware functions
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+    app.use(bodyParser.json());
+    app.use(methodOverride());
 
-	// Configure the 'session' middleware
-	app.use(session({
-		saveUninitialized: true,
-		resave: true,
-		secret: config.sessionSecret
-	}));
+    // Configure the 'session' middleware
+    app.use(session({
+        saveUninitialized: true,
+        resave: true,
+        secret: config.sessionSecret
+    }));
 
-	// Set the application view engine and 'views' folder
-	app.set('views', './app/views');
-	app.set('view engine', 'ejs');
+    // Set the application view engine and 'views' folder
+    app.set('views', './app/views');
+    app.set('view engine', 'ejs');
 
-	// Configure the flash messages middleware
-	app.use(flash());
+    // Configure the flash messages middleware
+    app.use(flash());
 
-	// Configure the Passport middleware
-	app.use(passport.initialize());
-	app.use(passport.session());
+    // Configure the Passport middleware
+    app.use(passport.initialize());
+    app.use(passport.session());
 
-	// Load the routing files
-	require('../app/routes/index.server.routes.js')(app);
-	require('../app/routes/users.server.routes.js')(app);
-	require('../app/routes/hero.server.routes.js')(app);
 
-	// Configure static file serving
-	app.use(express.static('./public'));
+    // Load the routing files
+    require('../app/routes/index.server.routes.js')(app);
+    require('../app/routes/users.server.routes.js')(app);
+    require('../app/routes/hero.server.routes.js')(app);
 
-	// Return the Express application instance
-	return app;
+    // Configure static file serving
+    app.use(express.static('./public'));
+
+    app.post('/pdf', function (req, res) {
+        //find and return a hero using the id
+        var characterSheet = req.body.charClass;
+        var sheetName = req.body.characterName + '_the_' + req.body.title;
+
+        var sourcePDF = "/Users/chris/Projects/DCCCharacterCreator/public/assets/" + characterSheet + "Sheet.pdf";
+        var destinationPDF = "/Users/chris/Projects/DCCCharacterCreator/public/assets/" + sheetName + ".pdf";
+
+        var armor = "";
+        var armorIterator = 0;
+        while (armorIterator < req.body.ownedArmor.length) {
+            armor += req.body.ownedArmor[armorIterator].name
+                + ", " + req.body.ownedArmor[armorIterator].acbonus
+                + ", " + req.body.ownedArmor[armorIterator].penalty
+                + ", " + req.body.ownedArmor[armorIterator].speed
+                + ", " + req.body.ownedArmor[armorIterator].fumble
+                + "\n"
+            armorIterator++;
+        }
+
+        var weapon = "";
+        var weaponIterator = 0;
+        while (weaponIterator < req.body.ownedWeapons.length) {
+            weapon += req.body.ownedWeapons[weaponIterator].name
+                + ", " + req.body.ownedWeapons[weaponIterator].damage
+                + ", " + req.body.ownedWeapons[weaponIterator].range
+                + "\n"
+            weaponIterator++;
+        }
+
+
+        var data = {
+            "characterName": req.body.characterName,
+            "level": req.body.level,
+            "charClass": req.body.charClass,
+            //"charAbilities": $scope.hero,
+            "alignment": req.body.alignment,
+            "title": req.body.title,
+            "occupation": req.body.occupation.occupation,
+            "speed": req.body.speed,
+            "initiative": req.body.initiative,
+            "critTable": req.body.critTable,
+            "critDie": req.body.critDie,
+            "attackBonus": req.body.attackBonus,
+            "actionDie": req.body.actionDie,
+            "meleeBonus": req.body.meleeBonus,
+            "missileBonus": req.body.missileBonus,
+            "classSpecific": req.body.classSpecific,
+            "hitPoints": req.body.hitPoints,
+            "strengthScore": req.body.strength.score,
+            "strengthModifier": req.body.strength.modifier,
+            "agilityScore": req.body.agility.score,
+            "agilityModifier": req.body.agility.modifier,
+            "staminaScore": req.body.stamina.score,
+            "staminaModifier": req.body.stamina.modifier,
+            "personalityScore": req.body.personality.score,
+            "personalityModifier": req.body.personality.modifier,
+            "luckScore": req.body.luck.score,
+            "luckModifier": req.body.luck.modifier,
+            "intelligenceScore": req.body.intelligence.score,
+            "intelligenceModifier": req.body.intelligence.modifier,
+            "luckyRoll": req.body.luckyRoll.name,
+            "reflexSave": req.body.reflexSave,
+            "willPowerSave": req.body.willPowerSave,
+            "fortitudeSave": req.body.fortitudeSave,
+            "equipment": req.body.equipment,
+            "ownedWeapons": weapon,
+            "ownedArmor": armor,
+            "treasure": req.body.treasure,
+            "languages": req.body.languages,
+            "notes": req.body.notes,
+            "xp": req.body.xp
+        };
+
+
+            switch (req.body.charClass) {
+                case "Cleric":
+                    data.deity = req.body.classSpecific.deity;
+                    data.spellCheck = req.body.classSpecific.spellCheck;
+                    data.maximumSpellCastingLevel = req.body.classSpecific.maximumSpellCastingLevel;
+                    data.spellsKnown = req.body.classSpecific.spellsKnown;
+                    break;
+                case "Thief":
+                    data.luckyDie = req.body.classSpecific.luckyDie;
+                    data.backstab = req.body.classSpecific.backstab;
+                    data.sneakSilently = req.body.classSpecific.sneakSilently;
+                    data.hideInShadows = req.body.classSpecific.hideInShadows;
+                    data.pickPocket = req.body.classSpecific.pickPocket;
+                    data.climbSheerSurfaces = req.body.classSpecific.climbSheerSurfaces;
+                    data.pickLock = req.body.classSpecific.pickLock;
+                    data.findTrap = req.body.classSpecific.findTrap;
+                    data.disableTrap = req.body.classSpecific.disableTrap;
+                    data.forgeDocument = req.body.classSpecific.forgeDocument;
+                    data.disguiseSelf = req.body.classSpecific.disguiseSelf;
+                    data.readLanguages = req.body.classSpecific.readLanguages;
+                    data.handlePoison = req.body.classSpecific.handlePoison;
+                    data.castSpellFromScroll = req.body.classSpecific.castSpellFromScroll;
+                    break;
+                case "Warrior":
+                    data.luckyWeapon = req.body.classSpecific.luckyWeapon;
+                    data.threatRange = req.body.classSpecific.threatRange;
+                    break;
+                case "Wizard":
+                    data.patron = req.body.classSpecific.patron;
+                    data.familiar = req.body.classSpecific.familiar;
+                    data.corruption = req.body.classSpecific.corruption;
+                    data.spellCheck = req.body.classSpecific.spellCheck;
+                    data.currentSpellCastingLevel = req.body.classSpecific.currentSpellCastingLevel;
+                    data.spellsKnown = req.body.classSpecific.spellsKnown;
+                    data.maximumSpellCastingLevel = req.body.classSpecific.maximumSpellCastingLevel;
+                    break;
+                case "Dwarf":
+                    data.luckyWeapon = req.body.classSpecific.luckyWeapon;
+                    break;
+                case "Halfling":
+                    data.stealth = req.body.classSpecific.stealth;
+                    break;
+                case "Elf":
+                    data.patron = req.body.classSpecific.patron;
+                    data.familiar = req.body.classSpecific.familiar;
+                    data.corruption = req.body.classSpecific.corruption;
+                    data.spellCheck = req.body.classSpecific.spellCheck;
+                    data.currentSpellCastingLevel = req.body.classSpecific.currentSpellCastingLevel;
+                    data.spellsKnown = req.body.classSpecific.spellsKnown;
+                    data.maximumSpellCastingLevel = req.body.classSpecific.maximumSpellCastingLevel;
+                    break;
+            }
+
+
+        pdfFiller.fillForm(sourcePDF, destinationPDF, data, function () {
+            console.log("In callback (we're done)");
+        });
+
+
+       // res.set('Content-Type', 'application/pdf');
+        res.send('/assets/' + sheetName + ".pdf");
+        //    , data.characterName + '.pdf', function (err) {
+        //    if (err) {
+        //        console.log('error in pdf res' + err);
+        //    }
+        //});
+    });
+
+    // Return the Express application instance
+    return app;
 };
