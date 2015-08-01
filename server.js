@@ -24,6 +24,9 @@ app.listen(process.env.NODE_PORT);
 
 // Log the server status to the console
 console.log('Node Server running on port ' + process.env.NODE_PORT);
+console.log('Env is ' + process.env.NODE_ENV);
+
+
 
 // Use the module.exports property to expose our Express application instance for external usage
 module.exports = app;
