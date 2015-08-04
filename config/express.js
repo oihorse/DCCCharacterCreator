@@ -65,8 +65,8 @@ module.exports = function () {
         var characterSheet = req.body.charClass;
         var sheetName = req.body.characterName + '_the_' + req.body.title;
 
-        var sourcePDF = "/Users/chris/Projects/DCCCharacterCreator/public/assets/" + characterSheet + "Sheet.pdf";
-        var destinationPDF = "/Users/chris/Projects/DCCCharacterCreator/public/assets/" + sheetName + ".pdf";
+        var sourcePDF = "./public/assets/" + characterSheet + "Sheet.pdf";
+        var destinationPDF = "./public/assets/" + sheetName + ".pdf";
 
         var armor = "";
         var armorIterator = 0;
