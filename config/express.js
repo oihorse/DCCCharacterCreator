@@ -194,8 +194,13 @@ module.exports = function () {
         });
 
 
+        //this is a terrible hack but it works.
+        var millisecondsToWait = 1000;
+        setTimeout(function() {
+            res.send('/assets/' + sheetName + ".pdf");
+        }, millisecondsToWait);
        // res.set('Content-Type', 'application/pdf');
-        res.send('/assets/' + sheetName + ".pdf");
+       // res.send('/assets/' + sheetName + ".pdf");
         //    , data.characterName + '.pdf', function (err) {
         //    if (err) {
         //        console.log('error in pdf res' + err);
