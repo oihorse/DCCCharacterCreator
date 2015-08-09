@@ -902,6 +902,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                     if ($scope.hero.level) {
 
                         if ($scope.hero.intelligence) {
+
                             $scope.hero.classSpecific.spellCheck = Wizard.getSpellCheck($scope.hero.level, $scope.hero.intelligence.modifier);
                             $scope.hero.classSpecific.maximumSpellCastingLevel = Wizard.getMaximumSpellCastingLevel($scope.hero.intelligence.score);
                             $scope.hero.classSpecific.spellsKnown = Wizard.getNumberOfSpellsKnown($scope.hero.level, $scope.hero.intelligence.score);
@@ -910,8 +911,10 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                             if ($scope.hero.classSpecific.maximumSpellCastingLevel < $scope.hero.classSpecific.currentSpellCastingLevel) {
                                 $scope.hero.classSpecific.currentSpellCastingLevel = $scope.hero.classSpecific.maximumSpellCastingLevel;
                             }
-
-                            $scope
+                            $scope.hero.classSpecific.listOfPossibleSpells = Wizard.generateListOfPossibleSpells($scope.hero.classSpecific.currentSpellCastingLevel);
+                            $scope.hero.classSpecific.spellList = [];
+                            console.log($scope.hero.classSpecific.listOfPossibleSpells);
+                            console.log($scope.wizardSpells);
                         }
                     }
                 }
@@ -1379,7 +1382,6 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
         }
 
 
-
         var firstLevelClericSpells = [
             {name: 'Blessing'},
             {name: 'Darkness'},
@@ -1429,7 +1431,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
 
         $scope.wizardSpells = [
             {
-                name: "Level 1",
+                name: "1",
                 spells: [
                     {name: 'Animal summoning'},
                     {name: 'Cantrip'},
@@ -1445,11 +1447,11 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                     {name: 'Find familiar'},
                     {name: 'Flaming hands'},
                     {name: 'Force manipulation'},
-                    {name: 'Invoke patron**'},
+                    {name: 'Invoke patron'},
                     {name: 'Magic missile'},
                     {name: 'Magic shield'},
                     {name: 'Mending'},
-                    {name: 'Patron bond***'},
+                    {name: 'Patron bond'},
                     {name: 'Read magic'},
                     {name: 'Ropework'},
                     {name: 'Runic alphabet, mortal'},
@@ -1457,11 +1459,11 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                     {name: 'Spider climb'},
                     {name: 'Ventriloquism'},
                     {name: 'Ward portal'},
-                    {name: 'Patron spell***'}
+                    {name: 'Patron spell'}
                 ]
             },
             {
-                name: "Level 2",
+                name: "2",
                 spells: [
                     {name: 'Arcane affinity'},
                     {name: 'Detect evil*'},
@@ -1486,11 +1488,11 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                     {name: 'Spider web'},
                     {name: 'Strength'},
                     {name: 'Wizard staff'},
-                    {name: 'Patron spell***'}
+                    {name: 'Patron spell'}
                 ]
             },
             {
-                name: "Level 3",
+                name: "3",
                 spells: [
                     {name: 'Binding*'},
                     {name: 'Breathe life'},
@@ -1519,7 +1521,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                 ]
             },
             {
-                name: "Level 4",
+                name: "4",
                 spells: [
                     {name: 'Control fire'},
                     {name: 'Control ice'},
@@ -1530,7 +1532,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                 ]
             },
             {
-                name: "Level 5",
+                name: "5",
                 spells: [
                     {name: 'Hepsoj\'s fecund fungi'},
                     {name: 'Lokerimon\'s unerring hunter'},
@@ -1540,6 +1542,93 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                 ]
             }
         ];
+
+        $scope.addSpell = function (selectedLevel, selectedSpell) {
+
+            if ($scope.hero.classSpecific.spellsKnown > $scope.hero.classSpecific.spellList.length) {
+                var spellCheck = $scope.hero.classSpecific.spellCheck;
+                var mroll = "";
+                var spell = {};
+
+                var luckmodifier = $scope.hero.luck.modifier * 10;
+                var randomRoll = randomizer(0, 99) + luckmodifier;
+                console.log('Random Roll is: ' + randomRoll);
+
+                if (selectedSpell.indexOf('*') != -1) {
+                    spellCheck = Wizard.getSpellCheck($scope.hero.level, $scope.hero.intelligence.modifier - 2);
+                }
+
+                if (randomRoll < 0) {
+                    randomRoll = 0
+
+                } else if (randomRoll == 98) {
+
+                    var doubleRoll = randomizer(0, 97) + luckmodifier;
+                    if (doubleRoll > 97) {
+                        doubleRoll == 97
+                    }
+                    mroll = Wizard.mercurial[doubleRoll];
+
+
+                    doubleRoll = randomizer(0, 97) + luckmodifier;
+                    if (doubleRoll > 97) {
+                        doubleRoll == 97
+                    }
+                    mroll += ", " + Wizard.mercurial[doubleRoll];
+                    console.log("mroll " + mroll);
+
+                    spell = {spell: selectedSpell, level: selectedLevel, spellChecks: spellCheck, mercurial: mroll};
+
+
+                    $scope.hero.classSpecific.spellList.push(spell);
+
+                    return;
+
+                }
+                else if (randomRoll >= 99) {
+                    var newRoll = randomizer(4, 60) + luckmodifier;
+
+                    mroll = Wizard.mercurial[newRoll];
+                    console.log("mroll " + mroll);
+
+                    spell = {spell: selectedSpell, level: selectedLevel, spellChecks: spellCheck, mercurial: mroll};
+
+                    $scope.hero.classSpecific.spellList.push(spell);
+
+                    return;
+                }
+
+                mroll = Wizard.mercurial[randomRoll];
+                console.log("mroll " + mroll);
+
+
+                spell = {spell: selectedSpell, level: selectedLevel, spellChecks: spellCheck, mercurial: mroll};
+
+
+                $scope.hero.classSpecific.spellList.push(spell);
+            }
+            else {
+                alert("Your wizard can't contain any more spells in their head");
+            }
+        };
+
+
+        $scope.deleteSpellRow = function (index) {
+
+            $scope.hero.classSpecific.spellList.splice(index, 1);
+
+        };
+
+        $scope.deleteArmorRow = function (index) {
+
+            $scope.hero.ownedArmor.splice(index, 1);
+
+        };
+        $scope.deleteWeaponRow = function (index) {
+
+            $scope.hero.ownedWeapons.splice(index, 1);
+
+        };
     }
 
 ]);

@@ -91,6 +91,7 @@ module.exports = function () {
         }
 
 
+
         var data = {
             "characterName": req.body.characterName,
             "level": req.body.level,
@@ -170,6 +171,17 @@ module.exports = function () {
                     data.currentSpellCastingLevel = req.body.classSpecific.currentSpellCastingLevel;
                     data.spellsKnown = req.body.classSpecific.spellsKnown;
                     data.maximumSpellCastingLevel = req.body.classSpecific.maximumSpellCastingLevel;
+                    var spellList = "";
+                    var spellIterator = 0;
+                    while (spellIterator < req.body.classSpecific.spellList.length) {
+                        spellList += pad(40, req.body.classSpecific.spellList[spellIterator].spell, " ")
+                            + pad(20, req.body.classSpecific.spellList[spellIterator].level.toString(), " ")
+                            + pad(25, req.body.classSpecific.spellList[spellIterator].spellChecks, " ")
+                            + req.body.classSpecific.spellList[spellIterator].mercurial
+                            + "\n"
+                        spellIterator++;
+                    }
+                    data.spellList = spellList;
                     break;
                 case "Dwarf":
                     data.luckyWeapon = req.body.classSpecific.luckyWeapon;
@@ -207,6 +219,19 @@ module.exports = function () {
         //    }
         //});
     });
+
+    //for formatting the spell table. I hate life.
+    var pad = function (fixedLength, text, fillText)
+    {
+        var diff = fixedLength - text.length;
+        for(var i=0; i < diff; i++)
+        {
+            text= text + fillText;
+        }
+        return text
+    };
+
+
 
     // Return the Express application instance
     return app;
