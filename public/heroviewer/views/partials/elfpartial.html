@@ -18,5 +18,27 @@
            type="text"
            placeholder="lucky spell">
 
+    <div ng-hide="blockEdit">
+        <select ng-model="wizardSpellLevel" ng-options="l.name for l in  hero.classSpecific.listOfPossibleSpells"></select>
+        <select ng-model="wizardSpell" ng-options="s.name for s in wizardSpellLevel.spells"></select>
+        <a  id="addSpell" class="btn btn-primary btn-xs" data-ng-click="addSpell(wizardSpellLevel.name, wizardSpell.name)">Add</a>
+    </div>
+
+    <div>
+        <table class="table-striped table-condensed">
+            <th>Spell Name</th>
+            <th>Spell Level</th>
+            <th>Spell Check</th>
+            <th>Mercurial Effect</th>
+            <tr ng-repeat="x in hero.classSpecific.spellList track by $index">
+                <td>{{ x.spell }}</td>
+                <td>{{ x.level }}</td>
+                <td>{{ x.spellChecks }}</td>
+                <td>{{ x.mercurial }}</td>
+                <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href="" ng-click="deleteSpellRow($index)">Remove</a></td>
+            </tr>
+        </table>
+    </div>
+
 
 </div>

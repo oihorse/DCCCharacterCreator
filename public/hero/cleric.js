@@ -14,8 +14,53 @@ Cleric = {
     fortitudeBonus: [1, 1, 1, 2, 2, 2, 3, 3, 3, 4],
     reflexBonus: [0, 0, 1, 1, 1, 2, 2, 2, 3, 3],
     spellsKnown: [[4], [5], [5, 3], [6, 4], [6, 5, 2], [7, 5, 3], [7, 6, 4, 1], [8, 6, 5, 2], [8, 7, 5, 3, 1], [9, 7, 6, 4, 2]],
-    maxSpellCastingLevel: [1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5]
-
+    maxSpellCastingLevel: [1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5],
+    firstLevelClericSpells: [
+        {name: 'Blessing'},
+        {name: 'Darkness'},
+        {name: 'Detect evil'},
+        {name: 'Detect magic'},
+        {name: 'Food of the gods'},
+        {name: 'Holy sanctuary'},
+        {name: 'Paralysis'},
+        {name: 'Protection from evil'},
+        {name: 'Resist cold or heat'},
+        {name: 'Second sight'},
+        {name: 'Word of command'}
+    ],
+    secondLevelClericSpells: [
+        {name: 'Banish'},
+        {name: 'Binding'},
+        {name: 'Cure paralysis'},
+        {name: 'Curse'},
+        {name: 'Divine symbol'},
+        {name: 'Lotus stare'},
+        {name: 'Neutralize poison or disease'},
+        {name: 'Restore vitality'},
+        {name: 'Snake charm'},
+        {name: 'Stinging stone'},
+        {name: 'Wood wyrding'}
+    ],
+    thirdLevelClericSpells: [
+        {name: 'Animate dead'},
+        {name: 'Bolt from the blue'},
+        {name: 'Exorcise'},
+        {name: 'Remove curse'},
+        {name: 'Speak with the dead'},
+        {name: 'Spiritual weapon'},
+        {name: 'True name'}
+    ],
+    fourthLevelClericSpells: [
+        {name: 'Affliction of the gods'},
+        {name: 'Cause earthquake'},
+        {name: 'Sanctify / desecrate'},
+        {name: 'Vermin blight'}
+    ],
+    fifthLevelClericSpells: [
+        {name: 'Righteous fire'},
+        {name: 'Weather control'},
+        {name: 'Whirling doom'}
+    ]
 };
 
 Cleric.generateCritTable = function () {
@@ -206,7 +251,7 @@ Cleric.generateRandomLanguage = function (num) {
     } else if (num > 55 && num <= 60) {
         language = "Gnoll";
         return language;
-    }  else if (num > 60 && num <= 65) {
+    } else if (num > 60 && num <= 65) {
         language = "Hobgoblin";
         return language;
     } else if (num > 65 && num <= 75) {

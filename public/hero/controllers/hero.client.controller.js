@@ -913,8 +913,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                             }
                             $scope.hero.classSpecific.listOfPossibleSpells = Wizard.generateListOfPossibleSpells($scope.hero.classSpecific.currentSpellCastingLevel);
                             $scope.hero.classSpecific.spellList = [];
-                            console.log($scope.hero.classSpecific.listOfPossibleSpells);
-                            console.log($scope.wizardSpells);
+
                         }
                     }
                 }
@@ -925,12 +924,21 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                         if ($scope.hero.intelligence) {
                             $scope.hero.classSpecific.spellCheck = Elf.getSpellCheck($scope.hero.level, $scope.hero.intelligence.modifier);
                             $scope.hero.classSpecific.maximumSpellCastingLevel = Elf.getMaximumSpellCastingLevel($scope.hero.intelligence.score);
-                            $scope.hero.classSpecific.spellsKnown = Elf.getNumberOfSpellsKnown($scope.hero.level);
+                            $scope.hero.classSpecific.spellsKnown = Elf.getNumberOfSpellsKnown($scope.hero.level)+2;
                             $scope.hero.classSpecific.currentSpellCastingLevel = Elf.getCurrentCastingLevel($scope.hero.level);
 
                             if ($scope.hero.classSpecific.maximumSpellCastingLevel < $scope.hero.classSpecific.currentSpellCastingLevel) {
                                 $scope.hero.classSpecific.currentSpellCastingLevel = $scope.hero.classSpecific.maximumSpellCastingLevel;
                             }
+
+                            $scope.hero.classSpecific.listOfPossibleSpells = Elf.generateListOfPossibleSpells($scope.hero.classSpecific.currentSpellCastingLevel);
+
+                            $scope.hero.classSpecific.spellList = [];
+
+                            $scope.addSpell(1, 'Patron Bond');
+                            $scope.addSpell(1, 'Invoke Patron');
+
+
                         }
                     }
                 }
@@ -1382,166 +1390,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
         }
 
 
-        var firstLevelClericSpells = [
-            {name: 'Blessing'},
-            {name: 'Darkness'},
-            {name: 'Detect evil'},
-            {name: 'Detect magic'},
-            {name: 'Food of the gods'},
-            {name: 'Holy sanctuary'},
-            {name: 'Paralysis'},
-            {name: 'Protection from evil'},
-            {name: 'Resist cold or heat'},
-            {name: 'Second sight'},
-            {name: 'Word of command'}
-        ];
-        var secondLevelClericSpells = [
-            {name: 'Banish'},
-            {name: 'Binding'},
-            {name: 'Cure paralysis'},
-            {name: 'Curse'},
-            {name: 'Divine symbol'},
-            {name: 'Lotus stare'},
-            {name: 'Neutralize poison or disease'},
-            {name: 'Restore vitality'},
-            {name: 'Snake charm'},
-            {name: 'Stinging stone'},
-            {name: 'Wood wyrding'}
-        ];
-        var thirdLevelClericSpells = [
-            {name: 'Animate dead'},
-            {name: 'Bolt from the blue'},
-            {name: 'Exorcise'},
-            {name: 'Remove curse'},
-            {name: 'Speak with the dead'},
-            {name: 'Spiritual weapon'},
-            {name: 'True name'}
-        ];
-        var fourthLevelClericSpells = [
-            {name: 'Affliction of the gods'},
-            {name: 'Cause earthquake'},
-            {name: 'Sanctify / desecrate'},
-            {name: 'Vermin blight'}
-        ];
-        var fifthLevelClericSpells = [
-            {name: 'Righteous fire'},
-            {name: 'Weather control'},
-            {name: 'Whirling doom'}
-        ];
 
-        $scope.wizardSpells = [
-            {
-                name: "1",
-                spells: [
-                    {name: 'Animal summoning'},
-                    {name: 'Cantrip'},
-                    {name: 'Charm person'},
-                    {name: 'Chill touch'},
-                    {name: 'Choking cloud'},
-                    {name: 'Color spray'},
-                    {name: 'Comprehend languages'},
-                    {name: 'Detect magic*'},
-                    {name: 'Ekim\'s mystical mask'},
-                    {name: 'Enlarge'},
-                    {name: 'Feather fall'},
-                    {name: 'Find familiar'},
-                    {name: 'Flaming hands'},
-                    {name: 'Force manipulation'},
-                    {name: 'Invoke patron'},
-                    {name: 'Magic missile'},
-                    {name: 'Magic shield'},
-                    {name: 'Mending'},
-                    {name: 'Patron bond'},
-                    {name: 'Read magic'},
-                    {name: 'Ropework'},
-                    {name: 'Runic alphabet, mortal'},
-                    {name: 'Sleep'},
-                    {name: 'Spider climb'},
-                    {name: 'Ventriloquism'},
-                    {name: 'Ward portal'},
-                    {name: 'Patron spell'}
-                ]
-            },
-            {
-                name: "2",
-                spells: [
-                    {name: 'Arcane affinity'},
-                    {name: 'Detect evil*'},
-                    {name: 'Detect invisible'},
-                    {name: 'ESP'},
-                    {name: 'Fire resistance'},
-                    {name: 'Forget'},
-                    {name: 'Invisibility'},
-                    {name: 'Invisible companion'},
-                    {name: 'Knock'},
-                    {name: 'Levitate'},
-                    {name: 'Locate object'},
-                    {name: 'Magic mouth'},
-                    {name: 'Mirror image'},
-                    {name: 'Monster summoning'},
-                    {name: 'Nythuul\'s porcupine coat'},
-                    {name: 'Phantasm'},
-                    {name: 'Ray of enfeeblement'},
-                    {name: 'Scare'},
-                    {name: 'Scorching'},
-                    {name: 'Shatter'},
-                    {name: 'Spider web'},
-                    {name: 'Strength'},
-                    {name: 'Wizard staff'},
-                    {name: 'Patron spell'}
-                ]
-            },
-            {
-                name: "3",
-                spells: [
-                    {name: 'Binding*'},
-                    {name: 'Breathe life'},
-                    {name: 'Consult spirit'},
-                    {name: 'Demon summoning'},
-                    {name: 'Dispel magic'},
-                    {name: 'Eldritch hound'},
-                    {name: 'Emirikol\'s entropic maelstrom'},
-                    {name: 'Eternal champion'},
-                    {name: 'Fireball'},
-                    {name: 'Fly'},
-                    {name: 'Gust of wind'},
-                    {name: 'Haste'},
-                    {name: 'Lightning bolt'},
-                    {name: 'Make potion'},
-                    {name: 'Paralysis*'},
-                    {name: 'Planar step'},
-                    {name: 'Runic alphabet, fey'},
-                    {name: 'Slow'},
-                    {name: 'Sword magic'},
-                    {name: 'Transference'},
-                    {name: 'Turn to stone'},
-                    {name: 'Water breathing'},
-                    {name: 'Write magic'},
-                    {name: 'Patron spell'}
-                ]
-            },
-            {
-                name: "4",
-                spells: [
-                    {name: 'Control fire'},
-                    {name: 'Control ice'},
-                    {name: 'Lokerimon\'s orderly assistance'},
-                    {name: 'Polymorph'},
-                    {name: 'Transmute Earth'},
-                    {name: 'Wizard sense'}
-                ]
-            },
-            {
-                name: "5",
-                spells: [
-                    {name: 'Hepsoj\'s fecund fungi'},
-                    {name: 'Lokerimon\'s unerring hunter'},
-                    {name: 'Magic bulwark'},
-                    {name: 'Mind purge'},
-                    {name: 'Replication'}
-                ]
-            }
-        ];
 
         $scope.addSpell = function (selectedLevel, selectedSpell) {
 

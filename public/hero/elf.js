@@ -17,7 +17,204 @@ Elf = {
     reflexBonus: [1, 1, 1, 2, 2, 2, 3, 3, 3, 4],
     spellsKnown: [3, 4, 5, 6, 7, 8, 9, 10, 12, 14],
     maxLevel: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5],
-    maxSpellCastingLevel: [1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5]
+    maxSpellCastingLevel: [1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5],
+    mercurial: [
+        "At great cost",
+        "Extremely difficult to cast",
+        "Soul dedication",
+        "Health bane",
+        "Difficult to cast",
+        "Counter-magic bubble",
+        "Count of ten",
+        "Anima drain",
+        "Blood magic",
+        "Planar rift",
+        "Magic reverb",
+        "Slow cast",
+        "Sleep of ages",
+        "Material magic",
+        "Primordial channel",
+        "Stolen knowledge",
+        "Vermin attractor",
+        "Siphon magic",
+        "Rush of wind",
+        "Corrosion touch",
+        "Sympathetic magic",
+        "Cannibal magic",
+        "Prismatic distortion",
+        "Terror-inducing",
+        "Auditory feedback",
+        "No range",
+        "Odd growths",
+        "Fear and loathing",
+        "Memories of a dying god",
+        "Unwanted attention",
+        "Circumstantial magic",
+        "Hairy magic",
+        "Thunderstruck",
+        "Joe Average",
+        "Demonic voice",
+        "Aura of decay",
+        "Whimsical patron",
+        "Blood sweat",
+        "Ravenous",
+        'No change',
+        "No change",
+        'No change',
+        "No change",
+        'No change',
+        "No change",
+        'No change',
+        "No change",
+        'No change',
+        "No change",
+        'No change',
+        "No change",
+        'No change',
+        "No change",
+        'No change',
+        "No change",
+        'No change',
+        "No change",
+        'No change',
+        'No change',
+        "No change",
+        "Loud enough for you?",
+        "Gender bender",
+        "Diurnal / nocturnal magic",
+        "Wealful / woeful magic",
+        "Casting circle",
+        "Accidental alchemist",
+        "St. Gygakk\'s fire",
+        "Mirror magic",
+        "Skeletal caster",
+        "Temporal echo",
+        "Worms of the earth",
+        "Chain casting",
+        "Karmic casting",
+        "Tide of ash",
+        "Spell by proxy",
+        "Silenced",
+        "Call of the Outer Dark",
+        "Mentalism",
+        "Plague of rats",
+        "Dimensional schism",
+        "Terrible to behold",
+        "Spell killer",
+        "Blue star",
+        "Energy burst",
+        "Psychic shield",
+        "Mystic twin",
+        "Planar blink",
+        "Rain of frogs",
+        "Phase out",
+        "Weatherman",
+        "Breath of life",
+        "Gibbering allies",
+        "Greater power",
+        "Fine control",
+        "Psychic focus",
+        "Powerful caster",
+        "Necrotic drain",
+        "Natural-born talent"
+    ],
+    firstLevelWizardSpells: [
+        {name: 'Animal summoning'},
+        {name: 'Cantrip'},
+        {name: 'Charm person'},
+        {name: 'Chill touch'},
+        {name: 'Choking cloud'},
+        {name: 'Color spray'},
+        {name: 'Comprehend languages'},
+        {name: 'Detect magic*'},
+        {name: 'Ekim\'s mystical mask'},
+        {name: 'Enlarge'},
+        {name: 'Feather fall'},
+        {name: 'Find familiar'},
+        {name: 'Flaming hands'},
+        {name: 'Force manipulation'},
+        {name: 'Invoke patron**'},
+        {name: 'Magic missile'},
+        {name: 'Magic shield'},
+        {name: 'Mending'},
+        {name: 'Patron bond***'},
+        {name: 'Read magic'},
+        {name: 'Ropework'},
+        {name: 'Runic alphabet, mortal'},
+        {name: 'Sleep'},
+        {name: 'Spider climb'},
+        {name: 'Ventriloquism'},
+        {name: 'Ward portal'},
+        {name: 'Patron spell***'}
+    ],
+    secondLevelWizardSpells: [
+        {name: 'Arcane affinity'},
+        {name: 'Detect evil*'},
+        {name: 'Detect invisible'},
+        {name: 'ESP'},
+        {name: 'Fire resistance'},
+        {name: 'Forget'},
+        {name: 'Invisibility'},
+        {name: 'Invisible companion'},
+        {name: 'Knock'},
+        {name: 'Levitate'},
+        {name: 'Locate object'},
+        {name: 'Magic mouth'},
+        {name: 'Mirror image'},
+        {name: 'Monster summoning'},
+        {name: 'Nythuul\'s porcupine coat'},
+        {name: 'Phantasm'},
+        {name: 'Ray of enfeeblement'},
+        {name: 'Scare'},
+        {name: 'Scorching'},
+        {name: 'Shatter'},
+        {name: 'Spider web'},
+        {name: 'Strength'},
+        {name: 'Wizard staff'},
+        {name: 'Patron spell***'}
+    ],
+    thirdLevelWizardSpells: [
+        {name: 'Binding*'},
+        {name: 'Breathe life'},
+        {name: 'Consult spirit'},
+        {name: 'Demon summoning'},
+        {name: 'Dispel magic'},
+        {name: 'Eldritch hound'},
+        {name: 'Emirikol\'s entropic maelstrom'},
+        {name: 'Eternal champion'},
+        {name: 'Fireball'},
+        {name: 'Fly'},
+        {name: 'Gust of wind'},
+        {name: 'Haste'},
+        {name: 'Lightning bolt'},
+        {name: 'Make potion'},
+        {name: 'Paralysis*'},
+        {name: 'Planar step'},
+        {name: 'Runic alphabet, fey'},
+        {name: 'Slow'},
+        {name: 'Sword magic'},
+        {name: 'Transference'},
+        {name: 'Turn to stone'},
+        {name: 'Water breathing'},
+        {name: 'Write magic'},
+        {name: 'Patron spell'}
+    ],
+    fourthLevelWizardSpells: [
+        {name: 'Control fire'},
+        {name: 'Control ice'},
+        {name: 'Lokerimon\'s orderly assistance'},
+        {name: 'Polymorph'},
+        {name: 'Transmute Earth'},
+        {name: 'Wizard sense'}
+    ],
+    fifthLevelWizardSpells: [
+        {name: 'Hepsoj\'s fecund fungi'},
+        {name: 'Lokerimon\'s unerring hunter'},
+        {name: 'Magic bulwark'},
+        {name: 'Mind purge'},
+        {name: 'Replication'}
+    ]
+
 };
 
 Elf.generateCritTable = function () {
@@ -189,4 +386,41 @@ Elf.generateRandomLanguage = function(num){
         language = "Undercommon";
         return language;
     }
+};
+
+Elf.generateListOfPossibleSpells = function (currentSpellCastLevel) {
+
+    var allowedWizardSpells = [];
+
+    switch(currentSpellCastLevel) {
+        case 1:
+            allowedWizardSpells.push({name: 1, spells: Wizard.firstLevelWizardSpells});
+            break;
+        case 2:
+            allowedWizardSpells.push({name: 1, spells: Wizard.firstLevelWizardSpells});
+            allowedWizardSpells.push({name: 2, spells: Wizard.secondLevelWizardSpells});
+            break;
+        case 3:
+            allowedWizardSpells.push({name: 1, spells: Wizard.firstLevelWizardSpells});
+            allowedWizardSpells.push({name: 2, spells: Wizard.secondLevelWizardSpells});
+            allowedWizardSpells.push({name: 3, spells: Wizard.thirdLevelWizardSpells});
+            break;
+        case 4:
+            allowedWizardSpells.push({name: 1, spells: Wizard.firstLevelWizardSpells});
+            allowedWizardSpells.push({name: 2, spells: Wizard.secondLevelWizardSpells});
+            allowedWizardSpells.push({name: 3, spells: Wizard.thirdLevelWizardSpells});
+            allowedWizardSpells.push({name: 4, spells: Wizard.fourthLevelWizardSpells});
+
+            break;
+        case 5:
+            allowedWizardSpells.push({name: 1, spells: Wizard.firstLevelWizardSpells});
+            allowedWizardSpells.push({name: 2, spells: Wizard.secondLevelWizardSpells});
+            allowedWizardSpells.push({name: 3, spells: Wizard.thirdLevelWizardSpells});
+            allowedWizardSpells.push({name: 4, spells: Wizard.fourthLevelWizardSpells});
+            allowedWizardSpells.push({name: 5, spells: Wizard.fifthLevelWizardSpells});
+
+            break;
+    }
+    return allowedWizardSpells;
+
 };

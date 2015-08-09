@@ -197,6 +197,17 @@ module.exports = function () {
                     data.currentSpellCastingLevel = req.body.classSpecific.currentSpellCastingLevel;
                     data.spellsKnown = req.body.classSpecific.spellsKnown;
                     data.maximumSpellCastingLevel = req.body.classSpecific.maximumSpellCastingLevel;
+                    var spellList = "";
+                    var spellIterator = 0;
+                    while (spellIterator < req.body.classSpecific.spellList.length) {
+                        spellList += pad(40, req.body.classSpecific.spellList[spellIterator].spell, " ")
+                            + pad(20, req.body.classSpecific.spellList[spellIterator].level.toString(), " ")
+                            + pad(25, req.body.classSpecific.spellList[spellIterator].spellChecks, " ")
+                            + req.body.classSpecific.spellList[spellIterator].mercurial
+                            + "\n"
+                        spellIterator++;
+                    }
+                    data.spellList = spellList;
                     break;
             }
 
