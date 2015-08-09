@@ -336,7 +336,7 @@
                         <td>{{ x.name }}</td>
                         <td>{{ x.damage }}</td>
                         <td>{{ x.range }}</td>
-                        <td><a class="btn btn-primary btn-xs" href="" ng-click="deleteWeaponRow($index)">Remove</a></td>
+                        <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href="" ng-click="deleteWeaponRow($index)">Remove</a></td>
                     </tr>
                 </table>
             </div>
@@ -370,7 +370,7 @@
                         <td>{{ x.penalty }}</td>
                         <td>{{ x.speed }}</td>
                         <td>{{ x.fumble }}</td>
-                        <td><a class="btn btn-primary btn-xs" href="" ng-click="deleteArmorRow($index)">Remove</a></td>
+                        <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href="" ng-click="deleteArmorRow($index)">Remove</a></td>
                     </tr>
                 </table>
             </div>

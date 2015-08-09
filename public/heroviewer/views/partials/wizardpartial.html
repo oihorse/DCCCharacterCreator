@@ -31,7 +31,7 @@
                 <td>{{ x.level }}</td>
                 <td>{{ x.spellChecks }}</td>
                 <td>{{ x.mercurial }}</td>
-                <td><a class="btn btn-primary btn-xs" href="" ng-click="deleteSpellRow($index)">Remove</a></td>
+                <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href="" ng-click="deleteSpellRow($index)">Remove</a></td>
             </tr>
         </table>
     </div>
