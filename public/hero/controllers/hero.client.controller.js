@@ -893,7 +893,11 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                         if ($scope.hero.personality) {
                             $scope.hero.classSpecific.spellCheck = Cleric.getSpellCheck($scope.hero.level, $scope.hero.personality.modifier);
                             $scope.hero.classSpecific.maximumSpellCastingLevel = Cleric.getMaximumSpellCastingLevel($scope.hero.personality.score);
-                            $scope.hero.classSpecific.spellsKnown = Cleric.getSpellsKnown($scope.hero.level);
+                            $scope.hero.classSpecific.spellsKnown = Cleric.getSpellsKnown($scope.hero.level, $scope.hero.personality.score);
+
+                            $scope.hero.classSpecific.listOfPossibleSpells = Cleric.generateListOfPossibleSpells($scope.hero.classSpecific.maximumSpellCastingLevel);
+                            $scope.hero.classSpecific.spellList = [];
+
                         }
                     }
                 }
@@ -1459,6 +1463,105 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
             else {
                 alert("Your wizard can't contain any more spells in their head");
             }
+        };
+
+        $scope.addClericSpell = function (selectedLevel, selectedSpell) {
+            var spellCheck = $scope.hero.classSpecific.spellCheck;
+
+            var level1 = 0;
+            var level2 = 0;
+            var level3 = 0;
+            var level4 = 0;
+            var level5 = 0;
+
+
+            //build object to contain what cleric spells have been chosen so far:
+            for (var i = 0; i < $scope.hero.classSpecific.spellList.length; i++)
+            {
+                if ($scope.hero.classSpecific.spellList[i].level == 1)
+                {
+                    level1++;
+                }
+                if ($scope.hero.classSpecific.spellList[i].level == 2)
+                {
+                    level2++;
+                }
+                if ($scope.hero.classSpecific.spellList[i].level == 3)
+                {
+                    level3++;
+                }
+                if ($scope.hero.classSpecific.spellList[i].level == 4)
+                {
+                    level4++;
+                }
+                if ($scope.hero.classSpecific.spellList[i].level == 5)
+                {
+                    level5++;
+                }
+
+            }
+
+            switch (selectedLevel)
+            {
+                case 1:
+                    if (level1 < $scope.hero.classSpecific.spellsKnown.spellList[0]) {
+                        spell = {spell: selectedSpell, level: selectedLevel, spellChecks: spellCheck};
+                        $scope.hero.classSpecific.spellList.push(spell);
+
+                    }
+                    else{
+                        alert("Your Cleric can't know any more 1st level spells");
+                    }
+                    break;
+
+                case 2:
+                if (level2 < $scope.hero.classSpecific.spellsKnown.spellList[1]) {
+                    spell = {spell: selectedSpell, level: selectedLevel, spellChecks: spellCheck};
+                    $scope.hero.classSpecific.spellList.push(spell);
+
+                }
+                else{
+                    alert("Your Cleric can't know any more 2nd level spells");
+                }
+                break;
+
+                case 3:
+                    if (level3 < $scope.hero.classSpecific.spellsKnown.spellList[2]) {
+                        spell = {spell: selectedSpell, level: selectedLevel, spellChecks: spellCheck};
+                        $scope.hero.classSpecific.spellList.push(spell);
+
+                    }
+                    else{
+                        alert("Your Cleric can't know any 3rd level spells");
+                    }
+                    break;
+
+                case 4:
+                    if (level4 < $scope.hero.classSpecific.spellsKnown.spellList[3]) {
+                        spell = {spell: selectedSpell, level: selectedLevel, spellChecks: spellCheck};
+                        $scope.hero.classSpecific.spellList.push(spell);
+
+                    }
+                    else{
+                        alert("Your Cleric can't know any 4th level spells");
+                    }
+                    break;
+
+                case 5:
+                    if (level5 < $scope.hero.classSpecific.spellsKnown.spellList[4]) {
+                        spell = {spell: selectedSpell, level: selectedLevel, spellChecks: spellCheck};
+                        $scope.hero.classSpecific.spellList.push(spell);
+
+                    }
+                    else{
+                        alert("Your Cleric can't know any 5th level spells");
+                    }
+                    break;
+
+            }
+
+
+
         };
 
 

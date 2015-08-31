@@ -3,6 +3,34 @@
     <input id="god" ng-model="hero.classSpecific.deity" type="text" placeholder="deity"> <br>
     <label>Spell Check:</label> {{hero.classSpecific.spellCheck }}<br>
     <label>Maximum Spell Level:</label> {{hero.classSpecific.maximumSpellCastingLevel }}<br>
-    <label>Spells Known per Level:</label>
-    <pre>{{hero.classSpecific.spellsKnown }} </pre>
+
+    <div ng-hide="blockEdit">
+        <label ng-if="hero.classSpecific.spellsKnown.spellList[0]">Number of Level One Spells: {{ hero.classSpecific.spellsKnown.spellList[0] }}</label> <br>
+        <label ng-if="hero.classSpecific.spellsKnown.spellList[1]">Number of Level Two Spells: {{ hero.classSpecific.spellsKnown.spellList[1] }}</label>  <br>
+        <label ng-if="hero.classSpecific.spellsKnown.spellList[2]">Number of Level Three Spells: {{ hero.classSpecific.spellsKnown.spellList[2] }}</label> <br>
+        <label ng-if="hero.classSpecific.spellsKnown.spellList[3]">Number of Level Four Spells: {{ hero.classSpecific.spellsKnown.spellList[3]  }}</label>  <br>
+        <label ng-if="hero.classSpecific.spellsKnown.spellList[4]">Number of Level Five Spells: {{ hero.classSpecific.spellsKnown.spellList[4]  }}</label>  <br>
+
+        <select ng-model="clericSpellLevel" ng-options="l.name for l in  hero.classSpecific.listOfPossibleSpells"></select>
+        <select ng-model="clericSpell" ng-options="s.name for s in clericSpellLevel.spells"></select>
+        <a  id="addClericSpell" class="btn btn-primary btn-xs" data-ng-click="addClericSpell(clericSpellLevel.name, clericSpell.name)">Add</a>
+
+
+    </div>
+    <div>
+        <table class="table-striped table-condensed">
+            <th>Spell Name</th>
+            <th>Spell Level</th>
+            <th>Spell Check</th>
+            <tr ng-repeat="x in hero.classSpecific.spellList track by $index">
+                <td>{{ x.spell }}</td>
+                <td>{{ x.level }}</td>
+                <td>{{ x.spellChecks }}</td>
+                <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href="" ng-click="deleteSpellRow($index)">Remove</a></td>
+            </tr>
+        </table>
+    </div>
+
+
+
 </div>

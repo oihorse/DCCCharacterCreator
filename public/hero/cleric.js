@@ -179,7 +179,6 @@ Cleric.getSpellCheck = function (charLevel, personalityModifier) {
 };
 
 Cleric.getMaximumSpellCastingLevel = function (personality) {
-    var spellText = "";
     personality = parseInt(personality, 10);
 
     var mscl = Cleric.maxSpellCastingLevel[personality - 3];
@@ -187,41 +186,63 @@ Cleric.getMaximumSpellCastingLevel = function (personality) {
     return mscl;
 };
 
-Cleric.getSpellsKnown = function (charLevel) {
+Cleric.getSpellsKnown = function (charLevel, personality) {
     //charLevel = parseInt(charLevel);
-    var sk = [];
-    sk = Cleric.spellsKnown[charLevel - 1];
-    var levels = sk.length;
+    personality = parseInt(personality, 10);
+    var spellText = "";
+
+    var mscl = Cleric.maxSpellCastingLevel[personality -3];
+
+    var sk = {};
+    sk.spellText = '';
+
+
+    sk.spellList = [];
+    sk.spellList = Cleric.spellsKnown[charLevel - 1];
+
+    //for each level of difference between max spell casting level (5) and the player's mscl pop off a level of spells
+    //from the spells known array
+
+    var sllength = sk.spellList.length;
+
+    while (sllength > mscl)
+    {
+        sk.spellList.pop();
+        sllength--;
+    }
+
+    var levels = sk.spellList.length;
 
     switch (levels) {
         case 1:
-            spellText = "1st Level - " + sk[0];
+            spellText = "1st Level - " + sk.spellList[0];
             break;
         case 2:
-            spellText = "1st level - " + sk[0] + "\n" +
-                "2nd level - " + sk[1];
+            spellText = "1st level - " + sk.spellList[0] + "\n" +
+                "2nd level - " + sk.spellList[1];
             break;
         case 3:
-            spellText = "1st level - " + sk[0] + "\n" +
-                "2nd level - " + sk[1] + "\n" +
-                "3rd level - " + sk[2];
+            spellText = "1st level - " + sk.spellList[0] + "\n" +
+                "2nd level - " + sk.spellList[1] + "\n" +
+                "3rd level - " + sk.spellList[2];
             break;
         case 4:
-            spellText = "1st level - " + sk[0] + "\n" +
-                "2nd level - " + sk[1] + "\n" +
-                "3rd level - " + sk[2] + "\n" +
-                "4th level - " + sk[3];
+            spellText = "1st level - " + sk.spellList[0] + "\n" +
+                "2nd level - " + sk.spellList[1] + "\n" +
+                "3rd level - " + sk.spellList[2] + "\n" +
+                "4th level - " + sk.spellList[3];
             break;
         case 5:
-            spellText = "1st level - " + sk[0] + "\n" +
-                "2nd level - " + sk[1] + "\n" +
-                "3rd level - " + sk[2] + "\n" +
-                "4th level - " + sk[3] + "\n" +
-                "5th level - " + sk[4];
+            spellText = "1st level - " + sk.spellList[0] + "\n" +
+                "2nd level - " + sk.spellList[1] + "\n" +
+                "3rd level - " + sk.spellList[2] + "\n" +
+                "4th level - " + sk.spellList[3] + "\n" +
+                "5th level - " + sk.spellList[4];
             break;
     }
 
-    return spellText;
+    sk.spellText = spellText;
+    return sk;
 };
 
 Cleric.generateRandomLanguage = function (num) {
@@ -291,4 +312,41 @@ Cleric.generateRandomLanguage = function (num) {
         language = "Giant";
         return language;
     }
+};
+
+Cleric.generateListOfPossibleSpells = function (currentSpellCastLevel) {
+
+    var allowedClericSpells = [];
+
+    switch(currentSpellCastLevel) {
+        case 1:
+            allowedClericSpells.push({name: 1, spells: Cleric.firstLevelClericSpells});
+            break;
+        case 2:
+            allowedClericSpells.push({name: 1, spells: Cleric.firstLevelClericSpells});
+            allowedClericSpells.push({name: 2, spells: Cleric.secondLevelClericSpells});
+            break;
+        case 3:
+            allowedClericSpells.push({name: 1, spells: Cleric.firstLevelClericSpells});
+            allowedClericSpells.push({name: 2, spells: Cleric.secondLevelClericSpells});
+            allowedClericSpells.push({name: 3, spells: Cleric.thirdLevelClericSpells});
+            break;
+        case 4:
+            allowedClericSpells.push({name: 1, spells: Cleric.firstLevelClericSpells});
+            allowedClericSpells.push({name: 2, spells: Cleric.secondLevelClericSpells});
+            allowedClericSpells.push({name: 3, spells: Cleric.thirdLevelClericSpells});
+            allowedClericSpells.push({name: 4, spells: Cleric.fourthLevelClericSpells});
+
+            break;
+        case 5:
+            allowedClericSpells.push({name: 1, spells: Cleric.firstLevelClericSpells});
+            allowedClericSpells.push({name: 2, spells: Cleric.secondLevelClericSpells});
+            allowedClericSpells.push({name: 3, spells: Cleric.thirdLevelClericSpells});
+            allowedClericSpells.push({name: 4, spells: Cleric.fourthLevelClericSpells});
+            allowedClericSpells.push({name: 5, spells: Cleric.fifthLevelClericSpells});
+
+            break;
+    }
+    return allowedClericSpells;
+
 };
