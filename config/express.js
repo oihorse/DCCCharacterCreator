@@ -63,7 +63,7 @@ module.exports = function () {
     app.post('/pdf', function (req, res) {
         //find and return a hero using the id
         var characterSheet = req.body.charClass;
-        var sheetName = req.body.characterName + '_the_' + req.body.title;
+        var sheetName = noSpace(req.body.characterName) + '_the_' + noSpace(req.body.title);
 
         var sourcePDF = "./public/assets/" + characterSheet + "Sheet.pdf";
         var destinationPDF = "./public/assets/" + sheetName + ".pdf";
@@ -249,6 +249,13 @@ module.exports = function () {
         }
         return text
     };
+
+    //look through a character name and title. Check for spaces, replace with underscore
+    var noSpace = function (phrase)
+    {
+        var replaced = phrase.split(' ').join('_');
+        return replaced;
+    }
 
 
 
