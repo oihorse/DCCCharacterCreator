@@ -142,6 +142,14 @@ module.exports = function () {
                     data.spellCheck = req.body.classSpecific.spellCheck;
                     data.maximumSpellCastingLevel = req.body.classSpecific.maximumSpellCastingLevel;
                     data.spellsKnown = req.body.classSpecific.spellsKnown;
+
+                    var spellList = "";
+                    var spellIterator = 0;
+                    while (spellIterator < req.body.classSpecific.spellList.length) {
+                        spellList += pad(40, req.body.classSpecific.spellList[spellIterator].spell, " ") + "\n"
+                        spellIterator++;
+                    }
+                    data.spellList = spellList;
                     break;
                 case "Thief":
                     data.luckyDie = req.body.classSpecific.luckyDie;
