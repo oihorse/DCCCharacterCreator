@@ -1,47 +1,54 @@
-<section data-ng-controller="HeroController" data-ng-init="findOne()" class="smallIndent">
+<section data-ng-controller="HeroController" data-ng-init="findOne()">
     <!-- Character Name-->
-    <p>
 
-    <h2 style="display:inline; padding-right:10px; ">{{ hero.characterName}} the {{ hero.title }}</h2>
-    <a class="btn btn-primary btn-xs" data-ng-click="pdf()" ng-hide="!blockEdit" id="pdfButton">PDF</a>
-    <a class="btn btn-primary btn-xs" data-ng-click="edit()" ng-hide="!blockEdit">edit</a>
-    <a class="btn btn-primary btn-xs" data-ng-click="cancel()" ng-hide="blockEdit" id="cancelButton">cancel</a>
-    <a class="btn btn-primary btn-xs" data-ng-click="update()" ng-hide="blockEdit" id="saveButton">save</a>
-    <a class="btn btn-primary btn-xs" data-ng-click="delete()" ;>delete</a>
-    </p>
+    <div class="headerSection">
+        <h2 class="titleName">{{ hero.characterName}} the {{ hero.title }}</h2>
+    </div>
+    <div class="text-center">
+        <div class="btn-group">
+            <a class="btn btn-primary btn-xs" data-ng-click="pdf()" ng-hide="!blockEdit" id="pdfButton">PDF</a>
+            <a class="btn btn-primary btn-xs" data-ng-click="edit()" ng-hide="!blockEdit">edit</a>
+            <a class="btn btn-primary btn-xs" data-ng-click="cancel()" ng-hide="blockEdit" id="cancelButton">cancel</a>
+            <a class="btn btn-primary btn-xs" data-ng-click="update()" ng-hide="blockEdit" id="saveButton">save</a>
+            <a class="btn btn-primary btn-xs" data-ng-click="delete()" ;>delete</a>
+        </div>
+    </div>
+
 
     <!-- Character Class, level, speed, initiative,  etc -->
-    <div class="container heropicker">
+    <div class="container topSection">
         <div class="row">
-            <div class="col-md-4 col-sm-4" ng-if="blockEdit">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-if="blockEdit">
                 <label for="charLevel">Level:</label>
                 <input id="charLevel" ng-model="hero.level" type="text" ng-disabled="true">
             </div>
-            <div class="col-md-4 col-sm-4" ng-if="!blockEdit">
-                <label for="charLevel">Level:</label>
-                <select id="charLevel" ng-model="hero.level" ng-change="generateLevelChanges()">
-                    <option value="">Select Level</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
+            <div ng-if="!blockEdit">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <label for="charLevel">Level:</label>
+                    <select id="charLevel" ng-model="hero.level" ng-change="generateLevelChanges()">
+                        <option value="">Select Level</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-md-4 col-sm-4">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <label for="charClass">Class:</label>
                 <input id="charClass" ng-model="hero.charClass" type="text" ng-disabled="true">
             </div>
-            <div class="col-md-4 col-sm-4" ng-if="blockEdit">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-if="blockEdit">
                 <label for="charAlignment">Alignment:</label>
                 <input id="charAlignment" ng-model="hero.alignment" type="text" ng-disabled="blockEdit">
             </div>
-            <div class="col-md-4 col-sm-4" ng-if="!blockEdit">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-if="!blockEdit">
                 <label for="charAlignment">Alignment:</label>
                 <select id="charAlignment" ng-model="hero.alignment" ng-change="generateTitle()">
                     <option value="">Select Alignment</option>
@@ -50,63 +57,24 @@
                     <option value="Chaotic">Chaotic</option>
                 </select>
             </div>
-            <div class="col-md-4 col-sm-4">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <label for="occupation">Occupation:</label>
                 <input id="occupation" ng-model="hero.occupation.occupation" type="text" ng-disabled="true">
             </div>
-            <div class="col-md-4 col-sm-4">
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 <label for="xp">XP:</label>
                 <input id="xp" ng-model="hero.xp" type="text" ng-disabled="blockEdit">
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-4">
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 <label for="charSpeed">Speed:</label>
                 <input id="charSpeed" ng-model="hero.speed" type="text" ng-disabled="true">
             </div>
-            <div class="col-md-3 col-sm-4">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 <label for="hitPoints">Hit Points:</label>
                 <input id="hitPoints" ng-model="hero.hitPoints" type="text" ng-disabled="blockEdit">
-
-            </div>
-            <div class="col-md-3 col-sm-4">
-                <label for="charInitiative">Initiative:</label>
-                <input id="charInitiative" ng-model="hero.initiative" type="text" ng-disabled="true">
-            </div>
-        </div>
-    </div>
-
-    <!-- Character crits and bonuses-->
-    <div class="container bonuses">
-        <div class="row">
-            <div class="col-md-2 col-sm-4">
-                <label for="critTable">Crit Table:</label>
-                <input id="critTable" ng-model="hero.critTable" type="text" ng-disabled="true">
-            </div>
-
-            <div class="col-md-2 col-sm-4">
-                <label for="critDie">Crit Die:</label>
-                <input id="critDie" ng-model="hero.critDie" type="text" ng-disabled="true">
-            </div>
-
-            <div class="col-md-2 col-sm-4">
-                <label for="attackBonus">Attack Bonus:</label>
-                <input id="attackBonus" ng-model="hero.attackBonus" type="text" ng-disabled="true">
-            </div>
-
-            <div class="col-md-2 col-sm-4">
-                <label for="actionDie">Action Die:</label>
-                <input id="actionDie" ng-model="hero.actionDie" type="text" ng-disabled="true">
-            </div>
-
-            <div class="col-md-2 col-sm-4">
-                <label for="meleeBonus">Melee Bonus:</label>
-                <input id="meleeBonus" ng-model="hero.meleeBonus" type="text" ng-disabled="true">
-            </div>
-
-            <div class="col-md-2 col-sm-4">
-                <label for="missileAttack">Missile Bonus:</label>
-                <input id="missileAttack" ng-model="hero.missileBonus" type="text" ng-disabled="true">
             </div>
         </div>
     </div>
@@ -115,150 +83,233 @@
     <!-- Character ability scores and saving throws-->
     <div class="container stats">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 statOuter">
+                    <div class="statInner">
+                        <div class="row ">
+                            <div class="col-xs-12 ">
+                                <label for="strengthScore">Strength:</label>
+                                <input id="strengthScore"
+                                       ng-model="hero.strength.score" ng-model-options="{ debounce: 500 }"
+                                       ng-click="hero.strength.score = null"
+                                       type="text" ng-disabled="blockEdit"
+                                       ng-change="updateStrengthStats(hero.strength.score)">
+                            </div>
+                        </div>
+                        <div class="row small">
+                            <div class="col-xs-12 ">
+                                <label for="strengthModifier" class="modifierLabel">Modifier:</label>
+                                <input id="strengthModifier" ng-model="hero.strength.modifier" type="text"
+                                       ng-disabled=true>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="statInner">
+                        <div class="row">
+                            <div class="col-xs-12 ">
+                                <label for="agilityScore">Agility:</label>
+                                <input id="agilityScore"
+                                       ng-model="hero.agility.score" ng-model-options="{ debounce: 500 }"
+                                       ng-click="hero.agility.score = null"
+                                       type="text" ng-disabled="blockEdit"
+                                       ng-change="updateAgilityStats(hero.agility.score)">
+                            </div>
+                        </div>
+                        <div class="row small">
+                            <div class="col-xs-12 ">
+                                <label for="agilityModifier" class="modifierLabel">Modifier:</label>
+                                <input id="agilityModifier" ng-model="hero.agility.modifier" type="text"
+                                       ng-disabled=true>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="statInner">
+                        <div class="row">
+                            <div class="col-xs-12 ">
+                                <label for="staminaScore">Stamina:</label>
+                                <input id="staminaScore"
+                                       ng-model="hero.stamina.score" ng-model-options="{ debounce: 500 }"
+                                       ng-click="hero.stamina.score = null"
+                                       type="text" ng-disabled="blockEdit"
+                                       ng-change="updateStaminaStats(hero.stamina.score)">
+                            </div>
+                        </div>
+                        <div class="row small">
+                            <div class="col-xs-12 ">
+                                <label for="staminaModifier" class="modifierLabel">Modifier:</label>
+                                <input id="staminaModifier" ng-model="hero.stamina.modifier" type="text"
+                                       ng-disabled=true>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="statInner">
+                        <div class="row">
+                            <div class="col-xs-12 ">
+                                <label for="personalityScore">Personality:</label>
+                                <input id="personalityScore"
+                                       ng-model="hero.personality.score"
+                                       ng-model-options="{ debounce: 500 }" ng-click="hero.personality.score = null"
+                                       type="text" ng-disabled="blockEdit"
+                                       ng-change="updatePersonalityStats(hero.personality.score)">
+                            </div>
+                        </div>
+                        <div class="row small">
+                            <div class="col-xs-12 ">
+                                <label for="personalityModifier" class="modifierLabel">Modifier:</label>
+                                <input id="personalityModifier" ng-model="hero.personality.modifier"
+                                       type="text"
+                                       ng-disabled=true>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="statInner">
+                        <div class="row">
+                            <div class="col-xs-12 ">
+                                <label for="luckScore">Luck:</label>
+                                <input id="luckScore"
+                                       ng-model="hero.luck.score"
+                                       ng-model-options="{ debounce: 500 }" ng-click="hero.luck.score = null"
+                                       type="text" ng-disabled="blockEdit"
+                                       ng-change="updateLuckStats(hero.luck.score)">
+                            </div>
+                        </div>
+                        <div class="row small">
+                            <div class="col-xs-12 ">
+                                <label for="luckModifier" class="modifierLabel">Modifier:</label>
+                                <input id="luckModifier" ng-model="hero.luck.modifier" type="text"
+                                       ng-disabled=true>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="statInner">
+                        <div class="row">
+                            <div class="col-xs-12 ">
+                                <label for="intelligenceScore">Intelligence:</label>
+                                <input id="intelligenceScore"
+                                       ng-model="hero.intelligence.score"
+                                       ng-model-options="{ debounce: 500 }"
+                                       ng-click="hero.intelligence.score = null"
+                                       type="text" ng-disabled="blockEdit"
+                                       ng-change="updateIntelligenceStats(hero.intelligence.score)">
+                            </div>
+                        </div>
+                        <div class="row small">
+                            <div class="col-xs-12 ">
+                                <label for="intelligenceModifier" class="modifierLabel">Modifier:</label>
+                                <input id="intelligenceModifier" ng-model="hero.intelligence.modifier"
+                                       type="text"
+                                       ng-disabled=true>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="statInner">
+                        <div class="row small">
+                            <div class="col-xs-12 ">
+                                <label>Lucky Roll:</label> {{ hero.luckyRoll.name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Character meele missile bonuses-->
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 meleeBonusOuter">
                     <div class="row">
                         <div class="col-xs-12">
-                            <label for="strengthScore">Strength:</label>
-                            <input id="strengthScore"
-                                   ng-model="hero.strength.score" ng-model-options="{ debounce: 500 }"
-                                   ng-click="hero.strength.score = null"
-                                   type="text" ng-disabled="blockEdit"
-                                   ng-change="updateStrengthStats(hero.strength.score)">
-                        </div>
-                    </div>
-                    <div class="row small">
-                        <div class="col-xs-12 ">
-                            <label for="strengthModifier" class="modifierLabel">Modifier:</label>
-                            <input id="strengthModifier" ng-model="hero.strength.modifier" type="text"
-                                   ng-disabled=true>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 ">
-                            <label for="agilityScore">Agility:</label>
-                            <input id="agilityScore"
-                                   ng-model="hero.agility.score" ng-model-options="{ debounce: 500 }"
-                                   ng-click="hero.agility.score = null"
-                                   type="text" ng-disabled="blockEdit"
-                                   ng-change="updateAgilityStats(hero.agility.score)">
-                        </div>
-                    </div>
-                    <div class="row small">
-                        <div class="col-xs-12 ">
-                            <label for="agilityModifier" class="modifierLabel">Modifier:</label>
-                            <input id="agilityModifier" ng-model="hero.agility.modifier" type="text"
-                                   ng-disabled=true>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 ">
-                            <label for="staminaScore">Stamina:</label>
-                            <input id="staminaScore"
-                                   ng-model="hero.stamina.score" ng-model-options="{ debounce: 500 }"
-                                   ng-click="hero.stamina.score = null"
-                                   type="text" ng-disabled="blockEdit"
-                                   ng-change="updateStaminaStats(hero.stamina.score)">
-                        </div>
-                    </div>
-                    <div class="row small">
-                        <div class="col-xs-12 ">
-                            <label for="staminaModifier" class="modifierLabel">Modifier:</label>
-                            <input id="staminaModifier" ng-model="hero.stamina.modifier" type="text"
-                                   ng-disabled=true>
+                            <label for="meleeBonus">Melee Bonus:</label>
+                            <input id="meleeBonus" ng-model="hero.meleeBonus" type="text" ng-disabled="true">
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-12 ">
-                            <label for="personalityScore">Personality:</label>
-                            <input id="personalityScore"
-                                   ng-model="hero.personality.score"
-                                   ng-model-options="{ debounce: 500 }" ng-click="hero.personality.score = null"
-                                   type="text" ng-disabled="blockEdit"
-                                   ng-change="updatePersonalityStats(hero.personality.score)">
+                        <div class="col-xs-12">
+                            <label for="missileAttack">Missile Bonus:</label>
+                            <input id="missileAttack" ng-model="hero.missileBonus" type="text" ng-disabled="true">
                         </div>
                     </div>
-                    <div class="row small">
-                        <div class="col-xs-12 ">
-                            <label for="personalityModifier" class="modifierLabel">Modifier:</label>
-                            <input id="personalityModifier" ng-model="hero.personality.modifier"
-                                   type="text"
-                                   ng-disabled=true>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 ">
-                            <label for="luckScore">Luck:</label>
-                            <input id="luckScore"
-                                   ng-model="hero.luck.score"
-                                   ng-model-options="{ debounce: 500 }" ng-click="hero.luck.score = null"
-                                   type="text" ng-disabled="blockEdit"
-                                   ng-change="updateLuckStats(hero.luck.score)">
-                        </div>
-                    </div>
-                    <div class="row small">
-                        <div class="col-xs-12 ">
-                            <label for="luckModifier" class="modifierLabel">Modifier:</label>
-                            <input id="luckModifier" ng-model="hero.luck.modifier" type="text"
-                                   ng-disabled=true>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 ">
-                            <label for="intelligenceScore">Intelligence:</label>
-                            <input id="intelligenceScore"
-                                   ng-model="hero.intelligence.score"
-                                   ng-model-options="{ debounce: 500 }" ng-click="hero.intelligence.score = null"
-                                   type="text" ng-disabled="blockEdit"
-                                   ng-change="updateIntelligenceStats(hero.intelligence.score)">
-                        </div>
-                    </div>
-                    <div class="row small">
-                        <div class="col-xs-12 ">
-                            <label for="intelligenceModifier" class="modifierLabel">Modifier:</label>
-                            <input id="intelligenceModifier" ng-model="hero.intelligence.modifier"
-                                   type="text"
-                                   ng-disabled=true>
-                        </div>
-                    </div>
-                    <div class="row small">
-                        <div class="col-xs-12 ">
-                            <label>Lucky Roll:</label> {{ hero.luckyRoll.name }}
-                        </div>
-                    </div>
-                    <br>
                 </div>
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label for="reflexSave" class="saveLabel">Reflex Save:</label>
-                                <input id="reflexSave"
-                                       ng-model="hero.reflexSave"
-                                       type="text" ng-disabled=true>
-                            </div>
+                <!-- Character saving throws-->
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 savingthrowOuter">
+                    <div class="row savingthrowInner">
+                        <div class="col-xs-12">
+                            <label for="reflexSave" class="saveLabel">Reflex Save:</label>
+                            <input id="reflexSave"
+                                   ng-model="hero.reflexSave"
+                                   type="text" ng-disabled=true>
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label for="fortitudeSave" class="saveLabel">Fortitude Save:</label>
-                                <input id="fortitudeSave" ng-model="hero.fortitudeSave"
-                                       type="text"
-                                       ng-disabled=true>
-                            </div>
+                    <div class="row savingthrowInner">
+                        <div class="col-xs-12">
+                            <label for="fortitudeSave" class="saveLabel">Fortitude Save:</label>
+                            <input id="fortitudeSave" ng-model="hero.fortitudeSave"
+                                   type="text"
+                                   ng-disabled=true>
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label for="willpowerSave" class="saveLabel">Willpower Save:</label>
-                                <input id="willpowerSave" ng-model="hero.willPowerSave"
-                                       type="text"
-                                       ng-disabled=true>
-                            </div>
+                    <div class="row savingthrowInner">
+                        <div class="col-xs-12">
+                            <label for="willpowerSave" class="saveLabel">Willpower Save:</label>
+                            <input id="willpowerSave" ng-model="hero.willPowerSave"
+                                   type="text"
+                                   ng-disabled=true>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Character crits and bonuses-->
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 critOuter">
+                    <div class="row critInner ">
+                        <div class="col-xs-12">
+                            <label for="charInitiative">Initiative:</label>
+                            <input id="charInitiative" style="width: 100px; font-size:10px; text-align:left;"
+                                   ng-model="hero.initiative" type="text" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="row critInner ">
+                        <div class="col-xs-12 ">
+                            <label for="actionDie">Action Die:</label>
+                            <input id="actionDie" style="width: 100px; font-size:10px; text-align:left;"
+                                   ng-model="hero.actionDie" type="text" ng-disabled="true"/>
+                        </div>
+                    </div>
+                    <div class="row critInner">
+                        <div class="col-xs-12">
+                            <label for="attackBonus">Attack:</label>
+                            <input id="attackBonus" ng-model="hero.attackBonus" type="text" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="row critInner">
+                        <div class="col-xs-12">
+                            <label for="critDie">Crit Die:</label>
+                            <input id="critDie" ng-model="hero.critDie" type="text" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="row critInner">
+                        <div class="col-xs-12">
+                            <label for="critTable">Crit Table:</label>
+                            <input id="critTable" ng-model="hero.critTable" type="text" ng-disabled="true">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Starting Equipment-->
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 startingOuter">
+                    <div class="row startingInner">
+                        <div class="col-xs-12 ">
+                            <label for="startingWeapon">Starting Weapon:</label>
+                            <input id="startingWeapon" ng-model="hero.occupation.startingWeapon" type="text"
+                                   ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="row startingInner">
+                        <div class="col-xs-12 ">
+                            <label for="startingEquipment">Starting Equipment:</label>
+                            <input id="startingEquipment" ng-model="hero.occupation.equipment" type="text"
+                                   ng-disabled="true">
                         </div>
                     </div>
                 </div>
@@ -266,20 +317,6 @@
         </div>
     </div>
 
-    <!-- Starting Equipment-->
-    <div class="container starting">
-        <div class="row">
-            <div class="col-md-6 col-sm-4">
-                <label for="startingWeapon">Starting Weapon:</label>
-                <input id="startingWeapon" ng-model="hero.occupation.startingWeapon" type="text" ng-disabled="true">
-            </div>
-
-            <div class="col-md-6 col-sm-4">
-                <label for="startingEquipment">Starting Equipment:</label>
-                <input id="startingEquipment" ng-model="hero.occupation.equipment" type="text" ng-disabled="true">
-            </div>
-        </div>
-    </div>
 
     <warrior-specific ng-if="hero.charClass == 'Warrior'"></warrior-specific>
     <cleric-specific ng-if="hero.charClass == 'Cleric'"></cleric-specific>
@@ -288,47 +325,42 @@
     <wizard-specific ng-if="hero.charClass == 'Wizard'"></wizard-specific>
     <elf-specific ng-if="hero.charClass == 'Elf'"></elf-specific>
     <halfling-specific ng-if="hero.charClass == 'Halfling'"></halfling-specific>
-    <div class="smallIndent">
-        <div>
-            <div>
+
+    <div class="container lowerSection">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <h5>Languages</h5>
                 <textarea id="languages" ng-model="hero.languages"></textarea>
             </div>
-            <h5>Equipment</h5>
 
-            <div class="container" ng-hide="blockEdit">
-                <div class="row">
-                    <div class="col-md-2 col-sm-2">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <h5>Equipment</h5>
+
+                <div ng-hide="blockEdit">
+                    <div>
                         <select id="equipment" ng-model="equipmentList"
                                 ng-options="equipment as equipment.name for equipment in equipment">
                             <option value="">Select Equipment</option>
                         </select>
-                    </div>
-                    <div class="col-md-1 col-sm-1">
                         <a class="btn btn-primary btn-xs" data-ng-click="addEquipment()">Add</a>
                     </div>
                 </div>
+                <textarea id="equipmentArea" ng-model="hero.equipment"></textarea>
             </div>
-            <textarea id="equipmentArea" ng-model="hero.equipment"></textarea>
         </div>
-        <br>
+    </div>
 
-        <div>
-            <div class="container" ng-hide="blockEdit">
-                <div class="row">
-                    <div class="col-md-2 col-sm-2">
-                        <select id="weapons" ng-model="weaponList"
-                                ng-options="weapons as weapons.name for weapons in weapons">
-                            <option value="">Select Weapon</option>
-                        </select>
-                    </div>
-                    <div class="col-md-1 col-sm-1">
-                        <a class="btn btn-primary btn-xs" data-ng-click="addWeapon()">Add</a>
-                    </div>
+    <div class="container lowerSection">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div ng-hide="blockEdit">
+                    <select id="weapons" ng-model="weaponList"
+                            ng-options="weapons as weapons.name for weapons in weapons">
+                        <option value="">Select Weapon</option>
+                    </select>
+                    <a class="btn btn-primary btn-xs" data-ng-click="addWeapon()">Add</a>
                 </div>
-            </div>
-            <div>
-                <table class="table-striped table-condensed">
+                <table class="table-striped table-condensed table-responsive table-bordered">
                     <th>Weapon</th>
                     <th>Damage</th>
                     <th>Range</th>
@@ -336,29 +368,21 @@
                         <td>{{ x.name }}</td>
                         <td>{{ x.damage }}</td>
                         <td>{{ x.range }}</td>
-                        <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href="" ng-click="deleteWeaponRow($index)">Remove</a></td>
+                        <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href=""
+                                                   ng-click="deleteWeaponRow($index)">Remove</a></td>
                     </tr>
                 </table>
             </div>
-        </div>
-        <br>
 
-        <div>
-            <div class="container" ng-hide="blockEdit">
-                <div class="row">
-                    <div class="col-md-2 col-sm-2">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div ng-hide="blockEdit">
                         <select id="armor" ng-model="armorList"
                                 ng-options="armor as armor.name for armor in armor">
                             <option value="">Select Armor</option>
                         </select>
-                    </div>
-                    <div class="col-md-1 col-sm-1">
                         <a class="btn btn-primary btn-xs" data-ng-click="addArmor()">Add</a>
-                    </div>
                 </div>
-            </div>
-            <div>
-                <table class="table-striped table-condensed table-responsive">
+                <table class="table-striped table-condensed table-responsive table-bordered">
                     <th>Armor</th>
                     <th>AC Bonus</th>
                     <th>Penalty</th>
@@ -370,19 +394,27 @@
                         <td>{{ x.penalty }}</td>
                         <td>{{ x.speed }}</td>
                         <td>{{ x.fumble }}</td>
-                        <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href="" ng-click="deleteArmorRow($index)">Remove</a></td>
+                        <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href=""
+                                                   ng-click="deleteArmorRow($index)">Remove</a></td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
-    <div>
-        <h5>Treasure</h5>
-        <textarea ng-model="hero.treasure" ng-disabled="blockEdit"></textarea>
+
+
+    <div class="container lowerSection">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <h5>Treasure</h5>
+                <textarea ng-model="hero.treasure" ng-disabled="blockEdit"></textarea>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <h5>Notes</h5>
+                <textarea ng-model="hero.notes" ng-disabled="blockEdit"></textarea>
+            </div>
+        </div>
     </div>
-    <div>
-        <h5>Notes</h5>
-        <textarea ng-model="hero.notes" ng-disabled="blockEdit"></textarea>
-    </div>
-    </div>
+
+
 </section>

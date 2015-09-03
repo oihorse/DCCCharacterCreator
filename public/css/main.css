@@ -1,3 +1,11 @@
+/*div[class="row"] {*/
+    /*border: 1px dotted rgba(0, 0, 0, 0.5);*/
+/*}*/
+
+/*div[class^="col-"] {*/
+    /*background-color: rgba(255, 0, 0, 0.2);*/
+/*}*/
+
 .serverForms input {
     width: 200px;
     vertical-align: middle;
@@ -58,35 +66,184 @@ label > input:checked + img {
     vertical-align: middle;
 }
 
-.heropicker input {
-    width: 120px;
-    vertical-align: middle;
-    margin-right: 30px;
+
+.statOuter {
+     background-color: #512C73;
+     border-radius: 25px;
+     padding: 8px;
+     width: 200px;
+     margin: 10px;
+ }
+
+.statInner{
+    background-color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 8px;
+    width: 200px;
 }
 
-.heropicker label {
+.statInner input
+{
+    border: none;
+    border-color: transparent;
+    background: transparent;
+}
+
+.critOuter {
+    background-color: #512C73;
+    border-radius: 25px;
+    padding: 8px;
+    width: 275px;
+    margin: 10px;
+}
+
+.critInner{
+    background-color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 8px;
+    width: 270px;
+}
+
+.critInner input
+{
+    border: none;
+    border-color: transparent;
+    background: transparent;
+    width:50px;
+}
+
+.critInner .action input
+{
+    border: none;
+    border-color: transparent;
+    background: transparent;
+    font-size: 7pt;
+}
+
+.savingthrowOuter{ background-color: #512C73;
+     border-radius: 25px;
+     padding: 8px;
+     margin: 10px;
+     width: 200px;
+     color: #9277AC;}
+
+.savingthrowOuter input{
+    color: #000000;
+    background-color: #9277AC;
+    border-radius: 50%;
+    border-color: transparent;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+
+}
+
+.meleeBonusOuter{ background-color: #512C73;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 10px;
+    width: 200px;
+    color: #9277AC;
+}
+
+.meleeBonusOuter input{
+    color: #000000;
+    background-color: #9277AC;
+    border-radius: 50%;
+    border-color: transparent;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+
+}
+
+.meleeBonusOuter label{
     width: 100px;
-    vertical-align: middle;
+
 }
 
-.starting input {
-    width: 150px;
-    vertical-align: middle;
-    margin-right: 30px;
+.titleName {
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 5px;
+    width: auto;
+    padding-right:10px;
+    text-align: center;
 }
 
-.starting label {
-    width: 150px;
-    vertical-align: middle;
+.headerSection
+{
+    padding: 8px;
 }
 
-.bonuses input {
-    width: 100px;
-    vertical-align: middle;
-    margin-right: 30px;
+.topSection{
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 5px;
+    width: auto;
 }
 
-.bonuses label {
-    width: 100px;
-    vertical-align: middle;
+.topSection label {
+   width: 90px;
+    padding: 8px;
+    margin: 5px;
+}
+
+.topSection input{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+}
+
+.startingOuter {
+    background-color: #512C73;
+    border-radius: 25px;
+    padding: 8px;
+    width: 275px;
+    margin: 10px;
+}
+
+.startingInner{
+    background-color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 8px;
+    width: 275px;
+}
+
+.startingInner input
+{
+    border: none;
+    border-color: transparent;
+    background: transparent;
+    width:100px;
+}
+
+.startingInner label
+{
+
+    width:75px;
+}
+
+textarea {
+   color: black;
+    background-color: #9277AC;
+
+}
+
+.lowerSection{
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 15px;
+    margin: 5px;
+    width: auto;
 }

@@ -148,7 +148,7 @@ Cleric.getClericTitle = function (alignment, level) {
             case 8:
             case 9:
             case 10:
-                title = "High priest";
+                title = "High Priest";
                 break;
             default:
                 title = "";
