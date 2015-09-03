@@ -330,7 +330,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <h5>Languages</h5>
-                <textarea id="languages" ng-model="hero.languages"></textarea>
+                <textarea id="languages" ng-model="hero.languages" ng-disabled="blockEdit"></textarea>
             </div>
 
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -345,7 +345,9 @@
                         <a class="btn btn-primary btn-xs" data-ng-click="addEquipment()">Add</a>
                     </div>
                 </div>
-                <textarea id="equipmentArea" ng-model="hero.equipment"></textarea>
+                <div>
+                    <textarea id="equipmentArea" ng-model="hero.equipment" ng-disabled="blockEdit"></textarea>
+                </div>
             </div>
         </div>
     </div>
@@ -376,11 +378,11 @@
 
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div ng-hide="blockEdit">
-                        <select id="armor" ng-model="armorList"
-                                ng-options="armor as armor.name for armor in armor">
-                            <option value="">Select Armor</option>
-                        </select>
-                        <a class="btn btn-primary btn-xs" data-ng-click="addArmor()">Add</a>
+                    <select id="armor" ng-model="armorList"
+                            ng-options="armor as armor.name for armor in armor">
+                        <option value="">Select Armor</option>
+                    </select>
+                    <a class="btn btn-primary btn-xs" data-ng-click="addArmor()">Add</a>
                 </div>
                 <table class="table-striped table-condensed table-responsive table-bordered">
                     <th>Armor</th>
