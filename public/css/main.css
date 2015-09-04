@@ -81,6 +81,7 @@ label > input:checked + img {
     padding: 8px;
     margin: 8px;
     width: 200px;
+    color: black;
 }
 
 .statInner input
@@ -88,6 +89,7 @@ label > input:checked + img {
     border: none;
     border-color: transparent;
     background: transparent;
+    color: black;
 }
 
 .critOuter {
@@ -104,6 +106,7 @@ label > input:checked + img {
     padding: 8px;
     margin: 8px;
     width: 270px;
+    color: black;
 }
 
 .critInner input
