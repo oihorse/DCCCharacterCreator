@@ -6,6 +6,8 @@
     /*background-color: rgba(255, 0, 0, 0.2);*/
 /*}*/
 
+
+
 .serverForms input {
     width: 200px;
     vertical-align: middle;
@@ -220,6 +222,7 @@ label > input:checked + img {
     padding: 8px;
     margin: 8px;
     width: 275px;
+    color: black;
 }
 
 .startingInner input
@@ -250,3 +253,24 @@ textarea {
     margin: 5px;
     width: auto;
 }
+
+.statInner input:disabled{
+    color:black;
+}
+
+.critInner input:disabled{
+    color:black;
+}
+
+.startingInner input:disabled{
+    color:black;
+}
+
+.topSection input:disabled{
+    color:black;
+}
+
+.lowerSection input:disabled{
+    color:black;
+}
+
