@@ -143,7 +143,6 @@ label > input:checked + img {
     width: 50px;
     height: 50px;
     margin: 5px;
-
 }
 
 .meleeBonusOuter{ background-color: #512C73;
@@ -255,22 +254,33 @@ textarea {
 }
 
 .statInner input:disabled{
-    color:black;
+    color:#20043A;
 }
 
 .critInner input:disabled{
-    color:black;
+    color:#20043A;
 }
 
 .startingInner input:disabled{
-    color:black;
+    color:#20043A;
 }
 
 .topSection input:disabled{
-    color:black;
+    color:#9377AC;
 }
 
 .lowerSection input:disabled{
-    color:black;
+    color:#20043A;
 }
 
+.savingthrowOuter input:disabled{
+    color:#20043A;
+}
+
+.meleeBonusOuter input:disabled{
+    color:#20043A;
+}
+
+.lowerSection textarea:disabled{
+    color:#20043A;
+}
