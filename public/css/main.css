@@ -98,7 +98,7 @@ label > input:checked + img {
     background-color: #512C73;
     border-radius: 25px;
     padding: 8px;
-    width: 275px;
+    width: 260px;
     margin: 10px;
 }
 
@@ -107,7 +107,7 @@ label > input:checked + img {
     border-radius: 25px;
     padding: 8px;
     margin: 8px;
-    width: 270px;
+    width: 260px;
     color: black;
 }
 
@@ -196,15 +196,22 @@ label > input:checked + img {
 }
 
 .topSection label {
-   width: 90px;
+    width: 85px;
     padding: 8px;
-    margin: 5px;
 }
 
 .topSection input{
     border-color: transparent;
     background-color: transparent;
     text-align: left;
+    width: 75px;
+}
+
+.topSection .occupation input {
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 200px;
 }
 
 .startingOuter {
