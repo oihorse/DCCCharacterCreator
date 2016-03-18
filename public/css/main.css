@@ -232,7 +232,7 @@ label > input:checked + img {
     background-color: #512C73;
     border-radius: 25px;
     padding: 8px;
-    width: 260px;
+    width: 270px;
     margin: 10px;
 }
 
@@ -241,7 +241,7 @@ label > input:checked + img {
     border-radius: 25px;
     padding: 8px;
     margin: 8px;
-    width: 260px;
+    width: 270px;
     color: black;
 }
 
@@ -250,7 +250,7 @@ label > input:checked + img {
     border: none;
     border-color: transparent;
     background: transparent;
-    width: 100px;
+    width: 110px;
     text-align: left;
     font-size: 0.9em;
 }
