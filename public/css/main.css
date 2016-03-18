@@ -64,8 +64,13 @@ label > input:checked + img {
 }
 
 .stats .saveLabel {
-    width: 110px;
+    width: 100px;
     vertical-align: middle;
+}
+
+.luckyRoll {
+    font-size: .75em;
+    line-height: 10%;
 }
 
 
@@ -73,7 +78,7 @@ label > input:checked + img {
      background-color: #512C73;
      border-radius: 25px;
      padding: 8px;
-     width: 200px;
+     width: 160px;
      margin: 10px;
  }
 
@@ -82,7 +87,7 @@ label > input:checked + img {
     border-radius: 25px;
     padding: 8px;
     margin: 8px;
-    width: 200px;
+    width: 160px;
     color: black;
 }
 
@@ -127,12 +132,15 @@ label > input:checked + img {
     font-size: 7pt;
 }
 
-.savingthrowOuter{ background-color: #512C73;
+.savingthrowOuter{
+    background-color: #512C73;
      border-radius: 25px;
      padding: 8px;
      margin: 10px;
-     width: 200px;
-     color: #9277AC;}
+     width: 180px;
+     color: #9277AC;
+     font-size: 0.9em;
+}
 
 .savingthrowOuter input{
     color: #000000;
@@ -149,8 +157,9 @@ label > input:checked + img {
     border-radius: 25px;
     padding: 8px;
     margin: 10px;
-    width: 200px;
+    width: 180px;
     color: #9277AC;
+    font-size: 0.9em;
 }
 
 .meleeBonusOuter input{
@@ -169,6 +178,11 @@ label > input:checked + img {
     width: 100px;
 
 }
+
+.startingEquipment {
+    font-size: 0.8em;
+}
+
 
 .titleName {
     background-color: #512C73;
@@ -218,7 +232,7 @@ label > input:checked + img {
     background-color: #512C73;
     border-radius: 25px;
     padding: 8px;
-    width: 275px;
+    width: 260px;
     margin: 10px;
 }
 
@@ -227,7 +241,7 @@ label > input:checked + img {
     border-radius: 25px;
     padding: 8px;
     margin: 8px;
-    width: 275px;
+    width: 260px;
     color: black;
 }
 
@@ -236,18 +250,21 @@ label > input:checked + img {
     border: none;
     border-color: transparent;
     background: transparent;
-    width:100px;
+    width: 100px;
+    text-align: left;
+    font-size: 0.9em;
 }
 
 .startingInner label
 {
-
     width:75px;
+    margin-right: 5px;
 }
 
 textarea {
    color: black;
     background-color: #9277AC;
+    width:100%;
 }
 
 .lowerSection{
@@ -289,4 +306,13 @@ textarea {
 
 .lowerSection textarea:disabled{
     color:#20043A;
+    width:100%;
+}
+
+.weapons table{
+    width:100%;
+}
+
+.armor table{
+    width:100%;
 }
