@@ -176,7 +176,6 @@ label > input:checked + img {
 
 .meleeBonusOuter label{
     width: 100px;
-
 }
 
 .startingEquipment {
@@ -315,4 +314,29 @@ textarea {
 
 .armor table{
     width:100%;
+}
+
+.thiefOuter{
+    background-color: #512C73;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 10px;
+    width: 180px;
+    color: #9277AC;
+    font-size: 0.9em;
+}
+
+.thiefOuter input{
+    color: #000000;
+    background-color: #9277AC;
+    border-radius: 50%;
+    border-color: transparent;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.thiefOuter label{
+    width: 100px;
 }

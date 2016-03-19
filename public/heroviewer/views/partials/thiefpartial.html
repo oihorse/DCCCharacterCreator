@@ -1,16 +1,130 @@
-<div class="smallIndent">
-    <label>Lucky die:</label> d{{ hero.classSpecific.luckyDie }}<br>
-    <label>Backstab:</label> {{ hero.classSpecific.backstab }}<br>
-    <label>Sneak Silently:</label> {{ hero.classSpecific.sneakSilently }}<br>
-    <label>Hide In Shadows:</label> {{ hero.classSpecific.hideInShadows }}<br>
-    <label>Pick Pocket:</label> {{ hero.classSpecific.pickPocket }}<br>
-    <label>Climb Sheer Surfaces:</label> {{ hero.classSpecific.climbSheerSurfaces }}<br>
-    <label>Pick Lock:</label> {{ hero.classSpecific.pickLock }}<br>
-    <label>Find Trap:</label> {{ hero.classSpecific.findTrap }}<br>
-    <label>Disable Trap:</label> {{ hero.classSpecific.disableTrap }}<br>
-    <label>Forge Document:</label> {{ hero.classSpecific.forgeDocument }}<br>
-    <label>Disguise Self:</label> {{ hero.classSpecific.disguiseSelf }}<br>
-    <label>Read Languages:</label> {{ hero.classSpecific.readLanguages }}<br>
-    <label>Handle Poison:</label> {{ hero.classSpecific.handlePoison }}<br>
-    <label>Cast Spell From Scroll:</label> d{{ hero.classSpecific.castSpellFromScroll }}
+<div class="container">
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="luckyDie">Lucky die:</label>
+                <input id="luckyDie" ng-model="hero.classSpecific.luckyDie" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="backstab">Backstab:</label>
+                <input id="backstab" ng-model="hero.classSpecific.backstab" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="sneakSilently">Sneak Silently:</label>
+                <input id="sneakSilently" ng-model="hero.classSpecific.sneakSilently" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="pickPocket">Pick Pocket:</label>
+                <input id="pickPocket" ng-model="hero.classSpecific.pickPocket" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="pickLock">Pick Lock:</label>
+                <input id="pickLock" ng-model="hero.classSpecific.pickLock" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="findTrap">Find Trap:</label>
+                <input id="findTrap" ng-model="hero.classSpecific.findTrap" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="disableTrap">Disable Trap:</label>
+                <input id="disableTrap" ng-model="hero.classSpecific.disableTrap" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="disguiseSelf">Disguise Self:</label>
+                <input id="disguiseSelf" ng-model="hero.classSpecific.disguiseSelf" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="handlePoison">Handle Poison:</label>
+                <input id="handlePoison" ng-model="hero.classSpecific.handlePoison" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="readLanguages">Read Languages:</label>
+                <input id="readLanguages" ng-model="hero.classSpecific.readLanguages" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="forgeDocument">Forge Document:</label>
+                <input id="forgeDocument" ng-model="hero.classSpecific.forgeDocument" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="castSpellFromScroll">Cast Spell from Scroll:</label>
+                <input id="castSpellFromScroll" ng-model="hero.classSpecific.castSpellFromScroll" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="climbSheerSurfaces">Climb Sheer Surfaces:</label>
+                <input id="climbSheerSurfaces" ng-model="hero.classSpecific.climbSheerSurfaces" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 thiefOuter">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="hideInShadows">Hide In Shadows:</label>
+                <input id="hideInShadows" ng-model="hero.classSpecific.hideInShadows" type="text" ng-disabled="true">
+            </div>
+        </div>
+    </div>
+
 </div>
+
