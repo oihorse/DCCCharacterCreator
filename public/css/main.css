@@ -418,8 +418,211 @@ textarea {
     width: 20px;
 }
 
-
 .wizardLower{
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 15px;
+    margin: 5px;
+    width: auto;
+}
+
+.warriorTop{
+     background-color: #512C73;
+     color: #9277AC;
+     border-radius: 25px;
+     padding: 8px;
+     margin: 5px;
+     width: 250px;
+ }
+
+.warriorTop label {
+    width: 120px;
+    padding: 8px;
+}
+
+.warriorTop input{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 75px;
+}
+
+.dwarfTop{
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 5px;
+    width: 250px;
+}
+
+.dwarfTop label {
+    width: 120px;
+    padding: 8px;
+}
+
+.dwarfTop input{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 75px;
+}
+
+.halflingTop{
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 5px;
+    width: 250px;
+}
+
+.halflingTop label {
+    width: 175px;
+    padding: 8px;
+}
+
+.halflingTop input{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 75px;
+}
+
+.clericTop{
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 5px;
+    width: auto;
+}
+
+.clericTop .deity label {
+    width: 50px;
+    padding: 8px;
+}
+
+.clericTop .spellCheck label {
+    width: 100px;
+    padding: 8px;
+}
+
+.clericTop .maximumSpellLevel label {
+    width: 165px;
+    padding: 8px;
+}
+
+
+.clericTop input{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 75px;
+}
+
+.clericLower{
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 15px;
+    margin: 5px;
+    width: auto;
+}
+
+.elfTop{
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 5px;
+    width: auto;
+}
+
+.elfTop label {
+    width: 85px;
+    padding: 8px;
+}
+
+.elfTop input{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 75px;
+}
+
+.elfTop .corruption input {
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 150px;
+}
+
+.elfTop .spellCheck label{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 100px;
+}
+
+.elfTop .currentSpellCastingLevel label{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 190px;
+}
+
+.elfTop .currentSpellCastingLevel input {
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 20px;
+}
+
+.elfTop .spellsKnown label{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 190px;
+}
+
+.elfTop .spellsKnown input {
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 20px;
+}
+
+.elfTop .maximumSpellCastingLevel label{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 220px;
+}
+
+.elfTop .maximumSpellCastingLevel input {
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 20px;
+}
+
+.elfTop .luckySpell label{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 100px;
+}
+
+.elfTop .luckySpell input {
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 100px;
+}
+
+.elfLower{
     background-color: #512C73;
     color: #9277AC;
     border-radius: 25px;
