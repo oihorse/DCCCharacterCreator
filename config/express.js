@@ -89,7 +89,11 @@ module.exports = function () {
                 + "\n"
             weaponIterator++;
         }
-
+        console.log("xp is: " + req.body.xp);
+        var xp = req.body.xp ? req.body.xp : "";
+        var treasure = req.body.treasure ? req.body.treasure : "";
+        var equipment = req.body.equipment ? req.body.equipment : "";
+        var notes = req.body.notes ? req.body.notes : "";
 
 
         var data = {
@@ -126,19 +130,20 @@ module.exports = function () {
             "reflexSave": req.body.reflexSave,
             "willPowerSave": req.body.willPowerSave,
             "fortitudeSave": req.body.fortitudeSave,
-            "equipment": req.body.equipment,
+            "equipment": equipment,
             "ownedWeapons": weapon,
             "ownedArmor": armor,
-            "treasure": req.body.treasure,
+            "treasure": treasure,
             "languages": req.body.languages,
-            "notes": req.body.notes,
-            "xp": req.body.xp
+            "notes": notes,
+            "xp": xp
         };
 
 
             switch (req.body.charClass) {
                 case "Cleric":
-                    data.deity = req.body.classSpecific.deity;
+                    var deity = req.body.classSpecific.deity ? req.body.classSpecific.deity : '';
+                    data.deity = deity;
                     data.spellCheck = req.body.classSpecific.spellCheck;
                     data.maximumSpellCastingLevel = req.body.classSpecific.maximumSpellCastingLevel;
                     data.spellsKnown = req.body.classSpecific.spellsKnown;
@@ -172,9 +177,12 @@ module.exports = function () {
                     data.threatRange = req.body.classSpecific.threatRange;
                     break;
                 case "Wizard":
-                    data.patron = req.body.classSpecific.patron;
-                    data.familiar = req.body.classSpecific.familiar;
-                    data.corruption = req.body.classSpecific.corruption;
+                    var patron = req.body.classSpecific.patron ? req.body.classSpecific.patron : '';
+                    var familar = req.body.classSpecific.familiar ? req.body.classSpecific.familiar : '';
+                    var corruption = req.body.classSpecific.corruption ? req.body.classSpecific.corruption : '';
+                    data.patron = patron;
+                    data.familiar = familar;
+                    data.corruption = corruption;
                     data.spellCheck = req.body.classSpecific.spellCheck;
                     data.currentSpellCastingLevel = req.body.classSpecific.currentSpellCastingLevel;
                     data.spellsKnown = req.body.classSpecific.spellsKnown;
@@ -198,9 +206,12 @@ module.exports = function () {
                     data.stealth = req.body.classSpecific.stealth;
                     break;
                 case "Elf":
-                    data.patron = req.body.classSpecific.patron;
-                    data.familiar = req.body.classSpecific.familiar;
-                    data.corruption = req.body.classSpecific.corruption;
+                    var patron = req.body.classSpecific.patron ? req.body.classSpecific.patron : '';
+                    var familar = req.body.classSpecific.familiar ? req.body.classSpecific.familiar : '';
+                    var corruption = req.body.classSpecific.corruption ? req.body.classSpecific.corruption : '';
+                    data.patron = patron;
+                    data.familiar = familar;
+                    data.corruption = corruption;
                     data.spellCheck = req.body.classSpecific.spellCheck;
                     data.currentSpellCastingLevel = req.body.classSpecific.currentSpellCastingLevel;
                     data.spellsKnown = req.body.classSpecific.spellsKnown;

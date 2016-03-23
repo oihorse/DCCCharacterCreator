@@ -409,7 +409,7 @@ Wizard.getWizardTitle = function (alignment, level) {
                 title = "Diabolist";
                 break;
             case 4:
-                title = "Warlock / Witch";
+                title = "Warlock _ Witch";
                 break;
             case 5:
             case 6:
