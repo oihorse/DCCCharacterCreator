@@ -218,6 +218,11 @@ label > input:checked + img {
     padding: 8px;
 }
 
+.topSection .occupation label {
+    width: 90px;
+    padding: 8px;
+}
+
 .topSection input{
     border-color: transparent;
     background-color: transparent;
@@ -378,14 +383,14 @@ textarea {
     border-color: transparent;
     background-color: transparent;
     text-align: left;
-    width: 100px;
+    width: 110px;
 }
 
 .wizardTop .currentSpellCastingLevel label{
     border-color: transparent;
     background-color: transparent;
     text-align: left;
-    width: 190px;
+    width: 200px;
 }
 
 .wizardTop .currentSpellCastingLevel input {
@@ -413,7 +418,7 @@ textarea {
     border-color: transparent;
     background-color: transparent;
     text-align: left;
-    width: 220px;
+    width: 230px;
 }
 
 .wizardTop .maximumSpellCastingLevel input {
@@ -568,14 +573,14 @@ textarea {
     border-color: transparent;
     background-color: transparent;
     text-align: left;
-    width: 100px;
+    width: 110px;
 }
 
 .elfTop .currentSpellCastingLevel label{
     border-color: transparent;
     background-color: transparent;
     text-align: left;
-    width: 190px;
+    width: 200px;
 }
 
 .elfTop .currentSpellCastingLevel input {
@@ -603,7 +608,7 @@ textarea {
     border-color: transparent;
     background-color: transparent;
     text-align: left;
-    width: 220px;
+    width: 230px;
 }
 
 .elfTop .maximumSpellCastingLevel input {
@@ -617,7 +622,7 @@ textarea {
     border-color: transparent;
     background-color: transparent;
     text-align: left;
-    width: 100px;
+    width: 110px;
 }
 
 .elfTop .luckySpell input {
