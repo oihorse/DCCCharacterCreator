@@ -213,6 +213,11 @@ label > input:checked + img {
     padding: 8px;
 }
 
+.topSection .hitPoints label {
+    width: 90px;
+    padding: 8px;
+}
+
 .topSection input{
     border-color: transparent;
     background-color: transparent;
