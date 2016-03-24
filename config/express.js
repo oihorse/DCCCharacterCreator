@@ -178,10 +178,10 @@ module.exports = function () {
                     break;
                 case "Wizard":
                     var patron = req.body.classSpecific.patron ? req.body.classSpecific.patron : '';
-                    var familar = req.body.classSpecific.familiar ? req.body.classSpecific.familiar : '';
+                    var familiar = req.body.classSpecific.familiar ? req.body.classSpecific.familiar : '';
                     var corruption = req.body.classSpecific.corruption ? req.body.classSpecific.corruption : '';
                     data.patron = patron;
-                    data.familiar = familar;
+                    data.familiar = familiar;
                     data.corruption = corruption;
                     data.spellCheck = req.body.classSpecific.spellCheck;
                     data.currentSpellCastingLevel = req.body.classSpecific.currentSpellCastingLevel;
@@ -207,10 +207,10 @@ module.exports = function () {
                     break;
                 case "Elf":
                     var patron = req.body.classSpecific.patron ? req.body.classSpecific.patron : '';
-                    var familar = req.body.classSpecific.familiar ? req.body.classSpecific.familiar : '';
+                    var familiar = req.body.classSpecific.familiar ? req.body.classSpecific.familiar : '';
                     var corruption = req.body.classSpecific.corruption ? req.body.classSpecific.corruption : '';
                     data.patron = patron;
-                    data.familiar = familar;
+                    data.familiar = familiar;
                     data.corruption = corruption;
                     data.spellCheck = req.body.classSpecific.spellCheck;
                     data.currentSpellCastingLevel = req.body.classSpecific.currentSpellCastingLevel;
