@@ -155,6 +155,17 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
     agilityModifier = parseInt(agilityModifier, 10);
     intelligenceModifier = parseInt(intelligenceModifier, 10);
     personalityModifier = parseInt(personalityModifier, 10);
+    var operator = "";
+    if (intelligenceModifier > 0) {
+        operator = "+ " + intelligenceModifier;
+    } else if (intelligenceModifier < 0)
+    {
+        operator = intelligenceModifier;
+    } else {
+        operator = '';
+    }
+
+
 
     if (alignment.indexOf('Lawful') != -1) {
         switch (level) {
@@ -171,7 +182,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 0 + personalityModifier;
                 Thief.readLanguages = 0 + intelligenceModifier;
                 Thief.handlePoison = 0;
-                Thief.castSpellFromScroll = 10 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d10 " + operator;
                 break;
             case 2:
                 Thief.backstab = 3;
@@ -186,7 +197,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 1 + personalityModifier;
                 Thief.readLanguages = 0 + intelligenceModifier;
                 Thief.handlePoison = 1;
-                Thief.castSpellFromScroll = 10 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d10 " + operator;
                 break;
             case 3:
                 Thief.backstab = 5;
@@ -201,7 +212,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 2 + personalityModifier;
                 Thief.readLanguages = 1 + intelligenceModifier;
                 Thief.handlePoison = 2;
-                Thief.castSpellFromScroll = 12 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d12 " + operator;
                 break;
             case 4:
                 Thief.backstab = 7;
@@ -216,7 +227,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 3 + personalityModifier;
                 Thief.readLanguages = 2 + intelligenceModifier;
                 Thief.handlePoison = 3;
-                Thief.castSpellFromScroll = 12 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d12 " + operator;
                 break;
             case 5:
                 Thief.backstab = 8;
@@ -231,7 +242,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 4 + personalityModifier;
                 Thief.readLanguages = 3 + intelligenceModifier;
                 Thief.handlePoison = 4;
-                Thief.castSpellFromScroll = 14 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d14 " + operator;
                 break;
             case 6:
                 Thief.backstab = 9;
@@ -246,7 +257,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 5 + personalityModifier;
                 Thief.readLanguages = 4 + intelligenceModifier;
                 Thief.handlePoison = 5;
-                Thief.castSpellFromScroll = 14 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d14 " + operator;
                 break;
             case 7:
                 Thief.backstab = 10;
@@ -261,7 +272,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 6 + personalityModifier;
                 Thief.readLanguages = 5 + intelligenceModifier;
                 Thief.handlePoison = 6;
-                Thief.castSpellFromScroll = 16 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d16 " + operator;
                 break;
             case 8:
                 Thief.backstab = 11;
@@ -276,7 +287,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 7 + personalityModifier;
                 Thief.readLanguages = 6 + intelligenceModifier;
                 Thief.handlePoison = 7;
-                Thief.castSpellFromScroll = 16 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d16 " + operator;
                 break;
             case 9:
                 Thief.backstab = 12;
@@ -291,7 +302,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 8 + personalityModifier;
                 Thief.readLanguages = 7 + intelligenceModifier;
                 Thief.handlePoison = 8;
-                Thief.castSpellFromScroll = 20 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d20 " + operator;
                 break;
             case 10:
                 Thief.backstab = 13;
@@ -306,7 +317,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 9 + personalityModifier;
                 Thief.readLanguages = 8 + intelligenceModifier;
                 Thief.handlePoison = 9;
-                Thief.castSpellFromScroll = 20 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d20 " + operator;
                 break;
 
         }
@@ -326,7 +337,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 0 + personalityModifier;
                 Thief.readLanguages = 0 + intelligenceModifier;
                 Thief.handlePoison = 0;
-                Thief.castSpellFromScroll = 12 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d12 " + operator;
                 break;
             case 2:
                 Thief.backstab = 1;
@@ -341,7 +352,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 0 + personalityModifier;
                 Thief.readLanguages = 1 + intelligenceModifier;
                 Thief.handlePoison = 0;
-                Thief.castSpellFromScroll = 12 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d12 " + operator;
                 break;
             case 3:
                 Thief.backstab = 2;
@@ -356,7 +367,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 1 + personalityModifier;
                 Thief.readLanguages = 2 + intelligenceModifier;
                 Thief.handlePoison = 1;
-                Thief.castSpellFromScroll = 14 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d14 " + operator;
                 break;
             case 4:
                 Thief.backstab = 3;
@@ -371,7 +382,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 2 + personalityModifier;
                 Thief.readLanguages = 3 + intelligenceModifier;
                 Thief.handlePoison = 2;
-                Thief.castSpellFromScroll = 14 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d14 " + operator;
                 break;
             case 5:
                 Thief.backstab = 4;
@@ -386,7 +397,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 3 + personalityModifier;
                 Thief.readLanguages = 4 + intelligenceModifier;
                 Thief.handlePoison = 3;
-                Thief.castSpellFromScroll = 16 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d16 " + operator;
                 break;
             case 6:
                 Thief.backstab = 5;
@@ -401,7 +412,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 4 + personalityModifier;
                 Thief.readLanguages = 5 + intelligenceModifier;
                 Thief.handlePoison = 4;
-                Thief.castSpellFromScroll = 16 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d16 " + operator;
                 break;
             case 7:
                 Thief.backstab = 6;
@@ -416,7 +427,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 5 + personalityModifier;
                 Thief.readLanguages = 6 + intelligenceModifier;
                 Thief.handlePoison = 5;
-                Thief.castSpellFromScroll = 20 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d20 " + operator;
                 break;
             case 8:
                 Thief.backstab = 7;
@@ -431,7 +442,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 6 + personalityModifier;
                 Thief.readLanguages = 7 + intelligenceModifier;
                 Thief.handlePoison = 6;
-                Thief.castSpellFromScroll = 20 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d20 " + operator;
                 break;
             case 9:
                 Thief.backstab = 8;
@@ -446,7 +457,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 7 + personalityModifier;
                 Thief.readLanguages = 8 + intelligenceModifier;
                 Thief.handlePoison = 7;
-                Thief.castSpellFromScroll = 20 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d20 " + operator;
                 break;
             case 10:
                 Thief.backstab = 9;
@@ -461,7 +472,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 8 + personalityModifier;
                 Thief.readLanguages = 9 + intelligenceModifier;
                 Thief.handlePoison = 8;
-                Thief.castSpellFromScroll = 20 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d20 " + operator;
                 break;
 
         }
@@ -481,7 +492,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 3 + personalityModifier;
                 Thief.readLanguages = 0 + intelligenceModifier;
                 Thief.handlePoison = 3;
-                Thief.castSpellFromScroll = 10 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d10 " + operator;
                 break;
             case 2:
                 Thief.backstab = 5;
@@ -496,7 +507,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 5 + personalityModifier;
                 Thief.readLanguages = 0 + intelligenceModifier;
                 Thief.handlePoison = 5;
-                Thief.castSpellFromScroll = 10 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d10 " + operator;
                 break;
             case 3:
                 Thief.backstab = 7;
@@ -511,7 +522,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 7 + personalityModifier;
                 Thief.readLanguages = 1 + intelligenceModifier;
                 Thief.handlePoison = 7;
-                Thief.castSpellFromScroll = 12 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d12 " + operator;
                 break;
             case 4:
                 Thief.backstab = 8;
@@ -526,7 +537,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 8 + personalityModifier;
                 Thief.readLanguages = 2 + intelligenceModifier;
                 Thief.handlePoison = 8;
-                Thief.castSpellFromScroll = 12 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d12 " + operator;
                 break;
             case 5:
                 Thief.backstab = 9;
@@ -541,7 +552,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 9 + personalityModifier;
                 Thief.readLanguages = 3 + intelligenceModifier;
                 Thief.handlePoison = 9;
-                Thief.castSpellFromScroll = 14 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d14 " + operator;
                 break;
             case 6:
                 Thief.backstab = 11;
@@ -556,7 +567,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 11 + personalityModifier;
                 Thief.readLanguages = 4 + intelligenceModifier;
                 Thief.handlePoison = 11;
-                Thief.castSpellFromScroll = 14 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d14 " + operator;
                 break;
             case 7:
                 Thief.backstab = 12;
@@ -571,7 +582,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 12 + personalityModifier;
                 Thief.readLanguages = 5 + intelligenceModifier;
                 Thief.handlePoison = 12;
-                Thief.castSpellFromScroll = 16 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d16 " + operator;
                 break;
             case 8:
                 Thief.backstab = 13;
@@ -586,7 +597,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 13 + personalityModifier;
                 Thief.readLanguages = 6 + intelligenceModifier;
                 Thief.handlePoison = 13;
-                Thief.castSpellFromScroll = 16 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d16 " + operator;
                 break;
             case 9:
                 Thief.backstab = 14;
@@ -601,7 +612,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 14 + personalityModifier;
                 Thief.readLanguages = 7 + intelligenceModifier;
                 Thief.handlePoison = 14;
-                Thief.castSpellFromScroll = 20 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d20 " + operator;
                 break;
             case 10:
                 Thief.backstab = 15;
@@ -616,7 +627,7 @@ Thief.generateThiefSkills = function (alignment, level, agilityModifier, intelli
                 Thief.disguiseSelf = 15 + personalityModifier;
                 Thief.readLanguages = 8 + intelligenceModifier;
                 Thief.handlePoison = 15;
-                Thief.castSpellFromScroll = 20 + intelligenceModifier;
+                Thief.castSpellFromScroll = "d20 " + operator;
                 break;
 
         }
