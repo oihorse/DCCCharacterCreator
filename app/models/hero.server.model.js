@@ -86,6 +86,8 @@ var HeroSchema = new Schema({
         type: String,
     }, xp: {
         type: String,
+    }, armorClass: {
+        type: String,
     }, creator: {
         type: Schema.ObjectId,
         ref: 'User'

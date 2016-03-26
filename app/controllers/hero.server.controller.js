@@ -89,6 +89,8 @@ exports.update = function (req, res) {
     hero.languages = req.body.languages;
     hero.notes = req.body.notes;
     hero.xp = req.body.xp;
+    hero.armorClass = req.body.armorClass;
+
 
     hero.save(function (err) {
         if (err) {

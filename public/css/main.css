@@ -218,6 +218,16 @@ label > input:checked + img {
     padding: 8px;
 }
 
+.topSection .charArmor label {
+    width: 120px;
+    padding: 8px;
+}
+
+.topSection .charArmor input {
+    width: 60px;
+    padding: 8px;
+}
+
 .topSection .occupation label {
     width: 90px;
     padding: 8px;

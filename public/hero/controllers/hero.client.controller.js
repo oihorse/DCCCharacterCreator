@@ -10,6 +10,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
         $scope.hero.ownedWeapons = [{}];
         $scope.hero.ownedArmor = [{}];
         $scope.hero.classSpecific = {};
+        $scope.hero.armorClass = 0;
 
 
         //Generates random things
@@ -109,17 +110,17 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
         ];
 
         //armor
-        $scope.armor = [{name: "Unarmored", acbonus: 0, penalty: 0, speed: 0, fumble: "d4", cost: 0},
-            {name: "Padded", acbonus: 1, penalty: 0, speed: 0, fumble: "d8", cost: 500},
-            {name: "Leather", acbonus: 2, penalty: -1, speed: 0, fumble: "d8", cost: 2000},
-            {name: "Studded Leather", acbonus: 3, penalty: -2, speed: 0, fumble: "d8", cost: 4500},
-            {name: "Hide", acbonus: 3, penalty: -3, speed: 0, fumble: "d12", cost: 3000},
-            {name: "Scale mail", acbonus: 4, penalty: -4, speed: -5, fumble: "d12", cost: 8000},
-            {name: "Chainmail", acbonus: 5, penalty: -5, speed: -5, fumble: "d12", cost: 15000},
-            {name: "Banded mail", acbonus: 6, penalty: -6, speed: -5, fumble: "d16", cost: 25000},
-            {name: "Half-plate", acbonus: 7, penalty: -7, speed: -10, fumble: "d16", cost: 55000},
-            {name: "Full Plate", acbonus: 8, penalty: -8, speed: -10, fumble: "d16", cost: 120000},
-            {name: "Shield", acbonus: 1, penalty: -1, speed: 0, fumble: "", cost: 1000}
+        $scope.armor = [{name: "Unarmored", acbonus: 0, penalty: 0, speed: 0, fumble: "d4", cost: 0, equipped: false},
+            {name: "Padded", acbonus: 1, penalty: 0, speed: 0, fumble: "d8", cost: 500, equipped: false},
+            {name: "Leather", acbonus: 2, penalty: -1, speed: 0, fumble: "d8", cost: 2000, equipped: false},
+            {name: "Studded Leather", acbonus: 3, penalty: -2, speed: 0, fumble: "d8", cost: 4500, equipped: false},
+            {name: "Hide", acbonus: 3, penalty: -3, speed: 0, fumble: "d12", cost: 3000, equipped: false},
+            {name: "Scale mail", acbonus: 4, penalty: -4, speed: -5, fumble: "d12", cost: 8000, equipped: false},
+            {name: "Chainmail", acbonus: 5, penalty: -5, speed: -5, fumble: "d12", cost: 15000, equipped: false},
+            {name: "Banded mail", acbonus: 6, penalty: -6, speed: -5, fumble: "d16", cost: 25000, equipped: false},
+            {name: "Half-plate", acbonus: 7, penalty: -7, speed: -10, fumble: "d16", cost: 55000, equipped: false},
+            {name: "Full Plate", acbonus: 8, penalty: -8, speed: -10, fumble: "d16", cost: 120000, equipped: false},
+            {name: "Shield", acbonus: 1, penalty: -1, speed: 0, fumble: "", cost: 1000, equipped: false}
         ];
 
         //Modifier table
@@ -179,6 +180,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
             generateClassSpecifics();
             generateHitPoints();
             generateLanguages();
+            generateArmorClass();
 
             var hero = new Hero({
                 characterName: $scope.characterName,
@@ -214,8 +216,8 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                 treasure: $scope.hero.treasure,
                 languages: $scope.hero.languages,
                 notes: $scope.hero.notes,
-                xp: $scope.hero.xp
-
+                xp: $scope.hero.xp,
+                armorClass: $scope.hero.armorClass
             });
             hero.$save(function (response) {
                 $location.path('hero/' + response._id);
@@ -243,6 +245,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
 
 
         $scope.update = function () {
+            generateArmorClass();
             $scope.hero.$update(function () {
                 $location.path('hero/' + $scope.hero._id);
             }, function (errorResponse) {
@@ -1164,6 +1167,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                 generateAttackModifiers();
                 generateSavingThrowModifiers();
                 generateInitiativeRoll();
+                generateArmorClass();
                 if ($scope.hero.charClass.indexOf('Thief') != -1) {
                     generateClassSpecifics();
                 }
@@ -1557,11 +1561,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                         alert("Your Cleric can't know any 5th level spells");
                     }
                     break;
-
             }
-
-
-
         };
 
 
@@ -1581,6 +1581,48 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
             $scope.hero.ownedWeapons.splice(index, 1);
 
         };
+
+        var generateArmorClass = function ()
+        {
+            var base = 10;
+            var modifier = $scope.hero.agility.modifier;
+            var ac = 0;
+
+            if ($scope.hero.ownedArmor.length > 0)
+            {
+                angular.forEach ($scope.hero.ownedArmor, function(armor)
+                {
+                    if(armor.equipped)
+                    {
+                        ac += armor.acbonus;
+                    }
+                });
+            }
+
+            $scope.hero.armorClass = base + modifier + ac;
+        };
+
+        //$scope.calculateArmorClass = function (armorClass, equipped)
+        //{
+        //    var currentArmorClass = $scope.hero.armorClass;
+        //
+        //    var equip = equipped;
+        //
+        //    if (equip == true)
+        //    {
+        //
+        //        $scope.hero.armorClass = currentArmorClass + armorClass;
+        //        alert("Armor class is being added: " + armorClass);
+        //    }
+        //    else {
+        //
+        //        $scope.hero.armorClass = currentArmorClass - armorClass;
+        //
+        //        alert("Armor class is being removed: " + armorClass);
+        //
+        //    }
+        //
+        //};
     }
 
 ]);

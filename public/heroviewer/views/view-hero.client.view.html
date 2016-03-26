@@ -67,6 +67,10 @@
                 <label for="charSpeed">Speed:</label>
                 <input id="charSpeed" ng-model="hero.speed" type="text" ng-disabled="true">
             </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-4 charArmor">
+                <label for="charArmor">Armor Class:</label>
+                <input id="charArmor" ng-model="hero.armorClass" type="text" ng-disabled="true">
+            </div>
             <div class="col-xs-6 col-sm-6 col-md-3 col-lg-4 hitPoints">
                 <label for="hitPoints">Hit Points:</label>
                 <input id="hitPoints" ng-model="hero.hitPoints" type="text" ng-disabled="blockEdit">
@@ -385,19 +389,26 @@
                     <a class="btn btn-primary btn-xs" data-ng-click="addArmor()">Add</a>
                 </div>
                 <table class="table-striped table-condensed table-responsive table-bordered">
+                    <th ng-hide="blockEdit">Equip</th>
                     <th>Armor</th>
                     <th>AC Bonus</th>
                     <th>Penalty</th>
                     <th>Speed</th>
                     <th>Fumble</th>
                     <tr ng-repeat="x in hero.ownedArmor track by $index">
+                        <td ng-hide="blockEdit">
+                            <input type="checkbox"
+                                   ng-model="x.equipped"
+                                   title="Equip">
+                        </td>
                         <td>{{ x.name }}</td>
                         <td>{{ x.acbonus }}</td>
                         <td>{{ x.penalty }}</td>
                         <td>{{ x.speed }}</td>
                         <td>{{ x.fumble }}</td>
-                        <td ng-hide="blockEdit"><a class="btn btn-primary btn-xs" href=""
-                                                   ng-click="deleteArmorRow($index)">Remove</a></td>
+                        <td ng-hide="blockEdit">
+                        <a class="btn btn-primary btn-xs" href=""
+                        ng-click="deleteArmorRow($index)">Remove</a></td>
                     </tr>
                 </table>
             </div>

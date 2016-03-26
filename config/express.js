@@ -89,7 +89,7 @@ module.exports = function () {
                 + "\n"
             weaponIterator++;
         }
-        console.log("xp is: " + req.body.xp);
+
         var xp = req.body.xp ? req.body.xp : "";
         var treasure = req.body.treasure ? req.body.treasure : "";
         var equipment = req.body.equipment ? req.body.equipment : "";
@@ -136,7 +136,8 @@ module.exports = function () {
             "treasure": treasure,
             "languages": req.body.languages,
             "notes": notes,
-            "xp": xp
+            "xp": xp,
+            "armorClass": req.body.armorClass
         };
 
 
