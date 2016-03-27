@@ -1,94 +1,78 @@
 <section class="smallIndent" data-ng-controller="HeroController">
-
     <h1>Choose:</h1>
-
     <form name="heroBuilder_form" data-ng-submit="create()" novalidate>
-        <div class="container">
-            <div class="row heropicker">
-                <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="container heroPicker">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 characterName">
+                    <label for="characterName">Character Name:</label>
+                    <input type="text" data-ng-model="characterName"
+                           id="characterName"
+                           placeholder="Character Name"
+                           required>
+                </div>
 
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <label for="characterName">Character Name:</label>
-                            <input type="text" data-ng-model="characterName"
-                                   id="characterName"
-                                   placeholder="Character Name"
-                                   required>
-                        </div>
-                    </div>
+                <div class="col-xs-5 col-sm-6 col-md-4 col-lg-3 charLevel">
+                    <label for="level">Level:</label>
+                    <select id="level" data-ng-model="level" required>
+                        <option value="">Select Level</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
 
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <label for="level">Level:</label>
-                            <select id="level" data-ng-model="level" required>
-                                <option value="">Select Level</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <label for="alignment">Alignment:</label>
-                            <select id="alignment" data-ng-model="alignment" required>
-                                <option value="">Select Alignment</option>
-                                <option value="Lawful">Lawful</option>
-                                <option value="Neutral">Neutral</option>
-                                <option value="Chaotic">Chaotic</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="col-xs-7 col-sm-6 col-md-4 col-lg-3">
+                    <label for="alignment">Alignment:</label>
+                    <select id="alignment" data-ng-model="alignment" required>
+                        <option value="">Select Alignment</option>
+                        <option value="Lawful">Lawful</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Chaotic">Chaotic</option>
+                    </select>
                 </div>
             </div>
-            <div class="container">
-                <div class="row radioimg">
-                    <label>
-                        <input type="radio" name="class" data-ng-model="charClass" value="Cleric"/>
-                        <img src="../../img/cleric.png" class="img-responsive" alt="cleric" data-toggle="tooltip"
-                             title="Cleric">
-                    </label>
-                    <label>
-                        <input type="radio" name="class" data-ng-model="charClass" value="Dwarf"/>
-                        <img src="../../img/dwarf.png" class="img-responsive" alt="dwarf" data-toggle="tooltip"
-                             title="Dwarf">
-                    </label>
-                    <label data-toggle="tooltip" title="Elf">
-                        <input type="radio" name="charClass" data-ng-model="charClass" value="Elf"/>
-                        <img src="../../img/elf.png" class="img-responsive" alt="elf">
-                    </label>
-                    <label data-toggle="tooltip" title="Halfling">
-                        <input type="radio" name="charClass" data-ng-model="charClass" value="Halfling"/>
-                        <img src="../../img/halfling.png" class="img-responsive" alt="halfling">
-                    </label>
-                    <label data-toggle="tooltip" title="Thief">
-                        <input type="radio" name="charClass" data-ng-model="charClass" value="Thief"/>
-                        <img src="../../img/thief.png" class="img-responsive" alt="thief">
-                    </label>
-                    <label data-toggle="tooltip" title="Warrior">
-                        <input type="radio" name="charClass" data-ng-model="charClass" value="Warrior"/>
-                        <img src="../../img/warrior.png" class="img-responsive" alt="warrior">
-                    </label>
-                    <label data-toggle="tooltip" title="Wizard">
-                        <input type="radio" name="charClass" data-ng-model="charClass" value="Wizard"/>
-                        <img src="../../img/wizard.png" class="img-responsive" alt="wizard">
-                    </label>
-                </div>
-                <br>
-                <button class="btn btn-success " type="submit" value="buildHero">Build Hero</button>
 
+
+            <div class="row radioimg classImages">
+                <label>
+                    <input type="radio" name="class" data-ng-model="charClass" value="Cleric"/>
+                    <img src="../../img/cleric.png" class="img-responsive" alt="cleric" data-toggle="tooltip"
+                         title="Cleric">
+                </label>
+                <label>
+                    <input type="radio" name="class" data-ng-model="charClass" value="Dwarf"/>
+                    <img src="../../img/dwarf.png" class="img-responsive" alt="dwarf" data-toggle="tooltip"
+                         title="Dwarf">
+                </label>
+                <label data-toggle="tooltip" title="Elf">
+                    <input type="radio" name="charClass" data-ng-model="charClass" value="Elf"/>
+                    <img src="../../img/elf.png" class="img-responsive" alt="elf">
+                </label>
+                <label data-toggle="tooltip" title="Halfling">
+                    <input type="radio" name="charClass" data-ng-model="charClass" value="Halfling"/>
+                    <img src="../../img/halfling.png" class="img-responsive" alt="halfling">
+                </label>
+                <label data-toggle="tooltip" title="Thief">
+                    <input type="radio" name="charClass" data-ng-model="charClass" value="Thief"/>
+                    <img src="../../img/thief.png" class="img-responsive" alt="thief">
+                </label>
+                <label data-toggle="tooltip" title="Warrior">
+                    <input type="radio" name="charClass" data-ng-model="charClass" value="Warrior"/>
+                    <img src="../../img/warrior.png" class="img-responsive" alt="warrior">
+                </label>
+                <label data-toggle="tooltip" title="Wizard">
+                    <input type="radio" name="charClass" data-ng-model="charClass" value="Wizard"/>
+                    <img src="../../img/wizard.png" class="img-responsive" alt="wizard">
+                </label>
             </div>
+            <button class="btn btn-success buildButton" type="submit" value="buildHero">Build Hero</button>
         </div>
-
     </form>
-
-
 </section>

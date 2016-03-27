@@ -650,3 +650,50 @@ textarea {
     margin: 5px;
     width: auto;
 }
+
+.heroPicker
+{
+    background-color: #512C73;
+    color: #9277AC;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 5px;
+    width: auto;
+}
+
+.heroPicker label {
+    width: 80px;
+    padding: 8px;
+}
+
+.heroPicker input{
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    width: 75px;
+}
+
+.heroPicker .characterName label {
+    width: 130px;
+    padding: 8px;
+}
+
+.heroPicker .characterName input {
+    width: 130px;
+    padding: 8px;
+}
+
+.heroPicker .charLevel label {
+    width: 50px;
+    padding: 8px;
+}
+
+.heroPicker .classImages
+{
+    padding: 8px;
+}
+
+.heroPicker .buildButton
+{
+    margin: 8px;
+}
