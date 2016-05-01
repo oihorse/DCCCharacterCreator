@@ -29,10 +29,10 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
             {name: "Conceived on horseback: Mounted attack rolls"},
             {name: "Born on the battlefield: Damage rolls"},
             {name: "Path of the bear: Melee damage rolls"},
-            {name: "Hawkeye: Missle fire damage rolls"},
+            {name: "Hawkeye: Missile fire damage rolls"},
             {name: "Pack hunter: Attack and damage rolls for 0-level starting weapon"},
             {name: "Born under the loom: Skill checks (including thief skills)"},
-            {name: "Fox's cunning: Find/disarm traps"},
+            {name: "Fox's cunning: Find/disable traps"},
             {name: "Four-leafed clover: Find secret doors"},
             {name: "Seventh son: Spell checks"},
             {name: "The raging storm: Spell damage"},
@@ -238,7 +238,8 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
         };
 
         $scope.pdf = function () {
-            $http.post('/pdf', $scope.hero).success(function (res) {
+            $http.post('/pdf', $scope.hero)
+                .success(function (res) {
                 window.open(res);
             });
         };
@@ -898,7 +899,7 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                             $scope.hero.classSpecific.maximumSpellCastingLevel = Cleric.getMaximumSpellCastingLevel($scope.hero.personality.score);
                             $scope.hero.classSpecific.spellsKnown = Cleric.getSpellsKnown($scope.hero.level, $scope.hero.personality.score);
 
-                            $scope.hero.classSpecific.listOfPossibleSpells = Cleric.generateListOfPossibleSpells($scope.hero.classSpecific.maximumSpellCastingLevel);
+                            $scope.hero.classSpecific.listOfPossibleSpells = Cleric.generateListOfPossibleSpells( $scope.hero.classSpecific.spellsKnown.spellList.length);
                             $scope.hero.classSpecific.spellList = [];
 
                         }
@@ -1189,10 +1190,9 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
             if (newScore >= 3) {
                 $scope.hero.personality = abilityModifiers[newScore - 3];
                 generateSavingThrowModifiers();
-
-                if ($scope.hero.charClass.indexOf('Cleric') != -1 || $scope.hero.charClass.indexOf('Thief') != -1) {
-                    generateClassSpecifics();
-                }
+            }
+            if ($scope.hero.charClass.indexOf('Cleric') != -1 || $scope.hero.charClass.indexOf('Thief') != -1) {
+                generateClassSpecifics();
             }
         };
 
