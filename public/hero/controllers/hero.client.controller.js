@@ -1397,9 +1397,6 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
 
         }
 
-
-
-
         $scope.addSpell = function (selectedLevel, selectedSpell) {
 
             if ($scope.hero.classSpecific.spellsKnown > $scope.hero.classSpecific.spellList.length) {
@@ -1465,7 +1462,14 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
                 $scope.hero.classSpecific.spellList.push(spell);
             }
             else {
-                alert("Your wizard can't contain any more spells in their head");
+
+                if ($scope.hero.charClass.indexOf('Wizard') != -1)
+                {
+                    alert("Your wizard can't contain any more spells in their head");
+                }
+                else {
+                    alert("Your elf cannot contain any more spells between their pointy ears.");
+                }
             }
         };
 

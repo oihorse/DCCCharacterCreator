@@ -278,6 +278,11 @@ Elf.getMaximumSpellCastingLevel = function (intelligence) {
 
     var mscl = Elf.maxSpellCastingLevel[intelligence - 3];
 
+    if (mscl == 0)
+    {
+        return "Cannot cast";
+    }
+
     return mscl;
 };
 
