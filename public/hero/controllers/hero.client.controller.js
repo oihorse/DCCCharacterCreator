@@ -911,17 +911,30 @@ angular.module('hero').controller('HeroController', ['$scope', '$http',
 
                         if ($scope.hero.intelligence) {
 
-                            $scope.hero.classSpecific.spellCheck = Wizard.getSpellCheck($scope.hero.level, $scope.hero.intelligence.modifier);
-                            $scope.hero.classSpecific.maximumSpellCastingLevel = Wizard.getMaximumSpellCastingLevel($scope.hero.intelligence.score);
-                            $scope.hero.classSpecific.spellsKnown = Wizard.getNumberOfSpellsKnown($scope.hero.level, $scope.hero.intelligence.score);
-                            $scope.hero.classSpecific.currentSpellCastingLevel = Wizard.getCurrentCastingLevel($scope.hero.level);
+                            if ($scope.hero.intelligence.score > 3) {
+                                $scope.hero.classSpecific.spellCheck = Wizard.getSpellCheck($scope.hero.level, $scope.hero.intelligence.modifier);
+                                $scope.hero.classSpecific.maximumSpellCastingLevel = Wizard.getMaximumSpellCastingLevel($scope.hero.intelligence.score);
+                                $scope.hero.classSpecific.spellsKnown = Wizard.getNumberOfSpellsKnown($scope.hero.level, $scope.hero.intelligence.score);
+                                $scope.hero.classSpecific.currentSpellCastingLevel = Wizard.getCurrentCastingLevel($scope.hero.level);
+                                $scope.hero.classSpecific.listOfPossibleSpells = Wizard.generateListOfPossibleSpells($scope.hero.classSpecific.currentSpellCastingLevel);
+                                $scope.hero.classSpecific.spellList = [];
 
-                            if ($scope.hero.classSpecific.maximumSpellCastingLevel < $scope.hero.classSpecific.currentSpellCastingLevel) {
-                                $scope.hero.classSpecific.currentSpellCastingLevel = $scope.hero.classSpecific.maximumSpellCastingLevel;
+
+                                if ($scope.hero.classSpecific.maximumSpellCastingLevel < $scope.hero.classSpecific.currentSpellCastingLevel) {
+                                    $scope.hero.classSpecific.currentSpellCastingLevel = $scope.hero.classSpecific.maximumSpellCastingLevel;
+                                }
+
                             }
-                            $scope.hero.classSpecific.listOfPossibleSpells = Wizard.generateListOfPossibleSpells($scope.hero.classSpecific.currentSpellCastingLevel);
-                            $scope.hero.classSpecific.spellList = [];
-
+                            else
+                            {
+                                $scope.hero.classSpecific.spellCheck = Wizard.getSpellCheck($scope.hero.level, $scope.hero.intelligence.modifier);
+                                $scope.hero.classSpecific.maximumSpellCastingLevel = 0;
+                                $scope.hero.classSpecific.spellsKnown = 0;
+                                $scope.hero.classSpecific.currentSpellCastingLevel = 0;
+                                $scope.hero.classSpecific.listOfPossibleSpells = [];
+                                $scope.hero.classSpecific.spellList = [];
+                                $scope.hero.classSpecific.currentSpellCastingLevel = 0;
+                            }
                         }
                     }
                 }

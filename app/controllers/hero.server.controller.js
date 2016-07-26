@@ -90,6 +90,7 @@ exports.update = function (req, res) {
     hero.notes = req.body.notes;
     hero.xp = req.body.xp;
     hero.armorClass = req.body.armorClass;
+    hero.initiative = req.body.initiative;
 
 
     hero.save(function (err) {
